@@ -8,14 +8,15 @@ Public Class PlanAhorrosForm
     Private Sub Limpiar()
 
         PlanAhorro = New PlanAhorros
-        PlanIdTextBox.Clear()
+        PlanIdMaskedTextBox.Clear()
         DescripcionTextBox.Clear()
-        PorcientoDescTextBox.Clear()
+        PorcientoDescMaskedTextBox.Clear()
+        ErrorProvider.Clear()
     End Sub
 
     Private Function LlenarInstancia() As PlanAhorros
 
-        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescTextBox.Text))
+        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescMaskedTextBox.Text))
         Return PlanAhorro
 
     End Function
@@ -28,8 +29,8 @@ Public Class PlanAhorrosForm
             ErrorProvider.SetError(DescripcionTextBox, "Por favor digite la descripcion.")
             interruptor = False
         End If
-        If (String.IsNullOrEmpty(PorcientoDescTextBox.Text)) Then
-            ErrorProvider.SetError(PorcientoDescTextBox, "Por favor digite el porciento de descuento.")
+        If (String.IsNullOrEmpty(PorcientoDescMaskedTextBox.Text)) Then
+            ErrorProvider.SetError(PorcientoDescMaskedTextBox, "Por favor digite el porciento de descuento.")
             interruptor = False
         End If
 
@@ -39,7 +40,7 @@ Public Class PlanAhorrosForm
 
     Private Sub CargarDatosPlanAhorro()
         DescripcionTextBox.Text = PlanAhorro.Descripcion
-        PorcientoDescTextBox.Text = PlanAhorro.PorcientoDesc
+        PorcientoDescMaskedTextBox.Text = PlanAhorro.PorcientoDesc
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
@@ -60,9 +61,9 @@ Public Class PlanAhorrosForm
 
     Private Sub BuscarButton_Click(sender As Object, e As EventArgs) Handles BuscarButton.Click
 
-        If (String.IsNullOrEmpty(PlanIdTextBox.Text) = False) Then
+        If (String.IsNullOrEmpty(PlanIdMaskedTextBox.Text) = False) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdMaskedTextBox.Text)
 
             If PlanAhorro.PlanId <> 0 Then
                 CargarDatosPlanAhorro()
@@ -78,9 +79,9 @@ Public Class PlanAhorrosForm
 
     Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click
 
-        If (String.IsNullOrEmpty(PlanIdTextBox.Text) = False) Then
+        If (String.IsNullOrEmpty(PlanIdMaskedTextBox.Text) = False) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdMaskedTextBox.Text)
 
             If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
                 MessageBox.Show("PLan Ahorro eliminado con exito.")

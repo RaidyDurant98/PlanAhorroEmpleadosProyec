@@ -28,6 +28,8 @@ Partial Class MenuPrincipalForm
         Me.EmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanAhorrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PlanAhorrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,20 +59,33 @@ Partial Class MenuPrincipalForm
         'EmpleadosToolStripMenuItem
         '
         Me.EmpleadosToolStripMenuItem.Name = "EmpleadosToolStripMenuItem"
-        Me.EmpleadosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EmpleadosToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.EmpleadosToolStripMenuItem.Text = "Empleados"
         '
         'PlanAhorrosToolStripMenuItem
         '
         Me.PlanAhorrosToolStripMenuItem.Name = "PlanAhorrosToolStripMenuItem"
-        Me.PlanAhorrosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PlanAhorrosToolStripMenuItem.Size = New System.Drawing.Size(142, 22)
         Me.PlanAhorrosToolStripMenuItem.Text = "Plan Ahorros"
         '
         'ConsultasToolStripMenuItem
         '
+        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpleadosToolStripMenuItem1, Me.PlanAhorrosToolStripMenuItem1})
         Me.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem"
         Me.ConsultasToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.ConsultasToolStripMenuItem.Text = "Consultas"
+        '
+        'EmpleadosToolStripMenuItem1
+        '
+        Me.EmpleadosToolStripMenuItem1.Name = "EmpleadosToolStripMenuItem1"
+        Me.EmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.EmpleadosToolStripMenuItem1.Text = "Empleados"
+        '
+        'PlanAhorrosToolStripMenuItem1
+        '
+        Me.PlanAhorrosToolStripMenuItem1.Name = "PlanAhorrosToolStripMenuItem1"
+        Me.PlanAhorrosToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.PlanAhorrosToolStripMenuItem1.Text = "Plan Ahorros"
         '
         'MenuPrincipalForm
         '
@@ -95,4 +110,6 @@ Partial Class MenuPrincipalForm
     Friend WithEvents EmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PlanAhorrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConsultasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmpleadosToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents PlanAhorrosToolStripMenuItem1 As ToolStripMenuItem
 End Class

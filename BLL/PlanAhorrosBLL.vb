@@ -72,4 +72,13 @@ Public Class PlanAhorrosBLL
         Return False
     End Function
 
+    Public Shared Function GetList(ByVal comandoString As String) As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos(comandoString)
+            Return dt
+        End Using
+
+    End Function
+
 End Class
