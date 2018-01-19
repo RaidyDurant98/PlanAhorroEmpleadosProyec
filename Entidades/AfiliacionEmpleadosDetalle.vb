@@ -1,4 +1,4 @@
-﻿Public Class AfiliacionEmpleados
+﻿Public Class AfiliacionEmpleadosDetalle
 
     Public Id As Integer
     Public Empleado As Integer
@@ -7,7 +7,7 @@
     Public PorcientoDesc As Double
     Public Interes As Double
 
-    Public Sub New(empleado As Integer, planAhorro As Integer, descripcion As String, porcientoDesc As Double, interes As Double)
+    Public Sub New(id As Integer, empleado As Integer, planAhorro As Integer, descripcion As String, porcientoDesc As Double, interes As Double)
         Me.Empleado = empleado
         Me.PlanAhorro = planAhorro
         Me.Descripcion = descripcion

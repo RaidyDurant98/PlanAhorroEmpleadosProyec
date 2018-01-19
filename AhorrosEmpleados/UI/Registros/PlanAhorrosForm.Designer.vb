@@ -34,6 +34,8 @@ Partial Class PlanAhorrosForm
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PorcientoDescMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.PlanIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.InteresMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -131,11 +133,31 @@ Partial Class PlanAhorrosForm
         Me.PlanIdMaskedTextBox.TabIndex = 21
         Me.PlanIdMaskedTextBox.ValidatingType = GetType(Integer)
         '
+        'InteresMaskedTextBox
+        '
+        Me.InteresMaskedTextBox.Location = New System.Drawing.Point(131, 191)
+        Me.InteresMaskedTextBox.Mask = "000000000000000000000000000"
+        Me.InteresMaskedTextBox.Name = "InteresMaskedTextBox"
+        Me.InteresMaskedTextBox.Size = New System.Drawing.Size(168, 20)
+        Me.InteresMaskedTextBox.TabIndex = 23
+        Me.InteresMaskedTextBox.ValidatingType = GetType(Integer)
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(59, 194)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(42, 13)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "Interes:"
+        '
         'PlanAhorrosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(362, 327)
+        Me.Controls.Add(Me.InteresMaskedTextBox)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.PlanIdMaskedTextBox)
         Me.Controls.Add(Me.PorcientoDescMaskedTextBox)
         Me.Controls.Add(Me.EliminarButton)
@@ -146,6 +168,7 @@ Partial Class PlanAhorrosForm
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "PlanAhorrosForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Plan de Ahorros"
@@ -166,4 +189,6 @@ Partial Class PlanAhorrosForm
     Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents PorcientoDescMaskedTextBox As MaskedTextBox
     Friend WithEvents PlanIdMaskedTextBox As MaskedTextBox
+    Friend WithEvents InteresMaskedTextBox As MaskedTextBox
+    Friend WithEvents Label4 As Label
 End Class

@@ -6,17 +6,17 @@ Public Class PlanAhorrosForm
     Dim PlanAhorro As PlanAhorros = New PlanAhorros
 
     Private Sub Limpiar()
-
         PlanAhorro = New PlanAhorros
         PlanIdMaskedTextBox.Clear()
         DescripcionTextBox.Clear()
         PorcientoDescMaskedTextBox.Clear()
+        InteresMaskedTextBox.Clear()
         ErrorProvider.Clear()
     End Sub
 
     Private Function LlenarInstancia() As PlanAhorros
 
-        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescMaskedTextBox.Text))
+        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescMaskedTextBox.Text), Convert.ToDouble(InteresMaskedTextBox.Text))
         Return PlanAhorro
 
     End Function
@@ -33,6 +33,10 @@ Public Class PlanAhorrosForm
             ErrorProvider.SetError(PorcientoDescMaskedTextBox, "Por favor digite el porciento de descuento.")
             interruptor = False
         End If
+        If (String.IsNullOrEmpty(InteresMaskedTextBox.Text)) Then
+            ErrorProvider.SetError(InteresMaskedTextBox, "Por favor digite el interes.")
+            interruptor = False
+        End If
 
         Return interruptor
 
@@ -41,11 +45,12 @@ Public Class PlanAhorrosForm
     Private Sub CargarDatosPlanAhorro()
         DescripcionTextBox.Text = PlanAhorro.Descripcion
         PorcientoDescMaskedTextBox.Text = PlanAhorro.PorcientoDesc
+        InteresMaskedTextBox.Text = PlanAhorro.Interes
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
 
-        If Validar() = True Then
+        If Validar() Then
             If PlanAhorrosBLL.Guardar(LlenarInstancia()) = True Then
                 MessageBox.Show("PLan de ahorro guardado con exito.")
             Else
@@ -84,6 +89,7 @@ Public Class PlanAhorrosForm
             PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdMaskedTextBox.Text)
 
             If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
+                Limpiar()
                 MessageBox.Show("PLan Ahorro eliminado con exito.")
             Else
                 MessageBox.Show("No se pudo eliminar el plan de ahorro.")

@@ -7,7 +7,7 @@ Public Class PlanAhorrosConsulta
     End Sub
 
     Private Sub Filtro()
-        Dim dt As DataTable = New DataTable
+        Dim dt As DataTable = Nothing
 
         If FiltrarComboBox.SelectedIndex = 0 Then
             dt = PlanAhorrosBLL.GetList("select * from PlanAhorros")
@@ -19,13 +19,11 @@ Public Class PlanAhorrosConsulta
                 If FiltrarComboBox.SelectedIndex = 1 Then
                     dt = PlanAhorrosBLL.GetList("Select * from PlanAhorros where PlanId =" & FiltrarTextBox.Text & "")
                 ElseIf FiltrarComboBox.SelectedIndex = 2 Then
-                    dt = PlanAhorrosBLL.GetList("Select * From PlanAhorros where Descripcion = " & FiltrarTextBox.Text & "
-")
+                    dt = PlanAhorrosBLL.GetList("Select * from PlanAhorros where Descripcion ='" & FiltrarTextBox.Text & "'")
                 End If
 
             End If
         End If
-
         ConsultaDataGridView.DataSource = dt
     End Sub
 

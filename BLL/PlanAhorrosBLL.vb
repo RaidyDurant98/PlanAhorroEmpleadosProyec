@@ -8,7 +8,9 @@ Public Class PlanAhorrosBLL
         Using coneccion As New Coneccion()
 
             If planAhorro.PlanId = 0 Then
-                If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "');") > 0 Then
+
+                If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "');") > 0 Then
+
                     Return True
                 End If
             Else
@@ -33,6 +35,7 @@ Public Class PlanAhorrosBLL
                 planAhorro.PlanId = dt.Rows(0)("PlanId")
                 planAhorro.Descripcion = dt.Rows(0)("Descripcion")
                 planAhorro.PorcientoDesc = dt.Rows(0)("PorcientoDesc")
+                planAhorro.Interes = dt.Rows(0)("Interes")
             End If
 
             If planAhorro IsNot Nothing Then
@@ -63,7 +66,7 @@ Public Class PlanAhorrosBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "' where PlanId = '" & planAhorro.PlanId & "'") Then
+            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "', Interes = '" & planAhorro.Interes & "' where PlanId = '" & planAhorro.PlanId & "'") Then
                 Return True
             End If
 

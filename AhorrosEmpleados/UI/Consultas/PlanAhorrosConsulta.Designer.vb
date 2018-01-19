@@ -28,22 +28,26 @@ Partial Class PlanAhorrosConsulta
         Me.FiltrarButton = New System.Windows.Forms.Button()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PorcientoDescuento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.PorcientoInteres = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ConsultaDataGridView
         '
+        Me.ConsultaDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ConsultaDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Descripcion, Me.PorcientoDescuento})
+        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Descripcion, Me.PorcientoDescuento, Me.PorcientoInteres})
         Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 99)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
-        Me.ConsultaDataGridView.Size = New System.Drawing.Size(434, 150)
+        Me.ConsultaDataGridView.Size = New System.Drawing.Size(445, 150)
         Me.ConsultaDataGridView.TabIndex = 0
         '
         'FiltrarComboBox
@@ -58,7 +62,8 @@ Partial Class PlanAhorrosConsulta
         '
         'FiltrarButton
         '
-        Me.FiltrarButton.Location = New System.Drawing.Point(333, 56)
+        Me.FiltrarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FiltrarButton.Location = New System.Drawing.Point(344, 56)
         Me.FiltrarButton.Name = "FiltrarButton"
         Me.FiltrarButton.Size = New System.Drawing.Size(75, 23)
         Me.FiltrarButton.TabIndex = 2
@@ -67,6 +72,7 @@ Partial Class PlanAhorrosConsulta
         '
         'ImprimirButton
         '
+        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ImprimirButton.Location = New System.Drawing.Point(13, 266)
         Me.ImprimirButton.Name = "ImprimirButton"
         Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
@@ -76,10 +82,16 @@ Partial Class PlanAhorrosConsulta
         '
         'FiltrarTextBox
         '
+        Me.FiltrarTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltrarTextBox.Location = New System.Drawing.Point(139, 58)
         Me.FiltrarTextBox.Name = "FiltrarTextBox"
-        Me.FiltrarTextBox.Size = New System.Drawing.Size(188, 20)
+        Me.FiltrarTextBox.Size = New System.Drawing.Size(199, 20)
         Me.FiltrarTextBox.TabIndex = 4
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
         '
         'ID
         '
@@ -99,15 +111,17 @@ Partial Class PlanAhorrosConsulta
         Me.PorcientoDescuento.HeaderText = "% Descuento"
         Me.PorcientoDescuento.Name = "PorcientoDescuento"
         '
-        'ErrorProvider
+        'PorcientoInteres
         '
-        Me.ErrorProvider.ContainerControl = Me
+        Me.PorcientoInteres.DataPropertyName = "Interes"
+        Me.PorcientoInteres.HeaderText = "% Interes"
+        Me.PorcientoInteres.Name = "PorcientoInteres"
         '
         'PlanAhorrosConsulta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(458, 328)
+        Me.ClientSize = New System.Drawing.Size(469, 328)
         Me.Controls.Add(Me.FiltrarTextBox)
         Me.Controls.Add(Me.ImprimirButton)
         Me.Controls.Add(Me.FiltrarButton)
@@ -128,8 +142,9 @@ Partial Class PlanAhorrosConsulta
     Friend WithEvents FiltrarButton As Button
     Friend WithEvents ImprimirButton As Button
     Friend WithEvents FiltrarTextBox As TextBox
+    Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As DataGridViewTextBoxColumn
     Friend WithEvents PorcientoDescuento As DataGridViewTextBoxColumn
-    Friend WithEvents ErrorProvider As ErrorProvider
+    Friend WithEvents PorcientoInteres As DataGridViewTextBoxColumn
 End Class
