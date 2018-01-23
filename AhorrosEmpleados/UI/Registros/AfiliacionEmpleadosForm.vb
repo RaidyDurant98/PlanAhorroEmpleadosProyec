@@ -1,10 +1,12 @@
-﻿Imports Entidades
+﻿Imports BLL
+Imports Entidades
 
 Public Class AfiliacionEmpleadosForm
 
     Dim Empleado As Empleados = Nothing
     Dim PlanAhorro As PlanAhorros = Nothing
     Dim dt As DataTable = Nothing
+    Dim Afiliacion As AfiliacionEmpleados = New AfiliacionEmpleados()
 
     Private Sub AfiliacionEmpleadosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Empleado = New Empleados()
@@ -19,6 +21,7 @@ Public Class AfiliacionEmpleadosForm
         EmpleadoIdMaskedTextBox.Clear()
         EmpleadoNombreTextBox.Clear()
         PlanAhorroIdMaskedTextBox.Clear()
+        ErrorProvider.Clear()
         LimpiarPLanAhorro()
         LimpiarGrid()
     End Sub
@@ -114,6 +117,45 @@ Public Class AfiliacionEmpleadosForm
 
     End Sub
 
+    Private Function Validar() As Boolean
+
+        Dim interruptor = True
+
+        If Empleado.EmpleadoId < 1 Then
+            interruptor = False
+            ErrorProvider.SetError(EmpleadoNombreTextBox, "Por favor busque el empleado.")
+        End If
+        If DetalleDataGridView.Rows.Count <= 1 Then
+            interruptor = False
+            ErrorProvider.SetError(DetalleDataGridView, "Por favor agrege el o los plan de ahorro(s)")
+        End If
+
+        Return interruptor
+
+    End Function
+
+    Private Function GuardarDetalle() As List(Of AfiliacionEmpleadosDetalle)
+        For Each row As DataGridViewRow In DetalleDataGridView.Rows
+            If row.Cells(1).Value <> "" Then
+                Afiliacion.Detalle.Add(New Entidades.AfiliacionEmpleadosDetalle(
+                       Convert.ToInt32(row.Cells(0).Value),
+                       Convert.ToString(row.Cells(1).Value),
+                       Convert.ToDouble(row.Cells(2).Value),
+                       Convert.ToDouble(row.Cells(3).Value)
+                       ))
+            End If
+        Next row
+
+        Return Afiliacion.Detalle
+    End Function
+
+    Private Function LlenarInstancia() As AfiliacionEmpleados
+
+        Afiliacion = New AfiliacionEmpleados(Convert.ToInt32(EmpleadoIdMaskedTextBox.Text), FechaDateTimePicker.Value, GuardarDetalle())
+
+        Return Afiliacion
+    End Function
+
     Private Sub BuscarButton_Click(sender As Object, e As EventArgs) Handles BuscarButton.Click
 
     End Sub
@@ -126,28 +168,29 @@ Public Class AfiliacionEmpleadosForm
         CargarDatosEmpleado()
     End Sub
 
-    Private Sub BuscarPlanAhorroButton_Click(sender As Object, e As EventArgs) Handles BuscarPlanAhorroButton.Click
-        CargarDatosPLanAhorro()
-    End Sub
-
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
-
-        For Each row As DataGridViewRow In DetalleDataGridView.Rows
-
-        Next row
-
+        If Validar() Then
+            If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
+                MessageBox.Show("Afiliacion guardada con exito.")
+            Else
+                MessageBox.Show("No se pudo guardar la afiliacion.")
+            End If
+        End If
     End Sub
 
     Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click
 
     End Sub
 
-    Private Sub AgregarButton_Click(sender As Object, e As EventArgs) Handles AgregarButton.Click
-        AgregarPLanAhorro()
-    End Sub
-
-    Private Sub PlanAhorroIdMaskedTextBox_TextChanged(sender As Object, e As EventArgs) Handles PlanAhorroIdMaskedTextBox.TextChanged
+    Private Sub PlanAhorroIdMaskedTextBox_TextChanged(sender As Object, e As EventArgs)
         LimpiarPLanAhorro()
     End Sub
 
+    Private Sub BuscarPlanAhorroButton_Click(sender As Object, e As EventArgs) Handles BuscarPlanAhorroButton.Click
+        CargarDatosPLanAhorro()
+    End Sub
+
+    Private Sub AgregarButton_Click(sender As Object, e As EventArgs) Handles AgregarButton.Click
+        AgregarPLanAhorro()
+    End Sub
 End Class

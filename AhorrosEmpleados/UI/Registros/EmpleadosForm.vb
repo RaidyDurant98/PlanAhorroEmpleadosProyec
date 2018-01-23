@@ -57,7 +57,7 @@ Public Class EmpleadosForm
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
-        If Validar() = True Then
+        If Validar() Then
             If EmpleadosBLL.Guardar(LlenarInstancia()) Then
                 MessageBox.Show("Empleado guardado con exito.")
             Else
@@ -98,4 +98,7 @@ Public Class EmpleadosForm
         End If
     End Sub
 
+    Private Sub EmpleadosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

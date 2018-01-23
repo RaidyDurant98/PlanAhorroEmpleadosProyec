@@ -8,7 +8,7 @@ Public Class EmpleadosBLL
         Using conexion As New Coneccion()
 
             If empleado.EmpleadoId = 0 Then
-                If conexion.EjecutarComando("Insert into Empleados(Nombres, Direccion, NumCel, Sueldo, PLanAhorro) Values('" & empleado.Nombres & "' , '" & empleado.Direccion & "' , '" & empleado.NumCel & "' , '" & empleado.Sueldo & "' , '" & empleado.PlanAhorro & "');") > 0 Then
+                If conexion.EjecutarComando("Insert into Empleados(Nombres, Direccion, NumCel, Sueldo) Values('" & empleado.Nombres & "' , '" & empleado.Direccion & "' , '" & empleado.NumCel & "' , '" & empleado.Sueldo & "');") > 0 Then
                     Return True
                 End If
             Else
@@ -34,7 +34,6 @@ Public Class EmpleadosBLL
                 empleado.Direccion = dt.Rows(0)("Direccion")
                 empleado.NumCel = dt.Rows(0)("NumCel")
                 empleado.Sueldo = dt.Rows(0)("Sueldo")
-                empleado.PlanAhorro = dt.Rows(0)("PlanAhorro")
             End If
 
             If empleado IsNot Nothing Then
@@ -65,7 +64,7 @@ Public Class EmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update Empleados set Nombres = '" & empleado.Nombres & "', Direccion = '" & empleado.Direccion & "', NumCel = '" & empleado.NumCel & "', Sueldo = '" & empleado.Sueldo & "', PlanAhorro = '" & empleado.PlanAhorro & "' where EmpleadoId = '" & empleado.EmpleadoId & "'") Then
+            If coneccion.EjecutarComando("Update Empleados set Nombres = '" & empleado.Nombres & "', Direccion = '" & empleado.Direccion & "', NumCel = '" & empleado.NumCel & "', Sueldo = '" & empleado.Sueldo & "' where EmpleadoId = " & empleado.EmpleadoId & "") Then
                 Return True
             End If
 

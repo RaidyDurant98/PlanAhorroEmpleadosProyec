@@ -2,21 +2,18 @@
 
     Public Id As Integer
     Public Empleado As Integer
-    Public PlanAhorro As Integer
-    Public Descripcion As String
-    Public PorcientoDesc As Double
-    Public Interes As Double
+    Public FechaAfiliacion As Date
 
-    Public Sub New(empleado As Integer, planAhorro As Integer, descripcion As String, porcientoDesc As Double, interes As Double)
+    Public Detalle As List(Of AfiliacionEmpleadosDetalle)
+
+    Public Sub New(empleado As Integer, fechaAfiliacion As Date, detalle As List(Of AfiliacionEmpleadosDetalle))
         Me.Empleado = empleado
-        Me.PlanAhorro = planAhorro
-        Me.Descripcion = descripcion
-        Me.PorcientoDesc = porcientoDesc
-        Me.Interes = interes
+        Me.FechaAfiliacion = fechaAfiliacion
+        Me.Detalle = detalle
     End Sub
 
     Public Sub New()
-
+        Detalle = New List(Of AfiliacionEmpleadosDetalle)
     End Sub
 
 End Class

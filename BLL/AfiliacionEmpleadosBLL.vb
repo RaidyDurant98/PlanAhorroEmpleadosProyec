@@ -5,13 +5,26 @@ Public Class AfiliacionEmpleadosBLL
 
     Public Shared Function Guardar(ByVal afiliacion As AfiliacionEmpleados) As Boolean
 
-        Using conexion As New Coneccion()
+        Using coneccion As New Coneccion()
 
-            If conexion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, PlanAhorro, Descripcion, PorcientoDesc, Interes) 
-                                        Values('" & afiliacion.Empleado & "', '" & afiliacion.PlanAhorro & "',  '" & afiliacion.Descripcion & "', 
-                                        '" & afiliacion.PorcientoDesc & "', '" & afiliacion.Interes & "');") > 0 Then
+            'If conexion.EjecutarComando("Insert into AfiliacionEmpleados(FechaAfiliacion, PlanAhorro, Descripcion, PorcientoDesc, Interes) 
+            '                            Values('" & afiliacion.Empleado & "', '" & afiliacion.PlanAhorro & "',  '" & afiliacion.Descripcion & "', 
+            '                            '" & afiliacion.PorcientoDesc & "', '" & afiliacion.Interes & "');") > 0 Then
+            '    Return True
+            'End If 
+
+
+
+            If coneccion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, FechaAfiliacion) Values('" & afiliacion.Empleado & "', '" & afiliacion.FechaAfiliacion & "')") Then
+
+                For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
+
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Descripcion, PorcientoDesc, Interes) values(" & detalle.PlanAhorro & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ");")
+                Next
                 Return True
             End If
+
+
 
         End Using
         Return False
@@ -26,14 +39,14 @@ Public Class AfiliacionEmpleadosBLL
 
             Dim dt = coneccion.SeleccionarDatos("Select * from AfiliacionEmpleados where Id =" & id & ";")
 
-            If dt.Rows.Count > 0 Then
-                afiliacion.Id = dt.Rows(0)("Id")
-                afiliacion.Empleado = dt.Rows(0)("Empleado")
-                afiliacion.PlanAhorro = dt.Rows(0)("PlanAhorro")
-                afiliacion.Descripcion = dt.Rows(0)("Descripcion")
-                afiliacion.PorcientoDesc = dt.Rows(0)("PorcientoDesc")
-                afiliacion.Interes = dt.Rows(0)("Interes")
-            End If
+            'If dt.Rows.Count > 0 Then
+            '    afiliacion.Id = dt.Rows(0)("Id")
+            '    afiliacion.Empleado = dt.Rows(0)("Empleado")
+            '    afiliacion.PlanAhorro = dt.Rows(0)("PlanAhorro")
+            '    afiliacion.Descripcion = dt.Rows(0)("Descripcion")
+            '    afiliacion.PorcientoDesc = dt.Rows(0)("PorcientoDesc")
+            '    afiliacion.Interes = dt.Rows(0)("Interes")
+            'End If
 
             If afiliacion IsNot Nothing Then
                 Return afiliacion
@@ -63,10 +76,10 @@ Public Class AfiliacionEmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', PlanAhorro = '" & afiliacion.PlanAhorro & "', 
-                Descripcion = '" & afiliacion.Descripcion & "', PorcentoDesc = '" & afiliacion.PorcientoDesc & "', Interes = '" & afiliacion.Interes & "' where Id = '" & afiliacion.Id & "'") Then
-                Return True
-            End If
+            'If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', PlanAhorro = '" & afiliacion.PlanAhorro & "', 
+            '    Descripcion = '" & afiliacion.Descripcion & "', PorcentoDesc = '" & afiliacion.PorcientoDesc & "', Interes = '" & afiliacion.Interes & "' where Id = '" & afiliacion.Id & "'") Then
+            '    Return True
+            'End If
 
         End Using
 
