@@ -52,6 +52,7 @@ Public Class PlanAhorrosForm
 
         If Validar() Then
             If PlanAhorrosBLL.Guardar(LlenarInstancia()) = True Then
+                PlanIdMaskedTextBox.Text = PlanAhorro.PlanId
                 MessageBox.Show("PLan de ahorro guardado con exito.")
             Else
                 MessageBox.Show("No se pudo guardar el plan de ahorro.")

@@ -6,7 +6,8 @@
 
     Public Detalle As List(Of AfiliacionEmpleadosDetalle)
 
-    Public Sub New(empleado As Integer, fechaAfiliacion As Date, detalle As List(Of AfiliacionEmpleadosDetalle))
+    Public Sub New(id As Integer, empleado As Integer, fechaAfiliacion As Date, detalle As List(Of AfiliacionEmpleadosDetalle))
+        Me.Id = id
         Me.Empleado = empleado
         Me.FechaAfiliacion = fechaAfiliacion
         Me.Detalle = detalle

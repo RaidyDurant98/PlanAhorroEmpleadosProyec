@@ -22,8 +22,10 @@ Public Class AfiliacionEmpleadosForm
         EmpleadoNombreTextBox.Clear()
         PlanAhorroIdMaskedTextBox.Clear()
         ErrorProvider.Clear()
+        FechaDateTimePicker.Value = Date.Now
         LimpiarPLanAhorro()
         LimpiarGrid()
+        Empleado = New Empleados()
     End Sub
 
     Private Sub LimpiarPLanAhorro()
@@ -78,9 +80,12 @@ Public Class AfiliacionEmpleadosForm
 
     Private Sub CrearColumnasGrid()
         dt.Columns.Add("ID")
+        dt.Columns.Add("Afiliacion")
         dt.Columns.Add("Descripcion")
         dt.Columns.Add("% Descuento")
         dt.Columns.Add("% Interes")
+
+        DetalleDataGridView.Columns("Afiliacion").Visible = False
     End Sub
 
     Private Function ValidarPlanAhorroAgregado() As Boolean
@@ -100,7 +105,7 @@ Public Class AfiliacionEmpleadosForm
 
             If ValidarPlanAhorroAgregado() = False Then
 
-                dt.Rows.Add(PlanAhorro.PlanId, DescripcionPlanAhorroTextBox.Text, PorcientoDescMaskedTextBox.Text, InteresMaskedTextBox.Text)
+                dt.Rows.Add(PlanAhorro.PlanId, Afiliacion.Id, DescripcionPlanAhorroTextBox.Text, PorcientoDescMaskedTextBox.Text, InteresMaskedTextBox.Text)
                 DetalleDataGridView.DataSource = dt
                 PlanAhorro = New PlanAhorros()
                 LimpiarPLanAhorro()
@@ -136,13 +141,14 @@ Public Class AfiliacionEmpleadosForm
 
     Private Function GuardarDetalle() As List(Of AfiliacionEmpleadosDetalle)
         For Each row As DataGridViewRow In DetalleDataGridView.Rows
-            If row.Cells(1).Value <> "" Then
+            If row.Cells(2).Value <> "" Then
                 Afiliacion.Detalle.Add(New Entidades.AfiliacionEmpleadosDetalle(
-                       Convert.ToInt32(row.Cells(0).Value),
-                       Convert.ToString(row.Cells(1).Value),
-                       Convert.ToDouble(row.Cells(2).Value),
-                       Convert.ToDouble(row.Cells(3).Value)
-                       ))
+                                        Convert.ToInt32(row.Cells(0).Value),
+                                        Convert.ToInt32(row.Cells(1).Value),
+                                        Convert.ToString(row.Cells(2).Value),
+                                        Convert.ToDouble(row.Cells(3).Value),
+                                        Convert.ToDouble(row.Cells(4).Value)
+                                        ))
             End If
         Next row
 
@@ -151,13 +157,40 @@ Public Class AfiliacionEmpleadosForm
 
     Private Function LlenarInstancia() As AfiliacionEmpleados
 
-        Afiliacion = New AfiliacionEmpleados(Convert.ToInt32(EmpleadoIdMaskedTextBox.Text), FechaDateTimePicker.Value, GuardarDetalle())
-
+        Afiliacion = New AfiliacionEmpleados(Afiliacion.Id, Empleado.EmpleadoId, FechaDateTimePicker.Value, GuardarDetalle())
         Return Afiliacion
     End Function
 
     Private Sub BuscarButton_Click(sender As Object, e As EventArgs) Handles BuscarButton.Click
 
+        If (String.IsNullOrEmpty(IdMaskedTextBox.Text) = False) Then
+
+            Afiliacion = BLL.AfiliacionEmpleadosBLL.Buscar(IdMaskedTextBox.Text)
+
+            If Afiliacion.Id <> 0 Then
+                CargarDatosAfiliacion()
+            Else
+                MessageBox.Show("No existe afiliacion con ese id.")
+            End If
+
+        Else
+            MessageBox.Show("Por favor digite el id que desea buscar.")
+        End If
+    End Sub
+
+    Private Sub CargarDatosAfiliacion()
+        Empleado = BLL.EmpleadosBLL.Buscar(Afiliacion.Empleado)
+        EmpleadoNombreTextBox.Text = Empleado.Nombres
+        FechaDateTimePicker.Value = Afiliacion.FechaAfiliacion
+        CargarDatosDetalle(Afiliacion.Detalle)
+    End Sub
+
+    Private Sub CargarDatosDetalle(detalle As List(Of AfiliacionEmpleadosDetalle))
+        LimpiarGrid()
+        For Each lista As AfiliacionEmpleadosDetalle In detalle
+            dt.Rows.Add(lista.PlanAhorro, lista.Afiliacion, lista.Descripcion, lista.PorcientoDesc, lista.Interes)
+            DetalleDataGridView.DataSource = dt
+        Next
     End Sub
 
     Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
@@ -171,6 +204,8 @@ Public Class AfiliacionEmpleadosForm
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
         If Validar() Then
             If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
+                IdMaskedTextBox.Text = Afiliacion.Id
+                Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
                 MessageBox.Show("Afiliacion guardada con exito.")
             Else
                 MessageBox.Show("No se pudo guardar la afiliacion.")
@@ -179,7 +214,20 @@ Public Class AfiliacionEmpleadosForm
     End Sub
 
     Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click
+        If (String.IsNullOrEmpty(IdMaskedTextBox.Text) = False) Then
 
+            Afiliacion = BLL.AfiliacionEmpleadosBLL.Buscar(IdMaskedTextBox.Text)
+
+            If BLL.AfiliacionEmpleadosBLL.Eliminar(Afiliacion.Id) Then
+                Limpiar()
+                Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
+                MessageBox.Show("Afilicion eliminada con exito.")
+            Else
+                MessageBox.Show("No se pudo eliminar la afiliacion.")
+            End If
+        Else
+            MessageBox.Show("Por favor digite el id que desea eliminar.")
+        End If
     End Sub
 
     Private Sub PlanAhorroIdMaskedTextBox_TextChanged(sender As Object, e As EventArgs)
@@ -193,4 +241,5 @@ Public Class AfiliacionEmpleadosForm
     Private Sub AgregarButton_Click(sender As Object, e As EventArgs) Handles AgregarButton.Click
         AgregarPLanAhorro()
     End Sub
+
 End Class

@@ -59,6 +59,7 @@ Public Class EmpleadosForm
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
         If Validar() Then
             If EmpleadosBLL.Guardar(LlenarInstancia()) Then
+                EmpleadoIdMaskedTextBox.Text = Empleados.EmpleadoId
                 MessageBox.Show("Empleado guardado con exito.")
             Else
                 MessageBox.Show("No se pudo guardar el empleado.")

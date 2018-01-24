@@ -24,15 +24,15 @@ Partial Class PlanAhorrosConsulta
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ConsultaDataGridView = New System.Windows.Forms.DataGridView()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PorcientoDescuento = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PorcientoInteres = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FiltrarComboBox = New System.Windows.Forms.ComboBox()
         Me.FiltrarButton = New System.Windows.Forms.Button()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PorcientoDescuento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PorcientoInteres = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,15 +50,39 @@ Partial Class PlanAhorrosConsulta
         Me.ConsultaDataGridView.Size = New System.Drawing.Size(445, 150)
         Me.ConsultaDataGridView.TabIndex = 0
         '
+        'ID
+        '
+        Me.ID.DataPropertyName = "PlanId"
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        '
+        'Descripcion
+        '
+        Me.Descripcion.DataPropertyName = "Descripcion"
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        '
+        'PorcientoDescuento
+        '
+        Me.PorcientoDescuento.DataPropertyName = "PorcientoDesc"
+        Me.PorcientoDescuento.HeaderText = "% Descuento"
+        Me.PorcientoDescuento.Name = "PorcientoDescuento"
+        '
+        'PorcientoInteres
+        '
+        Me.PorcientoInteres.DataPropertyName = "Interes"
+        Me.PorcientoInteres.HeaderText = "% Interes"
+        Me.PorcientoInteres.Name = "PorcientoInteres"
+        '
         'FiltrarComboBox
         '
+        Me.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FiltrarComboBox.FormattingEnabled = True
         Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "ID", "Decripcion"})
         Me.FiltrarComboBox.Location = New System.Drawing.Point(12, 58)
         Me.FiltrarComboBox.Name = "FiltrarComboBox"
         Me.FiltrarComboBox.Size = New System.Drawing.Size(121, 21)
         Me.FiltrarComboBox.TabIndex = 1
-        Me.FiltrarComboBox.Text = "Elegir Filtro"
         '
         'FiltrarButton
         '
@@ -92,30 +116,6 @@ Partial Class PlanAhorrosConsulta
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'ID
-        '
-        Me.ID.DataPropertyName = "PlanId"
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        '
-        'Descripcion
-        '
-        Me.Descripcion.DataPropertyName = "Descripcion"
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        '
-        'PorcientoDescuento
-        '
-        Me.PorcientoDescuento.DataPropertyName = "PorcientoDesc"
-        Me.PorcientoDescuento.HeaderText = "% Descuento"
-        Me.PorcientoDescuento.Name = "PorcientoDescuento"
-        '
-        'PorcientoInteres
-        '
-        Me.PorcientoInteres.DataPropertyName = "Interes"
-        Me.PorcientoInteres.HeaderText = "% Interes"
-        Me.PorcientoInteres.Name = "PorcientoInteres"
         '
         'PlanAhorrosConsulta
         '

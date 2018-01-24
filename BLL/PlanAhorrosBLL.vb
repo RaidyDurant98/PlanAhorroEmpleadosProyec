@@ -11,6 +11,16 @@ Public Class PlanAhorrosBLL
 
                 If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "');") > 0 Then
 
+
+                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(PlanId) as Id from PlanAhorros")
+                    Dim id = 0
+
+                    If dt.Rows.Count > 0 Then
+                        id = dt.Rows(0)("Id")
+                    End If
+
+                    planAhorro.PlanId = id
+
                     Return True
                 End If
             Else

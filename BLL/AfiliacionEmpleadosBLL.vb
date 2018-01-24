@@ -7,28 +7,32 @@ Public Class AfiliacionEmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            'If conexion.EjecutarComando("Insert into AfiliacionEmpleados(FechaAfiliacion, PlanAhorro, Descripcion, PorcientoDesc, Interes) 
-            '                            Values('" & afiliacion.Empleado & "', '" & afiliacion.PlanAhorro & "',  '" & afiliacion.Descripcion & "', 
-            '                            '" & afiliacion.PorcientoDesc & "', '" & afiliacion.Interes & "');") > 0 Then
-            '    Return True
-            'End If 
+            If afiliacion.Id = 0 Then
+                If coneccion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, FechaAfiliacion) Values('" & afiliacion.Empleado & "', '" & afiliacion.FechaAfiliacion & "')") Then
 
+                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(Id) as Id from AfiliacionEmpleados")
+                    Dim id = 0
 
+                    If dt.Rows.Count > 0 Then
+                        id = dt.Rows(0)("Id")
+                    End If
 
-            If coneccion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, FechaAfiliacion) Values('" & afiliacion.Empleado & "', '" & afiliacion.FechaAfiliacion & "')") Then
+                    For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
+                        coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes) values(" & detalle.PlanAhorro & ", " & id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ");")
+                    Next
 
-                For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
+                    afiliacion.Id = id
 
-                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Descripcion, PorcientoDesc, Interes) values(" & detalle.PlanAhorro & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ");")
-                Next
+                    Return True
+
+                End If
+            Else
+                Modificar(afiliacion)
                 Return True
             End If
-
-
-
         End Using
-        Return False
 
+        Return False
     End Function
 
     Public Shared Function Buscar(ByVal id As Integer) As AfiliacionEmpleados
@@ -39,14 +43,16 @@ Public Class AfiliacionEmpleadosBLL
 
             Dim dt = coneccion.SeleccionarDatos("Select * from AfiliacionEmpleados where Id =" & id & ";")
 
-            'If dt.Rows.Count > 0 Then
-            '    afiliacion.Id = dt.Rows(0)("Id")
-            '    afiliacion.Empleado = dt.Rows(0)("Empleado")
-            '    afiliacion.PlanAhorro = dt.Rows(0)("PlanAhorro")
-            '    afiliacion.Descripcion = dt.Rows(0)("Descripcion")
-            '    afiliacion.PorcientoDesc = dt.Rows(0)("PorcientoDesc")
-            '    afiliacion.Interes = dt.Rows(0)("Interes")
-            'End If
+            If dt.Rows.Count > 0 Then
+                afiliacion.Id = dt.Rows(0)("Id")
+                afiliacion.Empleado = dt.Rows(0)("Empleado")
+                afiliacion.FechaAfiliacion = dt.Rows(0)("FechaAfiliacion")
+            End If
+
+            dt = coneccion.SeleccionarDatos("select * from AfiliacionEmpleadosDetalle where Afiliacion = " & afiliacion.Id & "")
+            For Each detalle As DataRow In dt.Rows
+                afiliacion.Detalle.Add(New AfiliacionEmpleadosDetalle(detalle("PlanAhorro"), detalle("Afiliacion"), detalle("Descripcion"), detalle("PorcientoDesc"), detalle("Interes")))
+            Next
 
             If afiliacion IsNot Nothing Then
                 Return afiliacion
@@ -60,9 +66,13 @@ Public Class AfiliacionEmpleadosBLL
 
     Public Shared Function Eliminar(ByVal id As Integer) As Boolean
 
+        Dim afiliacion = New AfiliacionEmpleados()
+
         Using coneccion As New Coneccion()
 
             If coneccion.EjecutarComando("Delete from AfiliacionEmpleados where Id =" & id & ";") > 0 Then
+
+                coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & id & "")
 
                 Return True
             End If
@@ -76,10 +86,19 @@ Public Class AfiliacionEmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            'If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', PlanAhorro = '" & afiliacion.PlanAhorro & "', 
-            '    Descripcion = '" & afiliacion.Descripcion & "', PorcentoDesc = '" & afiliacion.PorcientoDesc & "', Interes = '" & afiliacion.Interes & "' where Id = '" & afiliacion.Id & "'") Then
-            '    Return True
-            'End If
+            If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', FechaAfiliacion = '" & afiliacion.FechaAfiliacion & "'") Then
+
+                For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
+                    'coneccion.EjecutarComando("Update AfiliacionEmpleadosDetalle set PlanAhorro = " & detalle.PlanAhorro & ", 
+                    '                           Afiliacion = " & detalle.Afiliacion & ", Descripcion = '" & detalle.Descripcion & "', 
+                    '                           PorcientoDesc = " & detalle.PorcientoDesc & ", Interes = " & detalle.Interes & "")
+
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes) 
+                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ")")
+                Next
+                'Tengo problemas en el modificar detalle
+                Return True
+            End If
 
         End Using
 
