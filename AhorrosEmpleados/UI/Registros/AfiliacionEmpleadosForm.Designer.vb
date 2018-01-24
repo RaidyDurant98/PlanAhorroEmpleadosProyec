@@ -189,6 +189,7 @@ Partial Class AfiliacionEmpleadosForm
         '
         'DetalleDataGridView
         '
+        Me.DetalleDataGridView.AllowUserToAddRows = False
         Me.DetalleDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -196,6 +197,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.DetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DetalleDataGridView.Location = New System.Drawing.Point(30, 50)
         Me.DetalleDataGridView.Name = "DetalleDataGridView"
+        Me.DetalleDataGridView.ReadOnly = True
         Me.DetalleDataGridView.Size = New System.Drawing.Size(540, 176)
         Me.DetalleDataGridView.TabIndex = 24
         '

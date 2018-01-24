@@ -85,6 +85,12 @@
     <Compile Include="UI\Registros\AfiliacionEmpleadosForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\Registros\AportesVoluntariosForm.Designer.vb">
+      <DependentUpon>AportesVoluntariosForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\AportesVoluntariosForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Registros\EmpleadosForm.Designer.vb">
       <DependentUpon>EmpleadosForm.vb</DependentUpon>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\AfiliacionEmpleadosForm.resx">
       <DependentUpon>AfiliacionEmpleadosForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\AportesVoluntariosForm.resx">
+      <DependentUpon>AportesVoluntariosForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\EmpleadosForm.resx">
       <DependentUpon>EmpleadosForm.vb</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿Imports DAL
 Imports Entidades
+Imports System.Linq.Expressions
 
 Public Class PlanAhorrosBLL
 
@@ -33,13 +34,13 @@ Public Class PlanAhorrosBLL
 
     End Function
 
-    Public Shared Function Buscar(ByVal id As Integer) As PlanAhorros
+    Public Shared Function Buscar(condicion As Object) As PlanAhorros
 
         Dim planAhorro = New PlanAhorros()
 
         Using coneccion As New Coneccion()
 
-            Dim dt = coneccion.SeleccionarDatos("Select * from PLanAhorros where PlanId =" & id & ";")
+            Dim dt = coneccion.SeleccionarDatos("Select * from PLanAhorros where " & condicion & "")
 
             If dt.Rows.Count > 0 Then
                 planAhorro.PlanId = dt.Rows(0)("PlanId")

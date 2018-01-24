@@ -27,10 +27,10 @@ Partial Class MenuPrincipalForm
         Me.RegistrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanAhorrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConsultasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EmpleadosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PlanAhorrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AfiliacionEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsultasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PlanAhorrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AportesVoluntariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,7 +52,7 @@ Partial Class MenuPrincipalForm
         '
         'RegistrosToolStripMenuItem
         '
-        Me.RegistrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpleadosToolStripMenuItem, Me.PlanAhorrosToolStripMenuItem, Me.AfiliacionEmpleadosToolStripMenuItem})
+        Me.RegistrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpleadosToolStripMenuItem, Me.PlanAhorrosToolStripMenuItem, Me.AfiliacionEmpleadosToolStripMenuItem, Me.AportesVoluntariosToolStripMenuItem})
         Me.RegistrosToolStripMenuItem.Name = "RegistrosToolStripMenuItem"
         Me.RegistrosToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
         Me.RegistrosToolStripMenuItem.Text = "Registros"
@@ -69,30 +69,30 @@ Partial Class MenuPrincipalForm
         Me.PlanAhorrosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.PlanAhorrosToolStripMenuItem.Text = "Plan Ahorros"
         '
-        'ConsultasToolStripMenuItem
-        '
-        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpleadosToolStripMenuItem1, Me.PlanAhorrosToolStripMenuItem1})
-        Me.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem"
-        Me.ConsultasToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
-        Me.ConsultasToolStripMenuItem.Text = "Consultas"
-        '
-        'EmpleadosToolStripMenuItem1
-        '
-        Me.EmpleadosToolStripMenuItem1.Name = "EmpleadosToolStripMenuItem1"
-        Me.EmpleadosToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.EmpleadosToolStripMenuItem1.Text = "Empleados"
-        '
-        'PlanAhorrosToolStripMenuItem1
-        '
-        Me.PlanAhorrosToolStripMenuItem1.Name = "PlanAhorrosToolStripMenuItem1"
-        Me.PlanAhorrosToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.PlanAhorrosToolStripMenuItem1.Text = "Plan Ahorros"
-        '
         'AfiliacionEmpleadosToolStripMenuItem
         '
         Me.AfiliacionEmpleadosToolStripMenuItem.Name = "AfiliacionEmpleadosToolStripMenuItem"
         Me.AfiliacionEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.AfiliacionEmpleadosToolStripMenuItem.Text = "Afiliacion Empleados"
+        '
+        'ConsultasToolStripMenuItem
+        '
+        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanAhorrosToolStripMenuItem1})
+        Me.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem"
+        Me.ConsultasToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
+        Me.ConsultasToolStripMenuItem.Text = "Consultas"
+        '
+        'PlanAhorrosToolStripMenuItem1
+        '
+        Me.PlanAhorrosToolStripMenuItem1.Name = "PlanAhorrosToolStripMenuItem1"
+        Me.PlanAhorrosToolStripMenuItem1.Size = New System.Drawing.Size(142, 22)
+        Me.PlanAhorrosToolStripMenuItem1.Text = "Plan Ahorros"
+        '
+        'AportesVoluntariosToolStripMenuItem
+        '
+        Me.AportesVoluntariosToolStripMenuItem.Name = "AportesVoluntariosToolStripMenuItem"
+        Me.AportesVoluntariosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.AportesVoluntariosToolStripMenuItem.Text = "Aportes Voluntarios"
         '
         'MenuPrincipalForm
         '
@@ -117,7 +117,7 @@ Partial Class MenuPrincipalForm
     Friend WithEvents EmpleadosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PlanAhorrosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConsultasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EmpleadosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents PlanAhorrosToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents AfiliacionEmpleadosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AportesVoluntariosToolStripMenuItem As ToolStripMenuItem
 End Class

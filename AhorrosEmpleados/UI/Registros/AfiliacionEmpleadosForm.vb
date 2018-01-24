@@ -7,11 +7,13 @@ Public Class AfiliacionEmpleadosForm
     Dim PlanAhorro As PlanAhorros = Nothing
     Dim dt As DataTable = Nothing
     Dim Afiliacion As AfiliacionEmpleados = New AfiliacionEmpleados()
+    Dim id = Nothing
 
     Private Sub AfiliacionEmpleadosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Empleado = New Empleados()
         PlanAhorro = New PlanAhorros()
         dt = New DataTable()
+        id = New Integer
 
         Limpiar()
     End Sub
@@ -26,6 +28,7 @@ Public Class AfiliacionEmpleadosForm
         LimpiarPLanAhorro()
         LimpiarGrid()
         Empleado = New Empleados()
+        Afiliacion = New AfiliacionEmpleados()
     End Sub
 
     Private Sub LimpiarPLanAhorro()
@@ -56,7 +59,7 @@ Public Class AfiliacionEmpleadosForm
 
         If Not String.IsNullOrEmpty(PlanAhorroIdMaskedTextBox.Text) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanAhorroIdMaskedTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & PlanAhorroIdMaskedTextBox.Text & "")
 
             If PlanAhorro.PlanId <> 0 Then
                 DescripcionPlanAhorroTextBox.Text = PlanAhorro.Descripcion
@@ -79,7 +82,7 @@ Public Class AfiliacionEmpleadosForm
     End Sub
 
     Private Sub CrearColumnasGrid()
-        dt.Columns.Add("ID")
+        dt.Columns.Add("Plan Id")
         dt.Columns.Add("Afiliacion")
         dt.Columns.Add("Descripcion")
         dt.Columns.Add("% Descuento")
@@ -88,7 +91,7 @@ Public Class AfiliacionEmpleadosForm
         DetalleDataGridView.Columns("Afiliacion").Visible = False
     End Sub
 
-    Private Function ValidarPlanAhorroAgregado() As Boolean
+    Public Function ValidarPlanAhorroAgregado() As Boolean
 
         For Each row As DataGridViewRow In DetalleDataGridView.Rows
             If row.Cells(0).Value = PlanAhorro.PlanId Then
@@ -100,7 +103,6 @@ Public Class AfiliacionEmpleadosForm
     End Function
 
     Private Sub AgregarPLanAhorro()
-
         If PlanAhorro.PlanId <> 0 Then
 
             If ValidarPlanAhorroAgregado() = False Then
@@ -119,7 +121,6 @@ Public Class AfiliacionEmpleadosForm
         Else
             MessageBox.Show("Por favor busque el plan de ahorro.")
         End If
-
     End Sub
 
     Private Function Validar() As Boolean
@@ -139,25 +140,29 @@ Public Class AfiliacionEmpleadosForm
 
     End Function
 
-    Private Function GuardarDetalle() As List(Of AfiliacionEmpleadosDetalle)
+    Private Function LlenarDetalle() As List(Of AfiliacionEmpleadosDetalle)
+
+        Afiliacion.Detalle.Clear()
+
         For Each row As DataGridViewRow In DetalleDataGridView.Rows
-            If row.Cells(2).Value <> "" Then
+            If row.IsNewRow = False Then
                 Afiliacion.Detalle.Add(New Entidades.AfiliacionEmpleadosDetalle(
-                                        Convert.ToInt32(row.Cells(0).Value),
-                                        Convert.ToInt32(row.Cells(1).Value),
-                                        Convert.ToString(row.Cells(2).Value),
-                                        Convert.ToDouble(row.Cells(3).Value),
-                                        Convert.ToDouble(row.Cells(4).Value)
-                                        ))
+                    Convert.ToInt32(row.Cells(0).Value),
+                    Convert.ToInt32(row.Cells(1).Value),
+                    Convert.ToString(row.Cells(2).Value),
+                    Convert.ToDouble(row.Cells(3).Value),
+                    Convert.ToDouble(row.Cells(4).Value)
+                    ))
             End If
-        Next row
+        Next
+
 
         Return Afiliacion.Detalle
     End Function
 
     Private Function LlenarInstancia() As AfiliacionEmpleados
 
-        Afiliacion = New AfiliacionEmpleados(Afiliacion.Id, Empleado.EmpleadoId, FechaDateTimePicker.Value, GuardarDetalle())
+        Afiliacion = New AfiliacionEmpleados(Afiliacion.Id, Empleado.EmpleadoId, FechaDateTimePicker.Value, LlenarDetalle())
         Return Afiliacion
     End Function
 
@@ -241,5 +246,4 @@ Public Class AfiliacionEmpleadosForm
     Private Sub AgregarButton_Click(sender As Object, e As EventArgs) Handles AgregarButton.Click
         AgregarPLanAhorro()
     End Sub
-
 End Class

@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AfiliacionEmpleadosBLL.vb" />
+    <Compile Include="AportesBLL.vb" />
     <Compile Include="EmpleadosBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

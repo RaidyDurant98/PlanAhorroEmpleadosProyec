@@ -50,15 +50,20 @@ Public Class PlanAhorrosForm
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
 
+        PlanAhorro = BLL.PlanAhorrosBLL.Buscar("Descripcion = '" & DescripcionTextBox.Text & "'")
+
         If Validar() Then
-            If PlanAhorrosBLL.Guardar(LlenarInstancia()) = True Then
-                PlanIdMaskedTextBox.Text = PlanAhorro.PlanId
-                MessageBox.Show("PLan de ahorro guardado con exito.")
+            If PlanAhorro.PlanId = 0 Or PlanIdMaskedTextBox.Text.Trim() = PlanAhorro.PlanId.ToString Then
+                If PlanAhorrosBLL.Guardar(LlenarInstancia()) = True Then
+                    PlanIdMaskedTextBox.Text = PlanAhorro.PlanId
+                    MessageBox.Show("PLan de ahorro guardado con exito.")
+                Else
+                    MessageBox.Show("No se pudo guardar el plan de ahorro.")
+                End If
             Else
-                MessageBox.Show("No se pudo guardar el plan de ahorro.")
+                MessageBox.Show("Existe un plan de ahorro con esa descripcion.")
             End If
         End If
-
     End Sub
 
     Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
@@ -69,7 +74,7 @@ Public Class PlanAhorrosForm
 
         If (String.IsNullOrEmpty(PlanIdMaskedTextBox.Text) = False) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdMaskedTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & PlanIdMaskedTextBox.Text)
 
             If PlanAhorro.PlanId <> 0 Then
                 CargarDatosPlanAhorro()
@@ -87,7 +92,7 @@ Public Class PlanAhorrosForm
 
         If (String.IsNullOrEmpty(PlanIdMaskedTextBox.Text) = False) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar(PlanIdMaskedTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = '" & PlanIdMaskedTextBox.Text)
 
             If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
                 Limpiar()

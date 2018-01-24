@@ -4,6 +4,7 @@
     Private RegistroEmpleados As AhorrosEmpleados.EmpleadosForm
     Private ConsultaPlanAhorros As AhorrosEmpleados.PlanAhorrosConsulta
     Private AfiliacionEmpleados As AhorrosEmpleados.AfiliacionEmpleadosForm
+    Private RegistroAporteVoluntarios As AhorrosEmpleados.AportesVoluntariosForm
 
     Private Sub PlanAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanAhorrosToolStripMenuItem.Click
 
@@ -47,5 +48,14 @@
 
         AfiliacionEmpleados = New AhorrosEmpleados.AfiliacionEmpleadosForm
         AfiliacionEmpleados.Show()
+    End Sub
+
+    Private Sub AportesVoluntariosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AportesVoluntariosToolStripMenuItem.Click
+        If RegistroAporteVoluntarios IsNot Nothing Then
+            RegistroAporteVoluntarios.Close()
+        End If
+
+        RegistroAporteVoluntarios = New AhorrosEmpleados.AportesVoluntariosForm
+        RegistroAporteVoluntarios.Show()
     End Sub
 End Class

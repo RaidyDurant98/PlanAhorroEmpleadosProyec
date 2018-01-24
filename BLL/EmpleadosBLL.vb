@@ -6,7 +6,6 @@ Public Class EmpleadosBLL
     Public Shared Function Guardar(ByVal empleado As Empleados) As Boolean
 
         Using coneccion As New Coneccion()
-
             If empleado.EmpleadoId = 0 Then
                 If coneccion.EjecutarComando("Insert into Empleados(Nombres, Direccion, NumCel, Sueldo) Values('" & empleado.Nombres & "' , '" & empleado.Direccion & "' , '" & empleado.NumCel & "' , '" & empleado.Sueldo & "');") > 0 Then
 

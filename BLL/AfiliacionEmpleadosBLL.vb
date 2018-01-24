@@ -88,13 +88,13 @@ Public Class AfiliacionEmpleadosBLL
 
             If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', FechaAfiliacion = '" & afiliacion.FechaAfiliacion & "'") Then
 
+                coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & afiliacion.Id & "")
+
                 For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
-                    'coneccion.EjecutarComando("Update AfiliacionEmpleadosDetalle set PlanAhorro = " & detalle.PlanAhorro & ", 
-                    '                           Afiliacion = " & detalle.Afiliacion & ", Descripcion = '" & detalle.Descripcion & "', 
-                    '                           PorcientoDesc = " & detalle.PorcientoDesc & ", Interes = " & detalle.Interes & "")
 
                     coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes) 
                                                 values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ")")
+
                 Next
                 'Tengo problemas en el modificar detalle
                 Return True

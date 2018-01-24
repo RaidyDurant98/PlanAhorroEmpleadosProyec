@@ -127,9 +127,9 @@ Partial Class EmpleadosForm
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(56, 190)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(69, 13)
+        Me.Label4.Size = New System.Drawing.Size(65, 13)
         Me.Label4.TabIndex = 18
-        Me.Label4.Text = "PLan Ahorro:"
+        Me.Label4.Text = "Plan Ahorro:"
         '
         'DireccionTextBox
         '
