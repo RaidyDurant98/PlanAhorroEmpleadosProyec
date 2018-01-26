@@ -22,21 +22,16 @@ Public Class AportesBLL
     Public Shared Function Guardar(ByVal aporte As Aportes) As Boolean
 
         Using coneccion As New Coneccion()
-            If aporte.AporteId = 0 Then
-                If coneccion.EjecutarComando("Insert into Aportes(Empleado, PlanAhorro, Aporte) Values(" & aporte.Empleado & " , " & aporte.PlanAHorro & " , " & aporte.Aporte & ")") Then
+            If coneccion.EjecutarComando("Insert into Aportes(Empleado, PlanAhorro, Aporte) Values(" & aporte.Empleado & " , " & aporte.PlanAHorro & " , " & aporte.Aporte & ")") Then
 
-                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(AporteId) as Id from Aportes")
-                    Dim id = 0
+                Dim dt = coneccion.SeleccionarDatos("SELECT MAX(AporteId) as Id from Aportes")
+                Dim id = 0
 
-                    If dt.Rows.Count > 0 Then
-                        id = dt.Rows(0)("Id")
-                    End If
-
-                    aporte.AporteId = id
-                    Return True
+                If dt.Rows.Count > 0 Then
+                    id = dt.Rows(0)("Id")
                 End If
-            Else
-                Modificar(aporte)
+
+                aporte.AporteId = id
                 Return True
             End If
         End Using
@@ -94,6 +89,28 @@ Public Class AportesBLL
         End Using
 
         Return False
+    End Function
+
+    Public Shared Function GetAllAportes() As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte
+                                             from Empleados Emp inner join Aportes Ap
+	                                            on Emp.EmpleadoId = Ap.Empleado 
+                                             inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro")
+            Return dt
+        End Using
+    End Function
+
+    Public Shared Function GetAportes(ByVal condicion As String) As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte
+                                             from Empleados Emp inner join Aportes Ap
+	                                            on Emp.EmpleadoId = Ap.Empleado 
+                                             inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro where " & condicion & "")
+            Return dt
+        End Using
     End Function
 
 End Class

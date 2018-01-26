@@ -44,6 +44,11 @@ Partial Class AfiliacionEmpleadosForm
         Me.PlanAhorroIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.DescripcionPlanAhorroTextBox = New System.Windows.Forms.TextBox()
+        Me.ModificarButton = New System.Windows.Forms.Button()
+        Me.CancelarButton = New System.Windows.Forms.Button()
+        Me.SalirButton = New System.Windows.Forms.Button()
+        Me.ImprimirButton = New System.Windows.Forms.Button()
+        Me.FondoMinimoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +121,7 @@ Partial Class AfiliacionEmpleadosForm
         'NuevoButton
         '
         Me.NuevoButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.NuevoButton.Location = New System.Drawing.Point(189, 374)
+        Me.NuevoButton.Location = New System.Drawing.Point(26, 373)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
         Me.NuevoButton.TabIndex = 4
@@ -126,7 +131,7 @@ Partial Class AfiliacionEmpleadosForm
         'GuardarButton
         '
         Me.GuardarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GuardarButton.Location = New System.Drawing.Point(271, 374)
+        Me.GuardarButton.Location = New System.Drawing.Point(269, 373)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
         Me.GuardarButton.TabIndex = 3
@@ -136,7 +141,7 @@ Partial Class AfiliacionEmpleadosForm
         'EliminarButton
         '
         Me.EliminarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.EliminarButton.Location = New System.Drawing.Point(352, 374)
+        Me.EliminarButton.Location = New System.Drawing.Point(350, 373)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
         Me.EliminarButton.TabIndex = 6
@@ -162,6 +167,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.FondoMinimoMaskedTextBox)
         Me.GroupBox1.Controls.Add(Me.AgregarButton)
         Me.GroupBox1.Controls.Add(Me.DetalleDataGridView)
         Me.GroupBox1.Controls.Add(Me.InteresMaskedTextBox)
@@ -205,10 +211,10 @@ Partial Class AfiliacionEmpleadosForm
         '
         Me.InteresMaskedTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.InteresMaskedTextBox.Enabled = False
-        Me.InteresMaskedTextBox.Location = New System.Drawing.Point(450, 19)
+        Me.InteresMaskedTextBox.Location = New System.Drawing.Point(388, 19)
         Me.InteresMaskedTextBox.Mask = "0000000000"
         Me.InteresMaskedTextBox.Name = "InteresMaskedTextBox"
-        Me.InteresMaskedTextBox.Size = New System.Drawing.Size(59, 20)
+        Me.InteresMaskedTextBox.Size = New System.Drawing.Size(55, 20)
         Me.InteresMaskedTextBox.TabIndex = 23
         Me.InteresMaskedTextBox.ValidatingType = GetType(Integer)
         '
@@ -216,16 +222,16 @@ Partial Class AfiliacionEmpleadosForm
         '
         Me.PorcientoDescMaskedTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PorcientoDescMaskedTextBox.Enabled = False
-        Me.PorcientoDescMaskedTextBox.Location = New System.Drawing.Point(377, 19)
+        Me.PorcientoDescMaskedTextBox.Location = New System.Drawing.Point(325, 19)
         Me.PorcientoDescMaskedTextBox.Mask = "0000000000"
         Me.PorcientoDescMaskedTextBox.Name = "PorcientoDescMaskedTextBox"
-        Me.PorcientoDescMaskedTextBox.Size = New System.Drawing.Size(67, 20)
+        Me.PorcientoDescMaskedTextBox.Size = New System.Drawing.Size(57, 20)
         Me.PorcientoDescMaskedTextBox.TabIndex = 22
         Me.PorcientoDescMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'BuscarPlanAhorroButton
         '
-        Me.BuscarPlanAhorroButton.Location = New System.Drawing.Point(186, 13)
+        Me.BuscarPlanAhorroButton.Location = New System.Drawing.Point(134, 13)
         Me.BuscarPlanAhorroButton.Name = "BuscarPlanAhorroButton"
         Me.BuscarPlanAhorroButton.Size = New System.Drawing.Size(48, 30)
         Me.BuscarPlanAhorroButton.TabIndex = 1
@@ -234,7 +240,7 @@ Partial Class AfiliacionEmpleadosForm
         '
         'PlanAhorroIdMaskedTextBox
         '
-        Me.PlanAhorroIdMaskedTextBox.Location = New System.Drawing.Point(125, 19)
+        Me.PlanAhorroIdMaskedTextBox.Location = New System.Drawing.Point(73, 19)
         Me.PlanAhorroIdMaskedTextBox.Mask = "0000000000"
         Me.PlanAhorroIdMaskedTextBox.Name = "PlanAhorroIdMaskedTextBox"
         Me.PlanAhorroIdMaskedTextBox.Size = New System.Drawing.Size(55, 20)
@@ -246,25 +252,80 @@ Partial Class AfiliacionEmpleadosForm
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(27, 22)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(92, 13)
+        Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 19
-        Me.Label3.Text = "Plan de Ahorro Id:"
+        Me.Label3.Text = "Plan Id:"
         '
         'DescripcionPlanAhorroTextBox
         '
         Me.DescripcionPlanAhorroTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DescripcionPlanAhorroTextBox.Enabled = False
-        Me.DescripcionPlanAhorroTextBox.Location = New System.Drawing.Point(240, 19)
+        Me.DescripcionPlanAhorroTextBox.Location = New System.Drawing.Point(188, 19)
         Me.DescripcionPlanAhorroTextBox.Name = "DescripcionPlanAhorroTextBox"
         Me.DescripcionPlanAhorroTextBox.Size = New System.Drawing.Size(131, 20)
         Me.DescripcionPlanAhorroTextBox.TabIndex = 18
+        '
+        'ModificarButton
+        '
+        Me.ModificarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ModificarButton.Location = New System.Drawing.Point(107, 373)
+        Me.ModificarButton.Name = "ModificarButton"
+        Me.ModificarButton.Size = New System.Drawing.Size(75, 23)
+        Me.ModificarButton.TabIndex = 19
+        Me.ModificarButton.Text = "Modificar"
+        Me.ModificarButton.UseVisualStyleBackColor = True
+        '
+        'CancelarButton
+        '
+        Me.CancelarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CancelarButton.Location = New System.Drawing.Point(188, 373)
+        Me.CancelarButton.Name = "CancelarButton"
+        Me.CancelarButton.Size = New System.Drawing.Size(75, 23)
+        Me.CancelarButton.TabIndex = 20
+        Me.CancelarButton.Text = "Cancelar"
+        Me.CancelarButton.UseVisualStyleBackColor = True
+        '
+        'SalirButton
+        '
+        Me.SalirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SalirButton.Location = New System.Drawing.Point(512, 373)
+        Me.SalirButton.Name = "SalirButton"
+        Me.SalirButton.Size = New System.Drawing.Size(75, 23)
+        Me.SalirButton.TabIndex = 21
+        Me.SalirButton.Text = "Salir"
+        Me.SalirButton.UseVisualStyleBackColor = True
+        '
+        'ImprimirButton
+        '
+        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ImprimirButton.Location = New System.Drawing.Point(431, 373)
+        Me.ImprimirButton.Name = "ImprimirButton"
+        Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
+        Me.ImprimirButton.TabIndex = 22
+        Me.ImprimirButton.Text = "Imprimir"
+        Me.ImprimirButton.UseVisualStyleBackColor = True
+        '
+        'FondoMinimoMaskedTextBox
+        '
+        Me.FondoMinimoMaskedTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FondoMinimoMaskedTextBox.Enabled = False
+        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(449, 19)
+        Me.FondoMinimoMaskedTextBox.Mask = "0000000000"
+        Me.FondoMinimoMaskedTextBox.Name = "FondoMinimoMaskedTextBox"
+        Me.FondoMinimoMaskedTextBox.Size = New System.Drawing.Size(59, 20)
+        Me.FondoMinimoMaskedTextBox.TabIndex = 25
+        Me.FondoMinimoMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'AfiliacionEmpleadosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(621, 423)
+        Me.Controls.Add(Me.ImprimirButton)
+        Me.Controls.Add(Me.SalirButton)
+        Me.Controls.Add(Me.CancelarButton)
+        Me.Controls.Add(Me.ModificarButton)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.FechaDateTimePicker)
         Me.Controls.Add(Me.EliminarButton)
@@ -310,4 +371,9 @@ Partial Class AfiliacionEmpleadosForm
     Friend WithEvents PlanAhorroIdMaskedTextBox As MaskedTextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents DescripcionPlanAhorroTextBox As TextBox
+    Friend WithEvents ModificarButton As Button
+    Friend WithEvents ImprimirButton As Button
+    Friend WithEvents SalirButton As Button
+    Friend WithEvents CancelarButton As Button
+    Friend WithEvents FondoMinimoMaskedTextBox As MaskedTextBox
 End Class

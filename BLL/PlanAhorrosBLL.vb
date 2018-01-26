@@ -8,24 +8,16 @@ Public Class PlanAhorrosBLL
 
         Using coneccion As New Coneccion()
 
-            If planAhorro.PlanId = 0 Then
+            If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes, FondoMinimo) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "', " & planAhorro.FondoMinimo & ");") > 0 Then
+                Dim dt = coneccion.SeleccionarDatos("SELECT MAX(PlanId) as Id from PlanAhorros")
+                Dim id = 0
 
-                If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes, FondoMinimo) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "', " & planAhorro.FondoMinimo & ");") > 0 Then
-
-
-                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(PlanId) as Id from PlanAhorros")
-                    Dim id = 0
-
-                    If dt.Rows.Count > 0 Then
-                        id = dt.Rows(0)("Id")
-                    End If
-
-                    planAhorro.PlanId = id
-
-                    Return True
+                If dt.Rows.Count > 0 Then
+                    id = dt.Rows(0)("Id")
                 End If
-            Else
-                Modificar(planAhorro)
+
+                planAhorro.PlanId = id
+
                 Return True
             End If
         End Using
@@ -77,7 +69,7 @@ Public Class PlanAhorrosBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "', Interes = '" & planAhorro.Interes & "', " & planAhorro.FondoMinimo & " where PlanId = '" & planAhorro.PlanId & "'") Then
+            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "', Interes = '" & planAhorro.Interes & "', FondoMinimo = " & planAhorro.FondoMinimo & " where PlanId = '" & planAhorro.PlanId & "'") Then
                 Return True
             End If
 

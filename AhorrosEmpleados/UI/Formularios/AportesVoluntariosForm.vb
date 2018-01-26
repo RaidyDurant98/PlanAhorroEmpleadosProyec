@@ -8,6 +8,11 @@ Public Class AportesVoluntariosForm
     Private Sub AportesVoluntariosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Empleado = New Empleados
         Aporte = New Aportes
+
+        ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        ImprimirButton.Enabled = False
+        SalirButton.Enabled = False
     End Sub
 
     Private Sub Limpiar()
@@ -16,6 +21,8 @@ Public Class AportesVoluntariosForm
         NombresEmpleadoTextBox.Clear()
         AporteMaskedTextBox.Clear()
         PlanAhorroComboBox.DataSource = Nothing
+        GuardarButton.Enabled = True
+        ModificarButton.Enabled = False
         Aporte = New Aportes()
     End Sub
 
@@ -67,35 +74,18 @@ Public Class AportesVoluntariosForm
         Return Aporte
     End Function
 
-    Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
-        Limpiar()
-    End Sub
-
     Private Sub BuscarEmpleadoButton_Click(sender As Object, e As EventArgs) Handles BuscarEmpleadoButton.Click
         CargarDatosEmpleado()
     End Sub
 
-    Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
-
-        If Validar() Then
-            If BLL.AportesBLL.Guardar(LlenarInstancia()) Then
-                AporteIdMaskedTextBox.Text = Aporte.AporteId
-                MessageBox.Show("Aporte guardado con exito.")
-            Else
-                MessageBox.Show("No se pudo guardar el aporte.")
-            End If
-        End If
-
-    End Sub
-
     Private Sub CargarDatosAportes()
-        Dim planAhorro = BLL.PlanAhorrosBLL.Buscar(" PlanId = " & Aporte.PlanAhorro & "")
+        Dim planAhorro = BLL.PlanAhorrosBLL.Buscar(" PlanId = " & Aporte.PlanAHorro & "")
         Empleado = BLL.EmpleadosBLL.Buscar(Aporte.Empleado)
 
         EmpleadoIdMaskedTextBox.Text = Empleado.EmpleadoId
         LlenarCombo(Empleado.EmpleadoId)
         NombresEmpleadoTextBox.Text = Empleado.Nombres
-        PlanAhorroComboBox.SelectedValue = Aporte.PLanAhorro
+        PlanAhorroComboBox.SelectedValue = Aporte.PlanAHorro
         AporteMaskedTextBox.Text = Aporte.Aporte
     End Sub
 
@@ -106,6 +96,8 @@ Public Class AportesVoluntariosForm
 
             If Aporte.AporteId <> 0 Then
                 CargarDatosAportes()
+                GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
             Else
                 MessageBox.Show("No existe aporte con ese id.")
             End If
@@ -113,6 +105,32 @@ Public Class AportesVoluntariosForm
             MessageBox.Show("Digite el id que desea buscar.")
         End If
 
+    End Sub
+
+    Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
+        Limpiar()
+    End Sub
+
+    Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
+        If Validar() Then
+            If BLL.AportesBLL.Modificar(LlenarInstancia()) Then
+                AporteIdMaskedTextBox.Text = Aporte.AporteId
+                MessageBox.Show("Aporte modificado con exito.")
+            Else
+                MessageBox.Show("No se pudo modificar el aporte.")
+            End If
+        End If
+    End Sub
+
+    Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
+        If Validar() Then
+            If BLL.AportesBLL.Guardar(LlenarInstancia()) Then
+                AporteIdMaskedTextBox.Text = Aporte.AporteId
+                MessageBox.Show("Aporte guardado con exito.")
+            Else
+                MessageBox.Show("No se pudo guardar el aporte.")
+            End If
+        End If
     End Sub
 
     Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click

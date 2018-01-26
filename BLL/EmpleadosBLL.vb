@@ -6,21 +6,16 @@ Public Class EmpleadosBLL
     Public Shared Function Guardar(ByVal empleado As Empleados) As Boolean
 
         Using coneccion As New Coneccion()
-            If empleado.EmpleadoId = 0 Then
-                If coneccion.EjecutarComando("Insert into Empleados(Nombres, Direccion, NumCel, Sueldo) Values('" & empleado.Nombres & "' , '" & empleado.Direccion & "' , '" & empleado.NumCel & "' , '" & empleado.Sueldo & "');") > 0 Then
+            If coneccion.EjecutarComando("Insert into Empleados(Nombres, Direccion, NumCel, Sueldo) Values('" & empleado.Nombres & "' , '" & empleado.Direccion & "' , '" & empleado.NumCel & "' , '" & empleado.Sueldo & "');") > 0 Then
 
-                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(EmpleadoId) as Id from Empleados")
-                    Dim id = 0
+                Dim dt = coneccion.SeleccionarDatos("SELECT MAX(EmpleadoId) as Id from Empleados")
+                Dim id = 0
 
-                    If dt.Rows.Count > 0 Then
-                        id = dt.Rows(0)("Id")
-                    End If
-
-                    empleado.EmpleadoId = id
-                    Return True
+                If dt.Rows.Count > 0 Then
+                    id = dt.Rows(0)("Id")
                 End If
-            Else
-                Modificar(empleado)
+
+                empleado.EmpleadoId = id
                 Return True
             End If
         End Using

@@ -7,6 +7,7 @@
     Private RegistroAporteVoluntarios As AhorrosEmpleados.AportesVoluntariosForm
     Private ConsultaSociosAfiliados As AhorrosEmpleados.SociosAfiliadosConsulta
     Private CargoInteresesAcumulado As AhorrosEmpleados.CargoInteresAcumuladoForm
+    Private DepositoConsulta As AhorrosEmpleados.DepositosConsulta
 
     Private Sub PlanAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanAhorrosToolStripMenuItem.Click
 
@@ -78,5 +79,15 @@
 
         CargoInteresesAcumulado = New AhorrosEmpleados.CargoInteresAcumuladoForm
         CargoInteresesAcumulado.Show()
+    End Sub
+
+    Private Sub DepositosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DepositosToolStripMenuItem.Click
+        If DepositoConsulta IsNot Nothing Then
+            DepositoConsulta.Close()
+        End If
+
+
+        DepositoConsulta = New AhorrosEmpleados.DepositosConsulta
+        DepositoConsulta.Show()
     End Sub
 End Class

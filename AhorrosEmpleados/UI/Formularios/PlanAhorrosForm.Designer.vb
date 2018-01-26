@@ -38,13 +38,17 @@ Partial Class PlanAhorrosForm
         Me.Label4 = New System.Windows.Forms.Label()
         Me.FondoMinimoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.CancelarButton = New System.Windows.Forms.Button()
+        Me.ModificarButton = New System.Windows.Forms.Button()
+        Me.ImprimirButton = New System.Windows.Forms.Button()
+        Me.SalirButton = New System.Windows.Forms.Button()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(59, 62)
+        Me.Label1.Location = New System.Drawing.Point(12, 41)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(43, 13)
         Me.Label1.TabIndex = 0
@@ -53,7 +57,7 @@ Partial Class PlanAhorrosForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(58, 91)
+        Me.Label2.Location = New System.Drawing.Point(11, 70)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(66, 13)
         Me.Label2.TabIndex = 1
@@ -62,7 +66,7 @@ Partial Class PlanAhorrosForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(58, 165)
+        Me.Label3.Location = New System.Drawing.Point(11, 144)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(125, 13)
         Me.Label3.TabIndex = 2
@@ -70,7 +74,7 @@ Partial Class PlanAhorrosForm
         '
         'DescripcionTextBox
         '
-        Me.DescripcionTextBox.Location = New System.Drawing.Point(131, 88)
+        Me.DescripcionTextBox.Location = New System.Drawing.Point(84, 67)
         Me.DescripcionTextBox.MaxLength = 255
         Me.DescripcionTextBox.Multiline = True
         Me.DescripcionTextBox.Name = "DescripcionTextBox"
@@ -79,7 +83,7 @@ Partial Class PlanAhorrosForm
         '
         'BuscarButton
         '
-        Me.BuscarButton.Location = New System.Drawing.Point(223, 57)
+        Me.BuscarButton.Location = New System.Drawing.Point(176, 36)
         Me.BuscarButton.Name = "BuscarButton"
         Me.BuscarButton.Size = New System.Drawing.Size(75, 23)
         Me.BuscarButton.TabIndex = 6
@@ -88,7 +92,7 @@ Partial Class PlanAhorrosForm
         '
         'EliminarButton
         '
-        Me.EliminarButton.Location = New System.Drawing.Point(223, 265)
+        Me.EliminarButton.Location = New System.Drawing.Point(338, 274)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
         Me.EliminarButton.TabIndex = 7
@@ -97,7 +101,7 @@ Partial Class PlanAhorrosForm
         '
         'GuardarButton
         '
-        Me.GuardarButton.Location = New System.Drawing.Point(142, 265)
+        Me.GuardarButton.Location = New System.Drawing.Point(257, 274)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
         Me.GuardarButton.TabIndex = 4
@@ -106,7 +110,7 @@ Partial Class PlanAhorrosForm
         '
         'NuevoButton
         '
-        Me.NuevoButton.Location = New System.Drawing.Point(61, 265)
+        Me.NuevoButton.Location = New System.Drawing.Point(12, 274)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
         Me.NuevoButton.TabIndex = 5
@@ -119,7 +123,7 @@ Partial Class PlanAhorrosForm
         '
         'PorcientoDescMaskedTextBox
         '
-        Me.PorcientoDescMaskedTextBox.Location = New System.Drawing.Point(189, 162)
+        Me.PorcientoDescMaskedTextBox.Location = New System.Drawing.Point(142, 141)
         Me.PorcientoDescMaskedTextBox.Mask = "00000000000000000"
         Me.PorcientoDescMaskedTextBox.Name = "PorcientoDescMaskedTextBox"
         Me.PorcientoDescMaskedTextBox.Size = New System.Drawing.Size(109, 20)
@@ -128,7 +132,7 @@ Partial Class PlanAhorrosForm
         '
         'PlanIdMaskedTextBox
         '
-        Me.PlanIdMaskedTextBox.Location = New System.Drawing.Point(108, 59)
+        Me.PlanIdMaskedTextBox.Location = New System.Drawing.Point(61, 38)
         Me.PlanIdMaskedTextBox.Mask = "00000000000000000"
         Me.PlanIdMaskedTextBox.Name = "PlanIdMaskedTextBox"
         Me.PlanIdMaskedTextBox.Size = New System.Drawing.Size(109, 20)
@@ -137,7 +141,7 @@ Partial Class PlanAhorrosForm
         '
         'InteresMaskedTextBox
         '
-        Me.InteresMaskedTextBox.Location = New System.Drawing.Point(131, 191)
+        Me.InteresMaskedTextBox.Location = New System.Drawing.Point(84, 170)
         Me.InteresMaskedTextBox.Mask = "000000000000000000000000000"
         Me.InteresMaskedTextBox.Name = "InteresMaskedTextBox"
         Me.InteresMaskedTextBox.Size = New System.Drawing.Size(168, 20)
@@ -147,7 +151,7 @@ Partial Class PlanAhorrosForm
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(59, 194)
+        Me.Label4.Location = New System.Drawing.Point(12, 173)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(42, 13)
         Me.Label4.TabIndex = 22
@@ -155,7 +159,7 @@ Partial Class PlanAhorrosForm
         '
         'FondoMinimoMaskedTextBox
         '
-        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(141, 221)
+        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(94, 200)
         Me.FondoMinimoMaskedTextBox.Mask = "000000000000000000000000000"
         Me.FondoMinimoMaskedTextBox.Name = "FondoMinimoMaskedTextBox"
         Me.FondoMinimoMaskedTextBox.Size = New System.Drawing.Size(158, 20)
@@ -165,17 +169,61 @@ Partial Class PlanAhorrosForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(59, 224)
+        Me.Label5.Location = New System.Drawing.Point(12, 203)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(76, 13)
         Me.Label5.TabIndex = 24
         Me.Label5.Text = "Fondo Minimo:"
         '
+        'CancelarButton
+        '
+        Me.CancelarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CancelarButton.Location = New System.Drawing.Point(176, 274)
+        Me.CancelarButton.Name = "CancelarButton"
+        Me.CancelarButton.Size = New System.Drawing.Size(75, 23)
+        Me.CancelarButton.TabIndex = 26
+        Me.CancelarButton.Text = "Cancelar"
+        Me.CancelarButton.UseVisualStyleBackColor = True
+        '
+        'ModificarButton
+        '
+        Me.ModificarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ModificarButton.Location = New System.Drawing.Point(95, 274)
+        Me.ModificarButton.Name = "ModificarButton"
+        Me.ModificarButton.Size = New System.Drawing.Size(75, 23)
+        Me.ModificarButton.TabIndex = 25
+        Me.ModificarButton.Text = "Modificar"
+        Me.ModificarButton.UseVisualStyleBackColor = True
+        '
+        'ImprimirButton
+        '
+        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ImprimirButton.Location = New System.Drawing.Point(419, 274)
+        Me.ImprimirButton.Name = "ImprimirButton"
+        Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
+        Me.ImprimirButton.TabIndex = 33
+        Me.ImprimirButton.Text = "Imprimir"
+        Me.ImprimirButton.UseVisualStyleBackColor = True
+        '
+        'SalirButton
+        '
+        Me.SalirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SalirButton.Location = New System.Drawing.Point(500, 274)
+        Me.SalirButton.Name = "SalirButton"
+        Me.SalirButton.Size = New System.Drawing.Size(75, 23)
+        Me.SalirButton.TabIndex = 32
+        Me.SalirButton.Text = "Salir"
+        Me.SalirButton.UseVisualStyleBackColor = True
+        '
         'PlanAhorrosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(362, 327)
+        Me.ClientSize = New System.Drawing.Size(591, 309)
+        Me.Controls.Add(Me.ImprimirButton)
+        Me.Controls.Add(Me.SalirButton)
+        Me.Controls.Add(Me.CancelarButton)
+        Me.Controls.Add(Me.ModificarButton)
         Me.Controls.Add(Me.FondoMinimoMaskedTextBox)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.InteresMaskedTextBox)
@@ -215,4 +263,8 @@ Partial Class PlanAhorrosForm
     Friend WithEvents Label4 As Label
     Friend WithEvents FondoMinimoMaskedTextBox As MaskedTextBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents CancelarButton As Button
+    Friend WithEvents ModificarButton As Button
+    Friend WithEvents ImprimirButton As Button
+    Friend WithEvents SalirButton As Button
 End Class

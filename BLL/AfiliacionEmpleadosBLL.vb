@@ -7,28 +7,23 @@ Public Class AfiliacionEmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            If afiliacion.Id = 0 Then
-                If coneccion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, FechaAfiliacion) Values('" & afiliacion.Empleado & "', '" & afiliacion.FechaAfiliacion & "')") Then
+            If coneccion.EjecutarComando("Insert into AfiliacionEmpleados(Empleado, FechaAfiliacion) Values('" & afiliacion.Empleado & "', '" & afiliacion.FechaAfiliacion & "')") Then
 
-                    Dim dt = coneccion.SeleccionarDatos("SELECT MAX(Id) as Id from AfiliacionEmpleados")
-                    Dim id = 0
+                Dim dt = coneccion.SeleccionarDatos("SELECT MAX(Id) as Id from AfiliacionEmpleados")
+                Dim id = 0
 
-                    If dt.Rows.Count > 0 Then
-                        id = dt.Rows(0)("Id")
-                    End If
-
-                    For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
-                        coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes) values(" & detalle.PlanAhorro & ", " & id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ");")
-                    Next
-
-                    afiliacion.Id = id
-
-                    Return True
-
+                If dt.Rows.Count > 0 Then
+                    id = dt.Rows(0)("Id")
                 End If
-            Else
-                Modificar(afiliacion)
+
+                For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo) values(" & detalle.PlanAhorro & ", " & id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ");")
+                Next
+
+                afiliacion.Id = id
+
                 Return True
+
             End If
         End Using
 
@@ -51,7 +46,7 @@ Public Class AfiliacionEmpleadosBLL
 
             dt = coneccion.SeleccionarDatos("select * from AfiliacionEmpleadosDetalle where Afiliacion = " & afiliacion.Id & "")
             For Each detalle As DataRow In dt.Rows
-                afiliacion.Detalle.Add(New AfiliacionEmpleadosDetalle(detalle("PlanAhorro"), detalle("Afiliacion"), detalle("Descripcion"), detalle("PorcientoDesc"), detalle("Interes")))
+                afiliacion.Detalle.Add(New AfiliacionEmpleadosDetalle(detalle("PlanAhorro"), detalle("Afiliacion"), detalle("Descripcion"), detalle("PorcientoDesc"), detalle("Interes"), detalle("FondoMinimo")))
             Next
 
             If afiliacion IsNot Nothing Then
@@ -92,11 +87,10 @@ Public Class AfiliacionEmpleadosBLL
 
                 For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
 
-                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes) 
-                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ")")
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo) 
+                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", , " & detalle.FondoMinimo & ")")
 
                 Next
-                'Tengo problemas en el modificar detalle
                 Return True
             End If
 

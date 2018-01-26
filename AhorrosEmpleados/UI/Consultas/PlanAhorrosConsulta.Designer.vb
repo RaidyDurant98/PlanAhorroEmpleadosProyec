@@ -41,6 +41,7 @@ Partial Class PlanAhorrosConsulta
         'ConsultaDataGridView
         '
         Me.ConsultaDataGridView.AllowUserToAddRows = False
+        Me.ConsultaDataGridView.AllowUserToDeleteRows = False
         Me.ConsultaDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -50,6 +51,7 @@ Partial Class PlanAhorrosConsulta
         Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Descripcion, Me.PorcientoDescuento, Me.PorcientoInteres, Me.FondoMinimo})
         Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 99)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
+        Me.ConsultaDataGridView.ReadOnly = True
         Me.ConsultaDataGridView.Size = New System.Drawing.Size(544, 178)
         Me.ConsultaDataGridView.TabIndex = 0
         '
@@ -58,30 +60,35 @@ Partial Class PlanAhorrosConsulta
         Me.ID.DataPropertyName = "PlanId"
         Me.ID.HeaderText = "Plan Id"
         Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
         '
         'Descripcion
         '
         Me.Descripcion.DataPropertyName = "Descripcion"
         Me.Descripcion.HeaderText = "Descripcion"
         Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
         '
         'PorcientoDescuento
         '
         Me.PorcientoDescuento.DataPropertyName = "PorcientoDesc"
         Me.PorcientoDescuento.HeaderText = "% Descuento"
         Me.PorcientoDescuento.Name = "PorcientoDescuento"
+        Me.PorcientoDescuento.ReadOnly = True
         '
         'PorcientoInteres
         '
         Me.PorcientoInteres.DataPropertyName = "Interes"
         Me.PorcientoInteres.HeaderText = "% Interes"
         Me.PorcientoInteres.Name = "PorcientoInteres"
+        Me.PorcientoInteres.ReadOnly = True
         '
         'FondoMinimo
         '
         Me.FondoMinimo.DataPropertyName = "FondoMinimo"
         Me.FondoMinimo.HeaderText = "Fondo Minimo"
         Me.FondoMinimo.Name = "FondoMinimo"
+        Me.FondoMinimo.ReadOnly = True
         '
         'FiltrarComboBox
         '

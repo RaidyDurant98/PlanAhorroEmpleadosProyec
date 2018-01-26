@@ -13,6 +13,9 @@ Public Class PlanAhorrosForm
         InteresMaskedTextBox.Clear()
         FondoMinimoMaskedTextBox.Clear()
         ErrorProvider.Clear()
+
+        ModificarButton.Enabled = False
+        GuardarButton.Enabled = True
     End Sub
 
     Private Function LlenarInstancia() As PlanAhorros
@@ -84,6 +87,8 @@ Public Class PlanAhorrosForm
 
             If PlanAhorro.PlanId <> 0 Then
                 CargarDatosPlanAhorro()
+                GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
             Else
                 MessageBox.Show("No existe plan de ahorro con ese id.")
             End If
@@ -109,5 +114,24 @@ Public Class PlanAhorrosForm
         Else
             MessageBox.Show("Por favor digite el id que desea eliminar.")
         End If
+    End Sub
+
+    Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
+
+        If Validar() Then
+            If PlanAhorrosBLL.Modificar(LlenarInstancia()) = True Then
+                MessageBox.Show("PLan de ahorro modificado con exito.")
+            Else
+                MessageBox.Show("No se pudo modificar el plan de ahorro.")
+            End If
+        End If
+
+    End Sub
+
+    Private Sub PlanAhorrosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        ImprimirButton.Enabled = False
+        SalirButton.Enabled = False
     End Sub
 End Class

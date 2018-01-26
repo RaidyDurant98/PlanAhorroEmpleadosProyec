@@ -38,12 +38,16 @@ Partial Class EmpleadosForm
         Me.SueldoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.EmpleadoIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ModificarButton = New System.Windows.Forms.Button()
+        Me.CancelarButton = New System.Windows.Forms.Button()
+        Me.ImprimirButton = New System.Windows.Forms.Button()
+        Me.SalirButton = New System.Windows.Forms.Button()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BuscarButton
         '
-        Me.BuscarButton.Location = New System.Drawing.Point(233, 54)
+        Me.BuscarButton.Location = New System.Drawing.Point(189, 50)
         Me.BuscarButton.Name = "BuscarButton"
         Me.BuscarButton.Size = New System.Drawing.Size(75, 23)
         Me.BuscarButton.TabIndex = 7
@@ -52,7 +56,7 @@ Partial Class EmpleadosForm
         '
         'NombresTextBox
         '
-        Me.NombresTextBox.Location = New System.Drawing.Point(143, 84)
+        Me.NombresTextBox.Location = New System.Drawing.Point(99, 80)
         Me.NombresTextBox.Name = "NombresTextBox"
         Me.NombresTextBox.Size = New System.Drawing.Size(165, 20)
         Me.NombresTextBox.TabIndex = 0
@@ -60,7 +64,7 @@ Partial Class EmpleadosForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(56, 174)
+        Me.Label3.Location = New System.Drawing.Point(12, 170)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(43, 13)
         Me.Label3.TabIndex = 9
@@ -69,7 +73,7 @@ Partial Class EmpleadosForm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(56, 87)
+        Me.Label2.Location = New System.Drawing.Point(12, 83)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
         Me.Label2.TabIndex = 8
@@ -78,7 +82,7 @@ Partial Class EmpleadosForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(56, 61)
+        Me.Label1.Location = New System.Drawing.Point(12, 57)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(69, 13)
         Me.Label1.TabIndex = 7
@@ -86,7 +90,7 @@ Partial Class EmpleadosForm
         '
         'NuevoButton
         '
-        Me.NuevoButton.Location = New System.Drawing.Point(59, 266)
+        Me.NuevoButton.Location = New System.Drawing.Point(15, 257)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
         Me.NuevoButton.TabIndex = 5
@@ -95,7 +99,7 @@ Partial Class EmpleadosForm
         '
         'GuardarButton
         '
-        Me.GuardarButton.Location = New System.Drawing.Point(140, 266)
+        Me.GuardarButton.Location = New System.Drawing.Point(261, 257)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
         Me.GuardarButton.TabIndex = 4
@@ -104,7 +108,7 @@ Partial Class EmpleadosForm
         '
         'EliminarButton
         '
-        Me.EliminarButton.Location = New System.Drawing.Point(221, 266)
+        Me.EliminarButton.Location = New System.Drawing.Point(342, 257)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
         Me.EliminarButton.TabIndex = 8
@@ -113,7 +117,7 @@ Partial Class EmpleadosForm
         '
         'DireccionTextBox
         '
-        Me.DireccionTextBox.Location = New System.Drawing.Point(143, 112)
+        Me.DireccionTextBox.Location = New System.Drawing.Point(99, 108)
         Me.DireccionTextBox.Name = "DireccionTextBox"
         Me.DireccionTextBox.Size = New System.Drawing.Size(165, 20)
         Me.DireccionTextBox.TabIndex = 1
@@ -121,7 +125,7 @@ Partial Class EmpleadosForm
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(56, 115)
+        Me.Label5.Location = New System.Drawing.Point(12, 111)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 13)
         Me.Label5.TabIndex = 19
@@ -130,7 +134,7 @@ Partial Class EmpleadosForm
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(56, 145)
+        Me.Label6.Location = New System.Drawing.Point(12, 141)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(81, 13)
         Me.Label6.TabIndex = 21
@@ -138,7 +142,7 @@ Partial Class EmpleadosForm
         '
         'NumCelMaskedTextBox
         '
-        Me.NumCelMaskedTextBox.Location = New System.Drawing.Point(143, 142)
+        Me.NumCelMaskedTextBox.Location = New System.Drawing.Point(99, 138)
         Me.NumCelMaskedTextBox.Mask = "(999) 000-0000"
         Me.NumCelMaskedTextBox.Name = "NumCelMaskedTextBox"
         Me.NumCelMaskedTextBox.Size = New System.Drawing.Size(165, 20)
@@ -146,7 +150,7 @@ Partial Class EmpleadosForm
         '
         'SueldoMaskedTextBox
         '
-        Me.SueldoMaskedTextBox.Location = New System.Drawing.Point(143, 171)
+        Me.SueldoMaskedTextBox.Location = New System.Drawing.Point(99, 167)
         Me.SueldoMaskedTextBox.Mask = "000000000000000000000000000"
         Me.SueldoMaskedTextBox.Name = "SueldoMaskedTextBox"
         Me.SueldoMaskedTextBox.Size = New System.Drawing.Size(165, 20)
@@ -155,7 +159,7 @@ Partial Class EmpleadosForm
         '
         'EmpleadoIdMaskedTextBox
         '
-        Me.EmpleadoIdMaskedTextBox.Location = New System.Drawing.Point(143, 56)
+        Me.EmpleadoIdMaskedTextBox.Location = New System.Drawing.Point(99, 52)
         Me.EmpleadoIdMaskedTextBox.Mask = "000000000000"
         Me.EmpleadoIdMaskedTextBox.Name = "EmpleadoIdMaskedTextBox"
         Me.EmpleadoIdMaskedTextBox.Size = New System.Drawing.Size(75, 20)
@@ -166,11 +170,55 @@ Partial Class EmpleadosForm
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'ModificarButton
+        '
+        Me.ModificarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ModificarButton.Location = New System.Drawing.Point(99, 257)
+        Me.ModificarButton.Name = "ModificarButton"
+        Me.ModificarButton.Size = New System.Drawing.Size(75, 23)
+        Me.ModificarButton.TabIndex = 22
+        Me.ModificarButton.Text = "Modificar"
+        Me.ModificarButton.UseVisualStyleBackColor = True
+        '
+        'CancelarButton
+        '
+        Me.CancelarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CancelarButton.Location = New System.Drawing.Point(180, 257)
+        Me.CancelarButton.Name = "CancelarButton"
+        Me.CancelarButton.Size = New System.Drawing.Size(75, 23)
+        Me.CancelarButton.TabIndex = 23
+        Me.CancelarButton.Text = "Cancelar"
+        Me.CancelarButton.UseVisualStyleBackColor = True
+        '
+        'ImprimirButton
+        '
+        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ImprimirButton.Location = New System.Drawing.Point(423, 257)
+        Me.ImprimirButton.Name = "ImprimirButton"
+        Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
+        Me.ImprimirButton.TabIndex = 31
+        Me.ImprimirButton.Text = "Imprimir"
+        Me.ImprimirButton.UseVisualStyleBackColor = True
+        '
+        'SalirButton
+        '
+        Me.SalirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SalirButton.Location = New System.Drawing.Point(504, 257)
+        Me.SalirButton.Name = "SalirButton"
+        Me.SalirButton.Size = New System.Drawing.Size(75, 23)
+        Me.SalirButton.TabIndex = 30
+        Me.SalirButton.Text = "Salir"
+        Me.SalirButton.UseVisualStyleBackColor = True
+        '
         'EmpleadosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(362, 327)
+        Me.ClientSize = New System.Drawing.Size(591, 309)
+        Me.Controls.Add(Me.ImprimirButton)
+        Me.Controls.Add(Me.SalirButton)
+        Me.Controls.Add(Me.CancelarButton)
+        Me.Controls.Add(Me.ModificarButton)
         Me.Controls.Add(Me.EmpleadoIdMaskedTextBox)
         Me.Controls.Add(Me.SueldoMaskedTextBox)
         Me.Controls.Add(Me.NumCelMaskedTextBox)
@@ -210,4 +258,8 @@ Partial Class EmpleadosForm
     Friend WithEvents SueldoMaskedTextBox As MaskedTextBox
     Friend WithEvents EmpleadoIdMaskedTextBox As MaskedTextBox
     Friend WithEvents ErrorProvider As ErrorProvider
+    Friend WithEvents ModificarButton As Button
+    Friend WithEvents CancelarButton As Button
+    Friend WithEvents ImprimirButton As Button
+    Friend WithEvents SalirButton As Button
 End Class

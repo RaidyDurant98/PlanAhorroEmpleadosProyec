@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class SociosAfiliadosConsulta
+Partial Class DepositosConsulta
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,24 +22,44 @@ Partial Class SociosAfiliadosConsulta
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
+        Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.FiltrarButton = New System.Windows.Forms.Button()
         Me.FiltrarComboBox = New System.Windows.Forms.ComboBox()
-        Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.ConsultaDataGridView = New System.Windows.Forms.DataGridView()
-        Me.EmpleadoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Empleado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PlanAhorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Aporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'FiltrarTextBox
+        '
+        Me.FiltrarTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FiltrarTextBox.Location = New System.Drawing.Point(139, 37)
+        Me.FiltrarTextBox.Name = "FiltrarTextBox"
+        Me.FiltrarTextBox.Size = New System.Drawing.Size(289, 20)
+        Me.FiltrarTextBox.TabIndex = 9
+        '
+        'ImprimirButton
+        '
+        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ImprimirButton.Location = New System.Drawing.Point(12, 288)
+        Me.ImprimirButton.Name = "ImprimirButton"
+        Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
+        Me.ImprimirButton.TabIndex = 8
+        Me.ImprimirButton.Text = "Imprimir"
+        Me.ImprimirButton.UseVisualStyleBackColor = True
         '
         'FiltrarButton
         '
         Me.FiltrarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltrarButton.Location = New System.Drawing.Point(256, 47)
+        Me.FiltrarButton.Location = New System.Drawing.Point(434, 35)
         Me.FiltrarButton.Name = "FiltrarButton"
         Me.FiltrarButton.Size = New System.Drawing.Size(75, 23)
-        Me.FiltrarButton.TabIndex = 6
+        Me.FiltrarButton.TabIndex = 7
         Me.FiltrarButton.Text = "Filtrar"
         Me.FiltrarButton.UseVisualStyleBackColor = True
         '
@@ -47,21 +67,11 @@ Partial Class SociosAfiliadosConsulta
         '
         Me.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FiltrarComboBox.FormattingEnabled = True
-        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "Empleado Id", "Nombres", "Plan Ahorro"})
-        Me.FiltrarComboBox.Location = New System.Drawing.Point(25, 49)
+        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "ID", "Empleado", "Plan de Ahorro"})
+        Me.FiltrarComboBox.Location = New System.Drawing.Point(12, 36)
         Me.FiltrarComboBox.Name = "FiltrarComboBox"
-        Me.FiltrarComboBox.Size = New System.Drawing.Size(90, 21)
-        Me.FiltrarComboBox.TabIndex = 5
-        '
-        'ImprimirButton
-        '
-        Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ImprimirButton.Location = New System.Drawing.Point(13, 316)
-        Me.ImprimirButton.Name = "ImprimirButton"
-        Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
-        Me.ImprimirButton.TabIndex = 9
-        Me.ImprimirButton.Text = "Imprimir"
-        Me.ImprimirButton.UseVisualStyleBackColor = True
+        Me.FiltrarComboBox.Size = New System.Drawing.Size(121, 21)
+        Me.FiltrarComboBox.TabIndex = 6
         '
         'ConsultaDataGridView
         '
@@ -73,66 +83,67 @@ Partial Class SociosAfiliadosConsulta
         Me.ConsultaDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.ConsultaDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.EmpleadoId, Me.Nombres, Me.Descripcion})
-        Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 98)
+        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Empleado, Me.PlanAhorro, Me.Aporte})
+        Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 80)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
         Me.ConsultaDataGridView.ReadOnly = True
-        Me.ConsultaDataGridView.Size = New System.Drawing.Size(524, 201)
-        Me.ConsultaDataGridView.TabIndex = 8
+        Me.ConsultaDataGridView.Size = New System.Drawing.Size(517, 193)
+        Me.ConsultaDataGridView.TabIndex = 5
         '
-        'EmpleadoId
+        'ID
         '
-        Me.EmpleadoId.DataPropertyName = "EmpleadoId"
-        Me.EmpleadoId.HeaderText = "Empleado Id"
-        Me.EmpleadoId.Name = "EmpleadoId"
-        Me.EmpleadoId.ReadOnly = True
+        Me.ID.DataPropertyName = "AporteId"
+        Me.ID.HeaderText = "Id"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
         '
-        'Nombres
+        'Empleado
         '
-        Me.Nombres.DataPropertyName = "Nombres"
-        Me.Nombres.HeaderText = "Nombres"
-        Me.Nombres.Name = "Nombres"
-        Me.Nombres.ReadOnly = True
+        Me.Empleado.DataPropertyName = "Nombres"
+        Me.Empleado.HeaderText = "Empleado"
+        Me.Empleado.Name = "Empleado"
+        Me.Empleado.ReadOnly = True
         '
-        'Descripcion
+        'PlanAhorro
         '
-        Me.Descripcion.DataPropertyName = "Descripcion"
-        Me.Descripcion.HeaderText = "Plan Ahorro"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PlanAhorro.DataPropertyName = "Descripcion"
+        Me.PlanAhorro.HeaderText = "Plan de Ahorro"
+        Me.PlanAhorro.Name = "PlanAhorro"
+        Me.PlanAhorro.ReadOnly = True
         '
-        'FiltrarTextBox
+        'Aporte
         '
-        Me.FiltrarTextBox.Location = New System.Drawing.Point(121, 50)
-        Me.FiltrarTextBox.Name = "FiltrarTextBox"
-        Me.FiltrarTextBox.Size = New System.Drawing.Size(129, 20)
-        Me.FiltrarTextBox.TabIndex = 11
+        Me.Aporte.DataPropertyName = "Aporte"
+        Me.Aporte.HeaderText = "Aporte $"
+        Me.Aporte.Name = "Aporte"
+        Me.Aporte.ReadOnly = True
         '
-        'SociosAfiliadosConsulta
+        'DepositosConsulta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(548, 379)
+        Me.ClientSize = New System.Drawing.Size(539, 350)
         Me.Controls.Add(Me.FiltrarTextBox)
         Me.Controls.Add(Me.ImprimirButton)
-        Me.Controls.Add(Me.ConsultaDataGridView)
         Me.Controls.Add(Me.FiltrarButton)
         Me.Controls.Add(Me.FiltrarComboBox)
-        Me.Name = "SociosAfiliadosConsulta"
+        Me.Controls.Add(Me.ConsultaDataGridView)
+        Me.Name = "DepositosConsulta"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Consulta de socios afiliados "
+        Me.Text = "Consulta de depositos"
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
+
+    Friend WithEvents FiltrarTextBox As TextBox
+    Friend WithEvents ImprimirButton As Button
     Friend WithEvents FiltrarButton As Button
     Friend WithEvents FiltrarComboBox As ComboBox
-    Friend WithEvents ImprimirButton As Button
     Friend WithEvents ConsultaDataGridView As DataGridView
-    Friend WithEvents EmpleadoId As DataGridViewTextBoxColumn
-    Friend WithEvents Nombres As DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
-    Friend WithEvents FiltrarTextBox As TextBox
+    Friend WithEvents ID As DataGridViewTextBoxColumn
+    Friend WithEvents Empleado As DataGridViewTextBoxColumn
+    Friend WithEvents PlanAhorro As DataGridViewTextBoxColumn
+    Friend WithEvents Aporte As DataGridViewTextBoxColumn
 End Class

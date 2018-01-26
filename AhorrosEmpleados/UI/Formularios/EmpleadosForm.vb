@@ -12,6 +12,8 @@ Public Class EmpleadosForm
         DireccionTextBox.Clear()
         NumCelMaskedTextBox.Clear()
         SueldoMaskedTextBox.Clear()
+        ModificarButton.Enabled = False
+        GuardarButton.Enabled = True
     End Sub
 
     Private Function LlenarInstancia() As Empleados
@@ -74,6 +76,8 @@ Public Class EmpleadosForm
 
             If Empleados.EmpleadoId <> 0 Then
                 CargarDatosEmpleados()
+                GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
             Else
                 MessageBox.Show("No existe plan de ahorro con ese id.")
             End If
@@ -100,6 +104,19 @@ Public Class EmpleadosForm
     End Sub
 
     Private Sub EmpleadosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        ImprimirButton.Enabled = False
+        SalirButton.Enabled = False
+    End Sub
 
+    Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
+        If Validar() Then
+            If EmpleadosBLL.Modificar(LlenarInstancia()) Then
+                MessageBox.Show("Empleado Modificado con exito.")
+            Else
+                MessageBox.Show("No se pudo modificar el empleado.")
+            End If
+        End If
     End Sub
 End Class

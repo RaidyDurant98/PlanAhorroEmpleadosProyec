@@ -2,13 +2,13 @@
 
 Public Class PlanAhorrosConsulta
 
+    Dim dt As DataTable = Nothing
+
     Private Sub PlanAhorrosConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConsultaDataGridView.AutoGenerateColumns = False
     End Sub
 
     Private Sub Filtro()
-        Dim dt As DataTable = Nothing
-
         If FiltrarComboBox.SelectedIndex = 0 Then
             dt = PlanAhorrosBLL.GetList("select * from PlanAhorros")
         Else
@@ -23,7 +23,9 @@ Public Class PlanAhorrosConsulta
 
             End If
         End If
-        ConsultaDataGridView.DataSource = dt
+        If dt.Rows.Count > 0 Then
+            ConsultaDataGridView.DataSource = dt
+        End If
     End Sub
 
     Private Sub FiltrarButton_Click(sender As Object, e As EventArgs) Handles FiltrarButton.Click
@@ -43,5 +45,11 @@ Public Class PlanAhorrosConsulta
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
+        Dim report As PlanAhorrosReporteViewer = New PlanAhorrosReporteViewer(dt)
+        report.Show()
+        report.Activate()
     End Sub
 End Class
