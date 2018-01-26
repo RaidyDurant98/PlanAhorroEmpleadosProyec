@@ -67,6 +67,7 @@
     <Compile Include="AfiliacionEmpleadosBLL.vb" />
     <Compile Include="AportesBLL.vb" />
     <Compile Include="EmpleadosBLL.vb" />
+    <Compile Include="InteresAcumuladoBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

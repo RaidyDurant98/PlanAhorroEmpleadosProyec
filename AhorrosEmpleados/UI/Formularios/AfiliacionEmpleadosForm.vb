@@ -7,13 +7,11 @@ Public Class AfiliacionEmpleadosForm
     Dim PlanAhorro As PlanAhorros = Nothing
     Dim dt As DataTable = Nothing
     Dim Afiliacion As AfiliacionEmpleados = New AfiliacionEmpleados()
-    Dim id = Nothing
 
     Private Sub AfiliacionEmpleadosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Empleado = New Empleados()
         PlanAhorro = New PlanAhorros()
         dt = New DataTable()
-        id = New Integer
 
         Limpiar()
     End Sub
@@ -131,7 +129,7 @@ Public Class AfiliacionEmpleadosForm
             interruptor = False
             ErrorProvider.SetError(EmpleadoNombreTextBox, "Por favor busque el empleado.")
         End If
-        If DetalleDataGridView.Rows.Count <= 1 Then
+        If DetalleDataGridView.Rows.Count < 1 Then
             interruptor = False
             ErrorProvider.SetError(DetalleDataGridView, "Por favor agrege el o los plan de ahorro(s)")
         End If
@@ -155,7 +153,6 @@ Public Class AfiliacionEmpleadosForm
                     ))
             End If
         Next
-
 
         Return Afiliacion.Detalle
     End Function
@@ -207,15 +204,66 @@ Public Class AfiliacionEmpleadosForm
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
-        If Validar() Then
-            If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
-                IdMaskedTextBox.Text = Afiliacion.Id
-                Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
-                MessageBox.Show("Afiliacion guardada con exito.")
-            Else
-                MessageBox.Show("No se pudo guardar la afiliacion.")
-            End If
-        End If
+        'If Validar() Then
+        '    Dim dt2 = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & Empleado.EmpleadoId & "")
+
+        '    If dt2.Rows.Count < 1 Then
+        '        If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
+        '            IdMaskedTextBox.Text = Afiliacion.Id
+        '            Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
+        '            MessageBox.Show("Afiliacion guardada con exito.")
+        '        Else
+        '            MessageBox.Show("No se pudo guardar la afiliacion.")
+        '        End If
+        '    End If
+
+        '    Dim interruptor = False
+
+        '    If dt2.Rows.Count > 0 Then
+        '        For index = 0 To dt2.Rows.Count - 1
+        '            For index2 = 0 To dt.Rows.Count - 1
+        '                PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & dt.Rows(index2)("Plan Id") & "")
+        '                If dt2.Rows(index)("Descripcion") = PlanAhorro.Descripcion Then
+        '                    interruptor = True
+        '                End If
+        '            Next
+        '        Next
+        '    End If
+
+        '    If interruptor = False Then
+        '        If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
+        '            IdMaskedTextBox.Text = Afiliacion.Id
+        '            Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
+        '            MessageBox.Show("Afiliacion guardada con exito.")
+        '        Else
+        '            MessageBox.Show("No se pudo guardar la afiliacion.")
+        '        End If
+        '    Else
+        '        MessageBox.Show("Este empleado contiene el o un plan de ahorro de los que se inserto.")
+        '    End If
+
+        'End If
+
+        'If Validar() Then
+        '    Dim dt2 = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & Empleado.EmpleadoId & "")
+
+        '    If dt2.Rows.Count < 1 Then
+        '        If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
+        '            IdMaskedTextBox.Text = Afiliacion.Id
+        '            Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
+        '            MessageBox.Show("Afiliacion guardada con exito.")
+        '        Else
+        '            MessageBox.Show("No se pudo guardar la afiliacion.")
+        '        End If
+        '    Else
+        '        If BLL.AfiliacionEmpleadosBLL.Modificar(LlenarInstancia()) Then
+        '            MessageBox.Show("Afiliacion modificada con exito.")
+        '        Else
+        '            MessageBox.Show("No se pudo modificar la afiliacion.")
+        '        End If
+        '    End If
+        'End If
+
     End Sub
 
     Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click

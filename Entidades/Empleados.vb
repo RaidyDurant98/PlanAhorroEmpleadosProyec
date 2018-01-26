@@ -5,12 +5,6 @@
     Public Direccion As String
     Public NumCel As String
     Public Sueldo As Double
-    Public PlanAhorro As Integer
-
-    'Public Property EmpleadoId() As Integer
-    'Public Property Nombres() As String
-    'Public Property Sueldo() As String
-    'Public Property PLanAhorro() As Integer
 
     Public Sub New(empleadoId As Integer, nombres As String, direccion As String, numCel As String, sueldo As Double)
         Me.EmpleadoId = empleadoId

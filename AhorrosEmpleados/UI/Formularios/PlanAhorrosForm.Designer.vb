@@ -36,6 +36,8 @@ Partial Class PlanAhorrosForm
         Me.PlanIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.InteresMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.FondoMinimoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -73,7 +75,7 @@ Partial Class PlanAhorrosForm
         Me.DescripcionTextBox.Multiline = True
         Me.DescripcionTextBox.Name = "DescripcionTextBox"
         Me.DescripcionTextBox.Size = New System.Drawing.Size(167, 64)
-        Me.DescripcionTextBox.TabIndex = 4
+        Me.DescripcionTextBox.TabIndex = 0
         '
         'BuscarButton
         '
@@ -89,7 +91,7 @@ Partial Class PlanAhorrosForm
         Me.EliminarButton.Location = New System.Drawing.Point(223, 265)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
-        Me.EliminarButton.TabIndex = 19
+        Me.EliminarButton.TabIndex = 7
         Me.EliminarButton.Text = "Eliminar"
         Me.EliminarButton.UseVisualStyleBackColor = True
         '
@@ -98,7 +100,7 @@ Partial Class PlanAhorrosForm
         Me.GuardarButton.Location = New System.Drawing.Point(142, 265)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
-        Me.GuardarButton.TabIndex = 18
+        Me.GuardarButton.TabIndex = 4
         Me.GuardarButton.Text = "Guardar"
         Me.GuardarButton.UseVisualStyleBackColor = True
         '
@@ -107,7 +109,7 @@ Partial Class PlanAhorrosForm
         Me.NuevoButton.Location = New System.Drawing.Point(61, 265)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
-        Me.NuevoButton.TabIndex = 17
+        Me.NuevoButton.TabIndex = 5
         Me.NuevoButton.Text = "Nuevo"
         Me.NuevoButton.UseVisualStyleBackColor = True
         '
@@ -121,7 +123,7 @@ Partial Class PlanAhorrosForm
         Me.PorcientoDescMaskedTextBox.Mask = "00000000000000000"
         Me.PorcientoDescMaskedTextBox.Name = "PorcientoDescMaskedTextBox"
         Me.PorcientoDescMaskedTextBox.Size = New System.Drawing.Size(109, 20)
-        Me.PorcientoDescMaskedTextBox.TabIndex = 20
+        Me.PorcientoDescMaskedTextBox.TabIndex = 1
         Me.PorcientoDescMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'PlanIdMaskedTextBox
@@ -130,7 +132,7 @@ Partial Class PlanAhorrosForm
         Me.PlanIdMaskedTextBox.Mask = "00000000000000000"
         Me.PlanIdMaskedTextBox.Name = "PlanIdMaskedTextBox"
         Me.PlanIdMaskedTextBox.Size = New System.Drawing.Size(109, 20)
-        Me.PlanIdMaskedTextBox.TabIndex = 21
+        Me.PlanIdMaskedTextBox.TabIndex = 8
         Me.PlanIdMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'InteresMaskedTextBox
@@ -139,7 +141,7 @@ Partial Class PlanAhorrosForm
         Me.InteresMaskedTextBox.Mask = "000000000000000000000000000"
         Me.InteresMaskedTextBox.Name = "InteresMaskedTextBox"
         Me.InteresMaskedTextBox.Size = New System.Drawing.Size(168, 20)
-        Me.InteresMaskedTextBox.TabIndex = 23
+        Me.InteresMaskedTextBox.TabIndex = 2
         Me.InteresMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'Label4
@@ -151,11 +153,31 @@ Partial Class PlanAhorrosForm
         Me.Label4.TabIndex = 22
         Me.Label4.Text = "Interes:"
         '
+        'FondoMinimoMaskedTextBox
+        '
+        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(141, 221)
+        Me.FondoMinimoMaskedTextBox.Mask = "000000000000000000000000000"
+        Me.FondoMinimoMaskedTextBox.Name = "FondoMinimoMaskedTextBox"
+        Me.FondoMinimoMaskedTextBox.Size = New System.Drawing.Size(158, 20)
+        Me.FondoMinimoMaskedTextBox.TabIndex = 3
+        Me.FondoMinimoMaskedTextBox.ValidatingType = GetType(Integer)
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(59, 224)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(76, 13)
+        Me.Label5.TabIndex = 24
+        Me.Label5.Text = "Fondo Minimo:"
+        '
         'PlanAhorrosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(362, 327)
+        Me.Controls.Add(Me.FondoMinimoMaskedTextBox)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.InteresMaskedTextBox)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.PlanIdMaskedTextBox)
@@ -191,4 +213,6 @@ Partial Class PlanAhorrosForm
     Friend WithEvents PlanIdMaskedTextBox As MaskedTextBox
     Friend WithEvents InteresMaskedTextBox As MaskedTextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents FondoMinimoMaskedTextBox As MaskedTextBox
+    Friend WithEvents Label5 As Label
 End Class

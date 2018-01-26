@@ -11,12 +11,13 @@ Public Class PlanAhorrosForm
         DescripcionTextBox.Clear()
         PorcientoDescMaskedTextBox.Clear()
         InteresMaskedTextBox.Clear()
+        FondoMinimoMaskedTextBox.Clear()
         ErrorProvider.Clear()
     End Sub
 
     Private Function LlenarInstancia() As PlanAhorros
 
-        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescMaskedTextBox.Text), Convert.ToDouble(InteresMaskedTextBox.Text))
+        PlanAhorro = New PlanAhorros(PlanAhorro.PlanId, DescripcionTextBox.Text, Convert.ToDouble(PorcientoDescMaskedTextBox.Text), Convert.ToDouble(InteresMaskedTextBox.Text), Convert.ToDouble(FondoMinimoMaskedTextBox.Text))
         Return PlanAhorro
 
     End Function
@@ -37,6 +38,10 @@ Public Class PlanAhorrosForm
             ErrorProvider.SetError(InteresMaskedTextBox, "Por favor digite el interes.")
             interruptor = False
         End If
+        If (String.IsNullOrEmpty(FondoMinimoMaskedTextBox.Text)) Then
+            ErrorProvider.SetError(FondoMinimoMaskedTextBox, "Por favor digite el el fondo minimo.")
+            interruptor = False
+        End If
 
         Return interruptor
 
@@ -46,6 +51,7 @@ Public Class PlanAhorrosForm
         DescripcionTextBox.Text = PlanAhorro.Descripcion
         PorcientoDescMaskedTextBox.Text = PlanAhorro.PorcientoDesc
         InteresMaskedTextBox.Text = PlanAhorro.Interes
+        FondoMinimoMaskedTextBox.Text = PlanAhorro.FondoMinimo
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
@@ -92,7 +98,7 @@ Public Class PlanAhorrosForm
 
         If (String.IsNullOrEmpty(PlanIdMaskedTextBox.Text) = False) Then
 
-            PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = '" & PlanIdMaskedTextBox.Text)
+            PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & PlanIdMaskedTextBox.Text)
 
             If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
                 Limpiar()

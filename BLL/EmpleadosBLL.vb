@@ -28,13 +28,13 @@ Public Class EmpleadosBLL
 
     End Function
 
-    Public Shared Function Buscar(ByVal id As Integer) As Empleados
+    Public Shared Function Buscar(ByVal Id As Object) As Empleados
 
         Dim empleado = New Empleados()
 
         Using coneccion As New Coneccion()
 
-            Dim dt = coneccion.SeleccionarDatos("Select * from Empleados where EmpleadoId =" & id & ";")
+            Dim dt = coneccion.SeleccionarDatos("Select * from Empleados where EmpleadoId = " & Id & ";")
 
             If dt.Rows.Count > 0 Then
                 empleado.EmpleadoId = dt.Rows(0)("EmpleadoId")
@@ -55,17 +55,16 @@ Public Class EmpleadosBLL
     End Function
 
     Public Shared Function Eliminar(ByVal id As Integer) As Boolean
-
         Using coneccion As New Coneccion()
+            Try
+                If coneccion.EjecutarComando("Delete from Empleados where EmpleadoId =" & id & ";") > 0 Then
 
-            If coneccion.EjecutarComando("Delete from Empleados where EmpleadoId =" & id & ";") > 0 Then
-
-                Return True
-            End If
-
+                    Return True
+                End If
+            Catch ex As Exception
+                Return False
+            End Try
         End Using
-
-        Return False
     End Function
 
     Public Shared Function Modificar(ByVal empleado As Empleados) As Boolean
@@ -79,6 +78,30 @@ Public Class EmpleadosBLL
         End Using
 
         Return False
+    End Function
+
+    Public Shared Function GetAllSociosAfiliados() As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion as Descripcion
+                                            from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
+	                                            on afil.Id = det.Afiliacion
+                                            inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
+                                            inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro")
+            Return dt
+        End Using
+    End Function
+
+    Public Shared Function GetSocioAfiliado(ByVal condicion As Object) As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion
+                                            from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
+	                                            on afil.Id = det.Afiliacion
+                                            inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
+                                            inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro where " & condicion & "")
+            Return dt
+        End Using
     End Function
 
 End Class

@@ -74,7 +74,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.EmpleadoIdMaskedTextBox.Mask = "0000000000"
         Me.EmpleadoIdMaskedTextBox.Name = "EmpleadoIdMaskedTextBox"
         Me.EmpleadoIdMaskedTextBox.Size = New System.Drawing.Size(67, 20)
-        Me.EmpleadoIdMaskedTextBox.TabIndex = 2
+        Me.EmpleadoIdMaskedTextBox.TabIndex = 0
         Me.EmpleadoIdMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'BuscarEmpleadoButton
@@ -82,7 +82,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.BuscarEmpleadoButton.Location = New System.Drawing.Point(179, 74)
         Me.BuscarEmpleadoButton.Name = "BuscarEmpleadoButton"
         Me.BuscarEmpleadoButton.Size = New System.Drawing.Size(48, 30)
-        Me.BuscarEmpleadoButton.TabIndex = 3
+        Me.BuscarEmpleadoButton.TabIndex = 1
         Me.BuscarEmpleadoButton.Text = "Buscar"
         Me.BuscarEmpleadoButton.UseVisualStyleBackColor = True
         '
@@ -92,7 +92,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.IdMaskedTextBox.Mask = "0000000000"
         Me.IdMaskedTextBox.Name = "IdMaskedTextBox"
         Me.IdMaskedTextBox.Size = New System.Drawing.Size(67, 20)
-        Me.IdMaskedTextBox.TabIndex = 5
+        Me.IdMaskedTextBox.TabIndex = 8
         Me.IdMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'Label2
@@ -109,7 +109,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.BuscarButton.Location = New System.Drawing.Point(179, 44)
         Me.BuscarButton.Name = "BuscarButton"
         Me.BuscarButton.Size = New System.Drawing.Size(75, 23)
-        Me.BuscarButton.TabIndex = 6
+        Me.BuscarButton.TabIndex = 5
         Me.BuscarButton.Text = "Buscar"
         Me.BuscarButton.UseVisualStyleBackColor = True
         '
@@ -119,7 +119,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.NuevoButton.Location = New System.Drawing.Point(189, 374)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
-        Me.NuevoButton.TabIndex = 14
+        Me.NuevoButton.TabIndex = 4
         Me.NuevoButton.Text = "Nuevo"
         Me.NuevoButton.UseVisualStyleBackColor = True
         '
@@ -129,7 +129,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.GuardarButton.Location = New System.Drawing.Point(271, 374)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
-        Me.GuardarButton.TabIndex = 15
+        Me.GuardarButton.TabIndex = 3
         Me.GuardarButton.Text = "Guardar"
         Me.GuardarButton.UseVisualStyleBackColor = True
         '
@@ -139,7 +139,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.EliminarButton.Location = New System.Drawing.Point(352, 374)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
-        Me.EliminarButton.TabIndex = 16
+        Me.EliminarButton.TabIndex = 6
         Me.EliminarButton.Text = "Eliminar"
         Me.EliminarButton.UseVisualStyleBackColor = True
         '
@@ -173,7 +173,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.GroupBox1.Location = New System.Drawing.Point(12, 110)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(597, 240)
-        Me.GroupBox1.TabIndex = 19
+        Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Plan de Ahorros"
         '
@@ -183,7 +183,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.AgregarButton.Location = New System.Drawing.Point(515, 13)
         Me.AgregarButton.Name = "AgregarButton"
         Me.AgregarButton.Size = New System.Drawing.Size(55, 30)
-        Me.AgregarButton.TabIndex = 25
+        Me.AgregarButton.TabIndex = 2
         Me.AgregarButton.Text = "Agregar"
         Me.AgregarButton.UseVisualStyleBackColor = True
         '
@@ -228,7 +228,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.BuscarPlanAhorroButton.Location = New System.Drawing.Point(186, 13)
         Me.BuscarPlanAhorroButton.Name = "BuscarPlanAhorroButton"
         Me.BuscarPlanAhorroButton.Size = New System.Drawing.Size(48, 30)
-        Me.BuscarPlanAhorroButton.TabIndex = 21
+        Me.BuscarPlanAhorroButton.TabIndex = 1
         Me.BuscarPlanAhorroButton.Text = "Buscar"
         Me.BuscarPlanAhorroButton.UseVisualStyleBackColor = True
         '
@@ -238,7 +238,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.PlanAhorroIdMaskedTextBox.Mask = "0000000000"
         Me.PlanAhorroIdMaskedTextBox.Name = "PlanAhorroIdMaskedTextBox"
         Me.PlanAhorroIdMaskedTextBox.Size = New System.Drawing.Size(55, 20)
-        Me.PlanAhorroIdMaskedTextBox.TabIndex = 20
+        Me.PlanAhorroIdMaskedTextBox.TabIndex = 0
         Me.PlanAhorroIdMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'Label3

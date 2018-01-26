@@ -69,17 +69,17 @@ Public Class AfiliacionEmpleadosBLL
         Dim afiliacion = New AfiliacionEmpleados()
 
         Using coneccion As New Coneccion()
+            Try
+                If coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & id & "") > 0 Then
 
-            If coneccion.EjecutarComando("Delete from AfiliacionEmpleados where Id =" & id & ";") > 0 Then
 
-                coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & id & "")
-
-                Return True
-            End If
-
+                    coneccion.EjecutarComando("Delete from AfiliacionEmpleados where Id =" & id & ";")
+                    Return True
+                End If
+            Catch ex As Exception
+                Return False
+            End Try
         End Using
-
-        Return False
     End Function
 
     Public Shared Function Modificar(ByVal afiliacion As AfiliacionEmpleados) As Boolean
@@ -104,5 +104,4 @@ Public Class AfiliacionEmpleadosBLL
 
         Return False
     End Function
-
 End Class

@@ -72,15 +72,15 @@ Public Class AportesBLL
     Public Shared Function Eliminar(ByVal id As Integer) As Boolean
 
         Using coneccion As New Coneccion()
+            Try
+                If coneccion.EjecutarComando("Delete from Aportes where AporteId =" & id & ";") > 0 Then
 
-            If coneccion.EjecutarComando("Delete from Aportes where AporteId =" & id & ";") > 0 Then
-
-                Return True
-            End If
-
+                    Return True
+                End If
+            Catch ex As Exception
+                Return False
+            End Try
         End Using
-
-        Return False
     End Function
 
     Public Shared Function Modificar(ByVal aporte As Aportes) As Boolean

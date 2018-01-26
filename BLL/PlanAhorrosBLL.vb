@@ -10,7 +10,7 @@ Public Class PlanAhorrosBLL
 
             If planAhorro.PlanId = 0 Then
 
-                If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "');") > 0 Then
+                If coneccion.EjecutarComando("Insert into PlanAhorros(Descripcion, PorcientoDesc, Interes, FondoMinimo) Values('" & planAhorro.Descripcion & "' , '" & planAhorro.PorcientoDesc & "' , '" & planAhorro.Interes & "', " & planAhorro.FondoMinimo & ");") > 0 Then
 
 
                     Dim dt = coneccion.SeleccionarDatos("SELECT MAX(PlanId) as Id from PlanAhorros")
@@ -34,7 +34,7 @@ Public Class PlanAhorrosBLL
 
     End Function
 
-    Public Shared Function Buscar(condicion As Object) As PlanAhorros
+    Public Shared Function Buscar(ByVal condicion As Object) As PlanAhorros
 
         Dim planAhorro = New PlanAhorros()
 
@@ -47,6 +47,7 @@ Public Class PlanAhorrosBLL
                 planAhorro.Descripcion = dt.Rows(0)("Descripcion")
                 planAhorro.PorcientoDesc = dt.Rows(0)("PorcientoDesc")
                 planAhorro.Interes = dt.Rows(0)("Interes")
+                planAhorro.FondoMinimo = dt.Rows(0)("FondoMinimo")
             End If
 
             If planAhorro IsNot Nothing Then
@@ -60,24 +61,23 @@ Public Class PlanAhorrosBLL
     End Function
 
     Public Shared Function Eliminar(ByVal id As Integer) As Boolean
-
         Using coneccion As New Coneccion()
+            Try
+                If coneccion.EjecutarComando("Delete from PlanAhorros where PLanId =" & id & ";") > 0 Then
 
-            If coneccion.EjecutarComando("Delete from PlanAhorros where PLanId =" & id & ";") > 0 Then
-
-                Return True
-            End If
-
+                    Return True
+                End If
+            Catch ex As Exception
+                Return False
+            End Try
         End Using
-
-        Return False
     End Function
 
     Public Shared Function Modificar(ByVal planAhorro As PlanAhorros) As Boolean
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "', Interes = '" & planAhorro.Interes & "' where PlanId = '" & planAhorro.PlanId & "'") Then
+            If coneccion.EjecutarComando("Update PlanAhorros set Descripcion = '" & planAhorro.Descripcion & "', PorcientoDesc = '" & planAhorro.PorcientoDesc & "', Interes = '" & planAhorro.Interes & "', " & planAhorro.FondoMinimo & " where PlanId = '" & planAhorro.PlanId & "'") Then
                 Return True
             End If
 
@@ -92,7 +92,6 @@ Public Class PlanAhorrosBLL
             dt = coneccion.SeleccionarDatos(comandoString)
             Return dt
         End Using
-
     End Function
 
 End Class

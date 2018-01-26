@@ -74,7 +74,7 @@ Partial Class AportesVoluntariosForm
         Me.NombresEmpleadoTextBox.Name = "NombresEmpleadoTextBox"
         Me.NombresEmpleadoTextBox.ReadOnly = True
         Me.NombresEmpleadoTextBox.Size = New System.Drawing.Size(156, 20)
-        Me.NombresEmpleadoTextBox.TabIndex = 3
+        Me.NombresEmpleadoTextBox.TabIndex = 8
         '
         'PlanAhorroComboBox
         '
@@ -83,7 +83,7 @@ Partial Class AportesVoluntariosForm
         Me.PlanAhorroComboBox.Location = New System.Drawing.Point(102, 114)
         Me.PlanAhorroComboBox.Name = "PlanAhorroComboBox"
         Me.PlanAhorroComboBox.Size = New System.Drawing.Size(121, 21)
-        Me.PlanAhorroComboBox.TabIndex = 4
+        Me.PlanAhorroComboBox.TabIndex = 2
         '
         'Label2
         '
@@ -109,7 +109,7 @@ Partial Class AportesVoluntariosForm
         Me.AporteMaskedTextBox.Mask = "000000000000000"
         Me.AporteMaskedTextBox.Name = "AporteMaskedTextBox"
         Me.AporteMaskedTextBox.Size = New System.Drawing.Size(93, 20)
-        Me.AporteMaskedTextBox.TabIndex = 8
+        Me.AporteMaskedTextBox.TabIndex = 3
         Me.AporteMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'NuevoButton
@@ -117,7 +117,7 @@ Partial Class AportesVoluntariosForm
         Me.NuevoButton.Location = New System.Drawing.Point(70, 240)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
-        Me.NuevoButton.TabIndex = 9
+        Me.NuevoButton.TabIndex = 5
         Me.NuevoButton.Text = "Nuevo"
         Me.NuevoButton.UseVisualStyleBackColor = True
         '
@@ -136,7 +136,7 @@ Partial Class AportesVoluntariosForm
         Me.AporteIdMaskedTextBox.Mask = "000000000"
         Me.AporteIdMaskedTextBox.Name = "AporteIdMaskedTextBox"
         Me.AporteIdMaskedTextBox.Size = New System.Drawing.Size(60, 20)
-        Me.AporteIdMaskedTextBox.TabIndex = 10
+        Me.AporteIdMaskedTextBox.TabIndex = 6
         Me.AporteIdMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'BuscarButton
@@ -144,7 +144,7 @@ Partial Class AportesVoluntariosForm
         Me.BuscarButton.Location = New System.Drawing.Point(168, 50)
         Me.BuscarButton.Name = "BuscarButton"
         Me.BuscarButton.Size = New System.Drawing.Size(75, 23)
-        Me.BuscarButton.TabIndex = 12
+        Me.BuscarButton.TabIndex = 7
         Me.BuscarButton.Text = "Buscar"
         Me.BuscarButton.UseVisualStyleBackColor = True
         '
@@ -153,7 +153,7 @@ Partial Class AportesVoluntariosForm
         Me.GuardarButton.Location = New System.Drawing.Point(163, 240)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
-        Me.GuardarButton.TabIndex = 13
+        Me.GuardarButton.TabIndex = 4
         Me.GuardarButton.Text = "Guardar"
         Me.GuardarButton.UseVisualStyleBackColor = True
         '
@@ -162,7 +162,7 @@ Partial Class AportesVoluntariosForm
         Me.EliminarButton.Location = New System.Drawing.Point(255, 240)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
-        Me.EliminarButton.TabIndex = 14
+        Me.EliminarButton.TabIndex = 8
         Me.EliminarButton.Text = "Eliminar"
         Me.EliminarButton.UseVisualStyleBackColor = True
         '
