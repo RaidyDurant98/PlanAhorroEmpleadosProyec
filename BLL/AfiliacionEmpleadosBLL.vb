@@ -88,7 +88,7 @@ Public Class AfiliacionEmpleadosBLL
                 For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
 
                     coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo) 
-                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", , " & detalle.FondoMinimo & ")")
+                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ")")
 
                 Next
                 Return True

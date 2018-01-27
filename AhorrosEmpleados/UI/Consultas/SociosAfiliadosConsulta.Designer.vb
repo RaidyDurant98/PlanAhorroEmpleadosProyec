@@ -36,7 +36,7 @@ Partial Class SociosAfiliadosConsulta
         'FiltrarButton
         '
         Me.FiltrarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltrarButton.Location = New System.Drawing.Point(256, 47)
+        Me.FiltrarButton.Location = New System.Drawing.Point(348, 47)
         Me.FiltrarButton.Name = "FiltrarButton"
         Me.FiltrarButton.Size = New System.Drawing.Size(75, 23)
         Me.FiltrarButton.TabIndex = 6
@@ -104,9 +104,11 @@ Partial Class SociosAfiliadosConsulta
         '
         'FiltrarTextBox
         '
+        Me.FiltrarTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltrarTextBox.Location = New System.Drawing.Point(121, 50)
         Me.FiltrarTextBox.Name = "FiltrarTextBox"
-        Me.FiltrarTextBox.Size = New System.Drawing.Size(129, 20)
+        Me.FiltrarTextBox.Size = New System.Drawing.Size(221, 20)
         Me.FiltrarTextBox.TabIndex = 11
         '
         'SociosAfiliadosConsulta

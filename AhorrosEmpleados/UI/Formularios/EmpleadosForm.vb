@@ -14,6 +14,9 @@ Public Class EmpleadosForm
         SueldoMaskedTextBox.Clear()
         ModificarButton.Enabled = False
         GuardarButton.Enabled = True
+        CancelarButton.Enabled = False
+        EliminarButton.Enabled = False
+        ErrorProvider.Clear()
     End Sub
 
     Private Function LlenarInstancia() As Empleados
@@ -35,7 +38,7 @@ Public Class EmpleadosForm
             ErrorProvider.SetError(DireccionTextBox, "Por favor digite la direccion.")
             interruptor = False
         End If
-        If String.IsNullOrEmpty(NumCelMaskedTextBox.Text) Then
+        If NumCelMaskedTextBox.Text.Length < 14 Then
             ErrorProvider.SetError(NumCelMaskedTextBox, "Por favor digite el numero de celular.")
             interruptor = False
         End If
@@ -63,6 +66,7 @@ Public Class EmpleadosForm
             If EmpleadosBLL.Guardar(LlenarInstancia()) Then
                 EmpleadoIdMaskedTextBox.Text = Empleados.EmpleadoId
                 MessageBox.Show("Empleado guardado con exito.")
+                GuardarButton.Enabled = False
             Else
                 MessageBox.Show("No se pudo guardar el empleado.")
             End If
@@ -78,6 +82,8 @@ Public Class EmpleadosForm
                 CargarDatosEmpleados()
                 GuardarButton.Enabled = False
                 ModificarButton.Enabled = True
+                CancelarButton.Enabled = True
+                EliminarButton.Enabled = True
             Else
                 MessageBox.Show("No existe plan de ahorro con ese id.")
             End If
@@ -92,11 +98,14 @@ Public Class EmpleadosForm
 
             Empleados = BLL.EmpleadosBLL.Buscar(EmpleadoIdMaskedTextBox.Text)
 
-            If BLL.EmpleadosBLL.Eliminar(Empleados.EmpleadoId) Then
-                Limpiar()
-                MessageBox.Show("Empleado eliminado con exito.")
-            Else
-                MessageBox.Show("No se pudo eliminar el empleado.")
+            Dim eliminar As DialogResult = MessageBox.Show("¿Esta seguro de eliminar el empleado?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If eliminar = DialogResult.Yes Then
+                If BLL.EmpleadosBLL.Eliminar(Empleados.EmpleadoId) Then
+                    Limpiar()
+                    MessageBox.Show("Empleado eliminado con exito.")
+                Else
+                    MessageBox.Show("No se pudo eliminar el empleado.")
+                End If
             End If
         Else
             MessageBox.Show("Por favor digite el id que desea eliminar.")
@@ -107,7 +116,7 @@ Public Class EmpleadosForm
         ModificarButton.Enabled = False
         CancelarButton.Enabled = False
         ImprimirButton.Enabled = False
-        SalirButton.Enabled = False
+        EliminarButton.Enabled = False
     End Sub
 
     Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
@@ -118,5 +127,13 @@ Public Class EmpleadosForm
                 MessageBox.Show("No se pudo modificar el empleado.")
             End If
         End If
+    End Sub
+
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        CargarDatosEmpleados()
+    End Sub
+
+    Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
+        Me.Hide()
     End Sub
 End Class

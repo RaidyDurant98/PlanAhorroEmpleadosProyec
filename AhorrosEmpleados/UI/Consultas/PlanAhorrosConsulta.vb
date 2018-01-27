@@ -6,6 +6,7 @@ Public Class PlanAhorrosConsulta
 
     Private Sub PlanAhorrosConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConsultaDataGridView.AutoGenerateColumns = False
+        FiltrarComboBox.SelectedIndex = 0
     End Sub
 
     Private Sub Filtro()
@@ -51,5 +52,13 @@ Public Class PlanAhorrosConsulta
         Dim report As PlanAhorrosReporteViewer = New PlanAhorrosReporteViewer(dt)
         report.Show()
         report.Activate()
+    End Sub
+
+    Private Sub FiltrarComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FiltrarComboBox.SelectedIndexChanged
+        If FiltrarComboBox.SelectedIndex = 0 Then
+            Filtro()
+        Else
+            ConsultaDataGridView.DataSource = New DataGridView()
+        End If
     End Sub
 End Class

@@ -68,6 +68,7 @@
     <Compile Include="AfiliacionEmpleadosDetalle.vb" />
     <Compile Include="Aportes.vb" />
     <Compile Include="Empleados.vb" />
+    <Compile Include="InteresesAcumuladoDetalle.vb" />
     <Compile Include="InteresesAcumulados.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

@@ -16,6 +16,8 @@ Public Class PlanAhorrosForm
 
         ModificarButton.Enabled = False
         GuardarButton.Enabled = True
+        CancelarButton.Enabled = False
+        EliminarButton.Enabled = False
     End Sub
 
     Private Function LlenarInstancia() As PlanAhorros
@@ -66,6 +68,7 @@ Public Class PlanAhorrosForm
                 If PlanAhorrosBLL.Guardar(LlenarInstancia()) = True Then
                     PlanIdMaskedTextBox.Text = PlanAhorro.PlanId
                     MessageBox.Show("PLan de ahorro guardado con exito.")
+                    GuardarButton.Enabled = False
                 Else
                     MessageBox.Show("No se pudo guardar el plan de ahorro.")
                 End If
@@ -89,6 +92,7 @@ Public Class PlanAhorrosForm
                 CargarDatosPlanAhorro()
                 GuardarButton.Enabled = False
                 ModificarButton.Enabled = True
+                CancelarButton.Enabled = True
             Else
                 MessageBox.Show("No existe plan de ahorro con ese id.")
             End If
@@ -105,11 +109,14 @@ Public Class PlanAhorrosForm
 
             PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & PlanIdMaskedTextBox.Text)
 
-            If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
-                Limpiar()
-                MessageBox.Show("PLan Ahorro eliminado con exito.")
-            Else
-                MessageBox.Show("No se pudo eliminar el plan de ahorro.")
+            Dim eliminar As DialogResult = MessageBox.Show("¿Esta seguro de eliminar el plan de ahorro?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If eliminar = DialogResult.Yes Then
+                If BLL.PlanAhorrosBLL.Eliminar(PlanAhorro.PlanId) Then
+                    Limpiar()
+                    MessageBox.Show("PLan Ahorro eliminado con exito.")
+                Else
+                    MessageBox.Show("No se pudo eliminar el plan de ahorro.")
+                End If
             End If
         Else
             MessageBox.Show("Por favor digite el id que desea eliminar.")
@@ -132,6 +139,14 @@ Public Class PlanAhorrosForm
         ModificarButton.Enabled = False
         CancelarButton.Enabled = False
         ImprimirButton.Enabled = False
-        SalirButton.Enabled = False
+        EliminarButton.Enabled = False
+    End Sub
+
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        CargarDatosPlanAhorro()
+    End Sub
+
+    Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
+        Me.Hide()
     End Sub
 End Class

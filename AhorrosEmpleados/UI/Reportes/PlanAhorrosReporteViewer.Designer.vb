@@ -43,6 +43,7 @@ Partial Class PlanAhorrosReporteViewer
         Me.ClientSize = New System.Drawing.Size(655, 491)
         Me.Controls.Add(Me.PlanAhorroCrystalReportViewer)
         Me.Name = "PlanAhorrosReporteViewer"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PlanAhorrosReporteViewer"
         Me.ResumeLayout(False)
 

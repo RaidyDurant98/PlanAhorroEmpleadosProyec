@@ -239,6 +239,7 @@ Partial Class PlanAhorrosForm
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "PlanAhorrosForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Plan de Ahorros"

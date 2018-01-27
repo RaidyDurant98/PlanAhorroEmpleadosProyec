@@ -36,6 +36,7 @@ Partial Class AfiliacionEmpleadosForm
         Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.FondoMinimoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.AgregarButton = New System.Windows.Forms.Button()
         Me.DetalleDataGridView = New System.Windows.Forms.DataGridView()
         Me.InteresMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
@@ -48,7 +49,6 @@ Partial Class AfiliacionEmpleadosForm
         Me.CancelarButton = New System.Windows.Forms.Button()
         Me.SalirButton = New System.Windows.Forms.Button()
         Me.ImprimirButton = New System.Windows.Forms.Button()
-        Me.FondoMinimoMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,10 +150,11 @@ Partial Class AfiliacionEmpleadosForm
         '
         'FechaDateTimePicker
         '
+        Me.FechaDateTimePicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FechaDateTimePicker.Checked = False
         Me.FechaDateTimePicker.CustomFormat = "yyyy/MM/dd "
         Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.FechaDateTimePicker.Location = New System.Drawing.Point(501, 43)
+        Me.FechaDateTimePicker.Location = New System.Drawing.Point(525, 43)
         Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
         Me.FechaDateTimePicker.Size = New System.Drawing.Size(84, 20)
         Me.FechaDateTimePicker.TabIndex = 18
@@ -182,6 +183,17 @@ Partial Class AfiliacionEmpleadosForm
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Plan de Ahorros"
+        '
+        'FondoMinimoMaskedTextBox
+        '
+        Me.FondoMinimoMaskedTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FondoMinimoMaskedTextBox.Enabled = False
+        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(449, 19)
+        Me.FondoMinimoMaskedTextBox.Mask = "0000000000"
+        Me.FondoMinimoMaskedTextBox.Name = "FondoMinimoMaskedTextBox"
+        Me.FondoMinimoMaskedTextBox.Size = New System.Drawing.Size(59, 20)
+        Me.FondoMinimoMaskedTextBox.TabIndex = 25
+        Me.FondoMinimoMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'AgregarButton
         '
@@ -305,17 +317,6 @@ Partial Class AfiliacionEmpleadosForm
         Me.ImprimirButton.TabIndex = 22
         Me.ImprimirButton.Text = "Imprimir"
         Me.ImprimirButton.UseVisualStyleBackColor = True
-        '
-        'FondoMinimoMaskedTextBox
-        '
-        Me.FondoMinimoMaskedTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FondoMinimoMaskedTextBox.Enabled = False
-        Me.FondoMinimoMaskedTextBox.Location = New System.Drawing.Point(449, 19)
-        Me.FondoMinimoMaskedTextBox.Mask = "0000000000"
-        Me.FondoMinimoMaskedTextBox.Name = "FondoMinimoMaskedTextBox"
-        Me.FondoMinimoMaskedTextBox.Size = New System.Drawing.Size(59, 20)
-        Me.FondoMinimoMaskedTextBox.TabIndex = 25
-        Me.FondoMinimoMaskedTextBox.ValidatingType = GetType(Integer)
         '
         'AfiliacionEmpleadosForm
         '

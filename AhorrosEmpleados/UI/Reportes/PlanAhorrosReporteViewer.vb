@@ -26,4 +26,7 @@ Public Class PlanAhorrosReporteViewer
         PlanAhorroCrystalReportViewer.Refresh()
     End Sub
 
+    Private Sub PlanAhorrosReporteViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

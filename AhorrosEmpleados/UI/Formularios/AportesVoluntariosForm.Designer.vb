@@ -241,6 +241,7 @@ Partial Class AportesVoluntariosForm
         Me.Controls.Add(Me.BuscarEmpleadoButton)
         Me.Controls.Add(Me.EmpleadoIdMaskedTextBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "AportesVoluntariosForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Registro de aportes voluntarios"

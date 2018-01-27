@@ -12,7 +12,7 @@ Public Class AportesVoluntariosForm
         ModificarButton.Enabled = False
         CancelarButton.Enabled = False
         ImprimirButton.Enabled = False
-        SalirButton.Enabled = False
+        EliminarButton.Enabled = False
     End Sub
 
     Private Sub Limpiar()
@@ -23,6 +23,8 @@ Public Class AportesVoluntariosForm
         PlanAhorroComboBox.DataSource = Nothing
         GuardarButton.Enabled = True
         ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        EliminarButton.Enabled = False
         Aporte = New Aportes()
     End Sub
 
@@ -98,6 +100,8 @@ Public Class AportesVoluntariosForm
                 CargarDatosAportes()
                 GuardarButton.Enabled = False
                 ModificarButton.Enabled = True
+                CancelarButton.Enabled = True
+                EliminarButton.Enabled = True
             Else
                 MessageBox.Show("No existe aporte con ese id.")
             End If
@@ -127,6 +131,7 @@ Public Class AportesVoluntariosForm
             If BLL.AportesBLL.Guardar(LlenarInstancia()) Then
                 AporteIdMaskedTextBox.Text = Aporte.AporteId
                 MessageBox.Show("Aporte guardado con exito.")
+                GuardarButton.Enabled = False
             Else
                 MessageBox.Show("No se pudo guardar el aporte.")
             End If
@@ -138,14 +143,25 @@ Public Class AportesVoluntariosForm
 
             Aporte = BLL.AportesBLL.Buscar(AporteIdMaskedTextBox.Text)
 
-            If BLL.AportesBLL.Eliminar(Aporte.AporteId) Then
-                Limpiar()
-                MessageBox.Show("Aporte eliminado con exito.")
-            Else
-                MessageBox.Show("No se pudo eliminar el Aporte.")
+            Dim eliminar As DialogResult = MessageBox.Show("¿Esta seguro de eliminar el aporte?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If eliminar = DialogResult.Yes Then
+                If BLL.AportesBLL.Eliminar(Aporte.AporteId) Then
+                    Limpiar()
+                    MessageBox.Show("Aporte eliminado con exito.")
+                Else
+                    MessageBox.Show("No se pudo eliminar el Aporte.")
+                End If
             End If
         Else
             MessageBox.Show("Por favor digite el id que desea eliminar.")
         End If
+    End Sub
+
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        CargarDatosAportes()
+    End Sub
+
+    Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
+        Me.Hide()
     End Sub
 End Class

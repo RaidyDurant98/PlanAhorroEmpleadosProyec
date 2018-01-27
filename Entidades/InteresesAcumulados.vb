@@ -1,21 +1,18 @@
 ﻿Public Class InteresesAcumulados
 
     Public IntAcumuladoId As Integer
-    Public Empleado As Integer
-    Public PlanAhorro As Integer
     Public Fecha As Date
-    Public IntAcumulado As Double
 
-    Public Sub New(intAcumuladoId As Integer, empleado As Integer, planAhorro As Integer, fecha As Date, intAcumulado As Double)
+    Public Detalle As List(Of InteresesAcumuladoDetalle)
+
+    Public Sub New(intAcumuladoId As Integer, fecha As Date, detalle As List(Of InteresesAcumuladoDetalle))
         Me.IntAcumuladoId = intAcumuladoId
-        Me.Empleado = empleado
-        Me.PlanAhorro = planAhorro
         Me.Fecha = fecha
-        Me.IntAcumulado = intAcumulado
+        Me.Detalle = detalle
     End Sub
 
     Public Sub New()
-
+        Detalle = New List(Of InteresesAcumuladoDetalle)
     End Sub
 
 End Class

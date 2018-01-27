@@ -15,7 +15,7 @@ Public Class AfiliacionEmpleadosForm
         ModificarButton.Enabled = False
         CancelarButton.Enabled = False
         ImprimirButton.Enabled = False
-        SalirButton.Enabled = False
+        EliminarButton.Enabled = False
         Limpiar()
     End Sub
 
@@ -32,6 +32,8 @@ Public Class AfiliacionEmpleadosForm
         Afiliacion = New AfiliacionEmpleados()
         GuardarButton.Enabled = True
         ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        EliminarButton.Enabled = False
     End Sub
 
     Private Sub LimpiarPLanAhorro()
@@ -182,6 +184,8 @@ Public Class AfiliacionEmpleadosForm
                 CargarDatosAfiliacion()
                 GuardarButton.Enabled = False
                 ModificarButton.Enabled = True
+                CancelarButton.Enabled = True
+                EliminarButton.Enabled = True
             Else
                 MessageBox.Show("No existe afiliacion con ese id.")
             End If
@@ -214,33 +218,39 @@ Public Class AfiliacionEmpleadosForm
         CargarDatosEmpleado()
     End Sub
 
+    Private Function ValidarPlanAhorroEmpleado(ByRef id As Integer) As Boolean
+
+        Dim dt2 = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & Empleado.EmpleadoId & "")
+        Dim interruptor = False
+        If dt2.Rows.Count > 0 Then
+            For index = 0 To dt.Rows.Count - 1
+                For index2 = 0 To dt2.Rows.Count - 1
+                    PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & dt.Rows(index)("Plan Id") & "")
+                    If dt2.Rows(index2)("Descripcion") = PlanAhorro.Descripcion Then
+                        interruptor = True
+
+                        If interruptor = True Then
+                            id = index
+                        End If
+                    End If
+                Next
+            Next
+        End If
+
+        Return interruptor
+    End Function
+
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
         If Validar() Then
 
             Dim id As Integer
 
-            Dim dt2 = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & Empleado.EmpleadoId & "")
-            Dim interruptor = False
-            If dt2.Rows.Count > 0 Then
-                For index = 0 To dt.Rows.Count - 1
-                    For index2 = 0 To dt2.Rows.Count - 1
-                        PlanAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & dt.Rows(index)("Plan Id") & "")
-                        If dt2.Rows(index2)("Descripcion") = PlanAhorro.Descripcion Then
-                            interruptor = True
-
-                            If interruptor = True Then
-                                id = index
-                            End If
-                        End If
-                    Next
-                Next
-            End If
-
-            If interruptor = False Then
+            If ValidarPlanAhorroEmpleado(id) = False Then
                 If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
                     IdMaskedTextBox.Text = Afiliacion.Id
                     Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
                     MessageBox.Show("Afiliacion guardada con exito.")
+                    GuardarButton.Enabled = False
                 Else
                     MessageBox.Show("No se pudo guardar la afiliacion.")
                 End If
@@ -290,13 +300,15 @@ Public Class AfiliacionEmpleadosForm
         If (String.IsNullOrEmpty(IdMaskedTextBox.Text) = False) Then
 
             Afiliacion = BLL.AfiliacionEmpleadosBLL.Buscar(IdMaskedTextBox.Text)
-
-            If BLL.AfiliacionEmpleadosBLL.Eliminar(Afiliacion.Id) Then
-                Limpiar()
-                Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
-                MessageBox.Show("Afilicion eliminada con exito.")
-            Else
-                MessageBox.Show("No se pudo eliminar la afiliacion.")
+            Dim eliminar As DialogResult = MessageBox.Show("¿Esta seguro de eliminar la afiliacion?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If eliminar = DialogResult.Yes Then
+                If BLL.AfiliacionEmpleadosBLL.Eliminar(Afiliacion.Id) Then
+                    Limpiar()
+                    Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
+                    MessageBox.Show("Afilicion eliminada con exito.")
+                Else
+                    MessageBox.Show("No se pudo eliminar la afiliacion.")
+                End If
             End If
         Else
             MessageBox.Show("Por favor digite el id que desea eliminar.")
@@ -324,5 +336,13 @@ Public Class AfiliacionEmpleadosForm
                 MessageBox.Show("No se pudo modificar la afiliacion.")
             End If
         End If
+    End Sub
+
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        CargarDatosAfiliacion()
+    End Sub
+
+    Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
+        Me.Hide()
     End Sub
 End Class
