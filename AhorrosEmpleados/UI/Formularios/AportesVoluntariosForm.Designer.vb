@@ -42,6 +42,7 @@ Partial Class AportesVoluntariosForm
         Me.EliminarButton = New System.Windows.Forms.Button()
         Me.GuardarButton = New System.Windows.Forms.Button()
         Me.NuevoButton = New System.Windows.Forms.Button()
+        Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -217,11 +218,21 @@ Partial Class AportesVoluntariosForm
         Me.NuevoButton.Text = "Nuevo"
         Me.NuevoButton.UseVisualStyleBackColor = True
         '
+        'FechaDateTimePicker
+        '
+        Me.FechaDateTimePicker.CustomFormat = "yyyy/MM/dd"
+        Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.FechaDateTimePicker.Location = New System.Drawing.Point(478, 52)
+        Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
+        Me.FechaDateTimePicker.Size = New System.Drawing.Size(95, 20)
+        Me.FechaDateTimePicker.TabIndex = 30
+        '
         'AportesVoluntariosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(591, 309)
+        Me.Controls.Add(Me.FechaDateTimePicker)
         Me.Controls.Add(Me.ImprimirButton)
         Me.Controls.Add(Me.SalirButton)
         Me.Controls.Add(Me.CancelarButton)
@@ -270,4 +281,5 @@ Partial Class AportesVoluntariosForm
     Friend WithEvents EliminarButton As Button
     Friend WithEvents GuardarButton As Button
     Friend WithEvents NuevoButton As Button
+    Friend WithEvents FechaDateTimePicker As DateTimePicker
 End Class

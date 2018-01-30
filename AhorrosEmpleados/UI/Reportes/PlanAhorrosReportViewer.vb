@@ -2,7 +2,7 @@
 Imports CrystalDecisions.Shared
 Imports Entidades
 
-Public Class PlanAhorrosReporteViewer
+Public Class PlanAhorrosReportViewer
 
     Public datatable As DataTable = New DataTable
 

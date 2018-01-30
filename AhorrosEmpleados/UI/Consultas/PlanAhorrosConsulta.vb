@@ -49,7 +49,7 @@ Public Class PlanAhorrosConsulta
     End Sub
 
     Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
-        Dim report As PlanAhorrosReporteViewer = New PlanAhorrosReporteViewer(dt)
+        Dim report As PlanAhorrosReportViewer = New PlanAhorrosReportViewer(dt)
         report.Show()
         report.Activate()
     End Sub

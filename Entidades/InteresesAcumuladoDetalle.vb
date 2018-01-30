@@ -6,7 +6,7 @@
     Public PlanAhorro As Integer
     Public IntAcumulado As Double
 
-    Public Sub New(intAcumuladoId As Integer, empleado As Integer, planAhorro As Integer, descripcion As String, fecha As Date, intAcumulado As Double)
+    Public Sub New(intAcumuladoId As Integer, empleado As Integer, planAhorro As Integer, intAcumulado As Double)
         Me.IntAcumuladoId = intAcumuladoId
         Me.Empleado = empleado
         Me.PlanAhorro = planAhorro

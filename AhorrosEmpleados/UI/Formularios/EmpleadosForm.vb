@@ -67,6 +67,7 @@ Public Class EmpleadosForm
                 EmpleadoIdMaskedTextBox.Text = Empleados.EmpleadoId
                 MessageBox.Show("Empleado guardado con exito.")
                 GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
             Else
                 MessageBox.Show("No se pudo guardar el empleado.")
             End If

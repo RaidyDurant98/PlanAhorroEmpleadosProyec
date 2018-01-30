@@ -25,6 +25,7 @@ Public Class AportesVoluntariosForm
         ModificarButton.Enabled = False
         CancelarButton.Enabled = False
         EliminarButton.Enabled = False
+        FechaDateTimePicker.Value = Date.Now
         Aporte = New Aportes()
     End Sub
 
@@ -72,7 +73,7 @@ Public Class AportesVoluntariosForm
 
     Private Function LlenarInstancia() As Entidades.Aportes
 
-        Aporte = New Aportes(Aporte.AporteId, Empleado.EmpleadoId, PlanAhorroComboBox.SelectedValue, AporteMaskedTextBox.Text.Trim())
+        Aporte = New Aportes(Aporte.AporteId, Empleado.EmpleadoId, PlanAhorroComboBox.SelectedValue, AporteMaskedTextBox.Text.Trim(), FechaDateTimePicker.Value)
         Return Aporte
     End Function
 
@@ -89,6 +90,7 @@ Public Class AportesVoluntariosForm
         NombresEmpleadoTextBox.Text = Empleado.Nombres
         PlanAhorroComboBox.SelectedValue = Aporte.PlanAHorro
         AporteMaskedTextBox.Text = Aporte.Aporte
+        FechaDateTimePicker.Value = Aporte.Fecha
     End Sub
 
     Private Sub BuscarButton_Click(sender As Object, e As EventArgs) Handles BuscarButton.Click
@@ -132,6 +134,7 @@ Public Class AportesVoluntariosForm
                 AporteIdMaskedTextBox.Text = Aporte.AporteId
                 MessageBox.Show("Aporte guardado con exito.")
                 GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
             Else
                 MessageBox.Show("No se pudo guardar el aporte.")
             End If

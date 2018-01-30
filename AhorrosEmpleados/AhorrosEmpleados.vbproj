@@ -149,16 +149,34 @@
     <Compile Include="UI\Formularios\PlanAhorrosForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\Formularios\RetiroPlanAhorroForm.Designer.vb">
+      <DependentUpon>RetiroPlanAhorroForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Formularios\RetiroPlanAhorroForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Reportes\PlanAhorrosEmpleados.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlanAhorrosEmpleados.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\Reportes\PlanAhorrosReporteViewer.Designer.vb">
-      <DependentUpon>PlanAhorrosReporteViewer.vb</DependentUpon>
+    <Compile Include="UI\Reportes\PlanAhorrosReportViewer.Designer.vb">
+      <DependentUpon>PlanAhorrosReportViewer.vb</DependentUpon>
     </Compile>
-    <Compile Include="UI\Reportes\PlanAhorrosReporteViewer.vb">
+    <Compile Include="UI\Reportes\PlanAhorrosReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\SociosAfiliados.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SociosAfiliados.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\SociosAfiliadosReportViewer.Designer.vb">
+      <DependentUpon>SociosAfiliadosReportViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\SociosAfiliadosReportViewer.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -196,12 +214,22 @@
     <EmbeddedResource Include="UI\Formularios\PlanAhorrosForm.resx">
       <DependentUpon>PlanAhorrosForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Formularios\RetiroPlanAhorroForm.resx">
+      <DependentUpon>RetiroPlanAhorroForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\PlanAhorrosEmpleados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PlanAhorrosEmpleados.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Reportes\PlanAhorrosReporteViewer.resx">
-      <DependentUpon>PlanAhorrosReporteViewer.vb</DependentUpon>
+    <EmbeddedResource Include="UI\Reportes\PlanAhorrosReportViewer.resx">
+      <DependentUpon>PlanAhorrosReportViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\SociosAfiliados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SociosAfiliados.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\SociosAfiliadosReportViewer.resx">
+      <DependentUpon>SociosAfiliadosReportViewer.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

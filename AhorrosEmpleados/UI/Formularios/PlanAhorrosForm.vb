@@ -69,6 +69,7 @@ Public Class PlanAhorrosForm
                     PlanIdMaskedTextBox.Text = PlanAhorro.PlanId
                     MessageBox.Show("PLan de ahorro guardado con exito.")
                     GuardarButton.Enabled = False
+                    ModificarButton.Enabled = True
                 Else
                     MessageBox.Show("No se pudo guardar el plan de ahorro.")
                 End If

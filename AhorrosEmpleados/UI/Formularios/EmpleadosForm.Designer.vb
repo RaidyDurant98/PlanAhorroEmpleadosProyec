@@ -90,7 +90,7 @@ Partial Class EmpleadosForm
         '
         'NuevoButton
         '
-        Me.NuevoButton.Location = New System.Drawing.Point(15, 257)
+        Me.NuevoButton.Location = New System.Drawing.Point(15, 274)
         Me.NuevoButton.Name = "NuevoButton"
         Me.NuevoButton.Size = New System.Drawing.Size(75, 23)
         Me.NuevoButton.TabIndex = 5
@@ -99,7 +99,7 @@ Partial Class EmpleadosForm
         '
         'GuardarButton
         '
-        Me.GuardarButton.Location = New System.Drawing.Point(261, 257)
+        Me.GuardarButton.Location = New System.Drawing.Point(261, 274)
         Me.GuardarButton.Name = "GuardarButton"
         Me.GuardarButton.Size = New System.Drawing.Size(75, 23)
         Me.GuardarButton.TabIndex = 4
@@ -108,7 +108,7 @@ Partial Class EmpleadosForm
         '
         'EliminarButton
         '
-        Me.EliminarButton.Location = New System.Drawing.Point(342, 257)
+        Me.EliminarButton.Location = New System.Drawing.Point(342, 274)
         Me.EliminarButton.Name = "EliminarButton"
         Me.EliminarButton.Size = New System.Drawing.Size(75, 23)
         Me.EliminarButton.TabIndex = 8
@@ -173,7 +173,7 @@ Partial Class EmpleadosForm
         'ModificarButton
         '
         Me.ModificarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ModificarButton.Location = New System.Drawing.Point(99, 257)
+        Me.ModificarButton.Location = New System.Drawing.Point(99, 274)
         Me.ModificarButton.Name = "ModificarButton"
         Me.ModificarButton.Size = New System.Drawing.Size(75, 23)
         Me.ModificarButton.TabIndex = 22
@@ -183,7 +183,7 @@ Partial Class EmpleadosForm
         'CancelarButton
         '
         Me.CancelarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CancelarButton.Location = New System.Drawing.Point(180, 257)
+        Me.CancelarButton.Location = New System.Drawing.Point(180, 274)
         Me.CancelarButton.Name = "CancelarButton"
         Me.CancelarButton.Size = New System.Drawing.Size(75, 23)
         Me.CancelarButton.TabIndex = 23
@@ -193,7 +193,7 @@ Partial Class EmpleadosForm
         'ImprimirButton
         '
         Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ImprimirButton.Location = New System.Drawing.Point(423, 257)
+        Me.ImprimirButton.Location = New System.Drawing.Point(423, 274)
         Me.ImprimirButton.Name = "ImprimirButton"
         Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
         Me.ImprimirButton.TabIndex = 31
@@ -203,7 +203,7 @@ Partial Class EmpleadosForm
         'SalirButton
         '
         Me.SalirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.SalirButton.Location = New System.Drawing.Point(504, 257)
+        Me.SalirButton.Location = New System.Drawing.Point(504, 274)
         Me.SalirButton.Name = "SalirButton"
         Me.SalirButton.Size = New System.Drawing.Size(75, 23)
         Me.SalirButton.TabIndex = 30

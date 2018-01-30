@@ -251,6 +251,7 @@ Public Class AfiliacionEmpleadosForm
                     Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
                     MessageBox.Show("Afiliacion guardada con exito.")
                     GuardarButton.Enabled = False
+                    ModificarButton.Enabled = True
                 Else
                     MessageBox.Show("No se pudo guardar la afiliacion.")
                 End If
@@ -344,5 +345,9 @@ Public Class AfiliacionEmpleadosForm
 
     Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
         Me.Hide()
+    End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs)
+
     End Sub
 End Class

@@ -1,6 +1,9 @@
 ﻿Imports BLL
 
 Public Class SociosAfiliadosConsulta
+
+    Dim dt As DataTable = Nothing
+
     Private Sub SociosAfiliadosConsulta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConsultaDataGridView.AutoGenerateColumns = False
         FiltrarComboBox.SelectedIndex = 0
@@ -55,5 +58,12 @@ Public Class SociosAfiliadosConsulta
         Else
             ConsultaDataGridView.DataSource = New DataGridView()
         End If
+    End Sub
+
+    Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
+
+        Dim report As SociosAfiliadosReportViewer = New SociosAfiliadosReportViewer(dt)
+        report.Show()
+        report.Activate()
     End Sub
 End Class

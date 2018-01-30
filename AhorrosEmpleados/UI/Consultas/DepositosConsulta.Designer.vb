@@ -31,6 +31,7 @@ Partial Class DepositosConsulta
         Me.Empleado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PlanAhorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Aporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -40,13 +41,13 @@ Partial Class DepositosConsulta
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FiltrarTextBox.Location = New System.Drawing.Point(139, 37)
         Me.FiltrarTextBox.Name = "FiltrarTextBox"
-        Me.FiltrarTextBox.Size = New System.Drawing.Size(289, 20)
+        Me.FiltrarTextBox.Size = New System.Drawing.Size(325, 20)
         Me.FiltrarTextBox.TabIndex = 9
         '
         'ImprimirButton
         '
         Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ImprimirButton.Location = New System.Drawing.Point(12, 288)
+        Me.ImprimirButton.Location = New System.Drawing.Point(12, 297)
         Me.ImprimirButton.Name = "ImprimirButton"
         Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
         Me.ImprimirButton.TabIndex = 8
@@ -56,7 +57,7 @@ Partial Class DepositosConsulta
         'FiltrarButton
         '
         Me.FiltrarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltrarButton.Location = New System.Drawing.Point(434, 35)
+        Me.FiltrarButton.Location = New System.Drawing.Point(470, 35)
         Me.FiltrarButton.Name = "FiltrarButton"
         Me.FiltrarButton.Size = New System.Drawing.Size(75, 23)
         Me.FiltrarButton.TabIndex = 7
@@ -83,11 +84,11 @@ Partial Class DepositosConsulta
         Me.ConsultaDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.ConsultaDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Empleado, Me.PlanAhorro, Me.Aporte})
+        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Empleado, Me.PlanAhorro, Me.Aporte, Me.Fecha})
         Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 80)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
         Me.ConsultaDataGridView.ReadOnly = True
-        Me.ConsultaDataGridView.Size = New System.Drawing.Size(517, 193)
+        Me.ConsultaDataGridView.Size = New System.Drawing.Size(553, 202)
         Me.ConsultaDataGridView.TabIndex = 5
         '
         'ID
@@ -118,11 +119,18 @@ Partial Class DepositosConsulta
         Me.Aporte.Name = "Aporte"
         Me.Aporte.ReadOnly = True
         '
+        'Fecha
+        '
+        Me.Fecha.DataPropertyName = "Fecha"
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        '
         'DepositosConsulta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(539, 350)
+        Me.ClientSize = New System.Drawing.Size(575, 359)
         Me.Controls.Add(Me.FiltrarTextBox)
         Me.Controls.Add(Me.ImprimirButton)
         Me.Controls.Add(Me.FiltrarButton)
@@ -146,4 +154,5 @@ Partial Class DepositosConsulta
     Friend WithEvents Empleado As DataGridViewTextBoxColumn
     Friend WithEvents PlanAhorro As DataGridViewTextBoxColumn
     Friend WithEvents Aporte As DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As DataGridViewTextBoxColumn
 End Class

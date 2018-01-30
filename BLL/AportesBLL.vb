@@ -22,7 +22,7 @@ Public Class AportesBLL
     Public Shared Function Guardar(ByVal aporte As Aportes) As Boolean
 
         Using coneccion As New Coneccion()
-            If coneccion.EjecutarComando("Insert into Aportes(Empleado, PlanAhorro, Aporte) Values(" & aporte.Empleado & " , " & aporte.PlanAHorro & " , " & aporte.Aporte & ")") Then
+            If coneccion.EjecutarComando("Insert into Aportes(Empleado, PlanAhorro, Aporte, Fecha) Values(" & aporte.Empleado & " , " & aporte.PlanAHorro & " , " & aporte.Aporte & ", '" & aporte.Fecha & "')") Then
 
                 Dim dt = coneccion.SeleccionarDatos("SELECT MAX(AporteId) as Id from Aportes")
                 Dim id = 0
@@ -52,6 +52,7 @@ Public Class AportesBLL
                 aporte.Empleado = dt.Rows(0)("Empleado")
                 aporte.PlanAHorro = dt.Rows(0)("PlanAhorro")
                 aporte.Aporte = dt.Rows(0)("Aporte")
+                aporte.Fecha = dt.Rows(0)("Fecha")
             End If
 
             If aporte IsNot Nothing Then
@@ -82,7 +83,7 @@ Public Class AportesBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update Aportes set Empleado = " & aporte.Empleado & ", PlanAhorro = " & aporte.PlanAHorro & ", Aporte = " & aporte.Aporte & "") Then
+            If coneccion.EjecutarComando("Update Aportes set Empleado = " & aporte.Empleado & ", PlanAhorro = " & aporte.PlanAHorro & ", Aporte = " & aporte.Aporte & ", Fecha = '" & aporte.Fecha & "' where AporteId = " & aporte.AporteId & "") Then
                 Return True
             End If
 
@@ -94,7 +95,7 @@ Public Class AportesBLL
     Public Shared Function GetAllAportes() As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte
+            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte, Ap.Fecha
                                              from Empleados Emp inner join Aportes Ap
 	                                            on Emp.EmpleadoId = Ap.Empleado 
                                              inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro")
@@ -105,7 +106,7 @@ Public Class AportesBLL
     Public Shared Function GetAportes(ByVal condicion As String) As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte
+            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte, Ap.Fecha
                                              from Empleados Emp inner join Aportes Ap
 	                                            on Emp.EmpleadoId = Ap.Empleado 
                                              inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro where " & condicion & "")

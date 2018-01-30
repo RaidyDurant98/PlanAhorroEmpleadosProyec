@@ -81,7 +81,7 @@ Public Class AfiliacionEmpleadosBLL
 
         Using coneccion As New Coneccion()
 
-            If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', FechaAfiliacion = '" & afiliacion.FechaAfiliacion & "'") Then
+            If coneccion.EjecutarComando("Update AfiliacionEmpleados set Empleado = '" & afiliacion.Empleado & "', FechaAfiliacion = '" & afiliacion.FechaAfiliacion & "' where Id = " & afiliacion.Id & "") Then
 
                 coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & afiliacion.Id & "")
 
