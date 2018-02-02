@@ -346,8 +346,4 @@ Public Class AfiliacionEmpleadosForm
     Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
         Me.Hide()
     End Sub
-
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs)
-
-    End Sub
 End Class

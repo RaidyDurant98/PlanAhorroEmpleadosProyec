@@ -27,7 +27,6 @@ Partial Class DepositosConsulta
         Me.FiltrarButton = New System.Windows.Forms.Button()
         Me.FiltrarComboBox = New System.Windows.Forms.ComboBox()
         Me.ConsultaDataGridView = New System.Windows.Forms.DataGridView()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Empleado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PlanAhorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Aporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -68,7 +67,7 @@ Partial Class DepositosConsulta
         '
         Me.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FiltrarComboBox.FormattingEnabled = True
-        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "ID", "Empleado", "Plan de Ahorro"})
+        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "Empleado", "Plan de Ahorro"})
         Me.FiltrarComboBox.Location = New System.Drawing.Point(12, 36)
         Me.FiltrarComboBox.Name = "FiltrarComboBox"
         Me.FiltrarComboBox.Size = New System.Drawing.Size(121, 21)
@@ -84,19 +83,12 @@ Partial Class DepositosConsulta
         Me.ConsultaDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.ConsultaDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.Empleado, Me.PlanAhorro, Me.Aporte, Me.Fecha})
+        Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Empleado, Me.PlanAhorro, Me.Aporte, Me.Fecha})
         Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 80)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
         Me.ConsultaDataGridView.ReadOnly = True
         Me.ConsultaDataGridView.Size = New System.Drawing.Size(553, 202)
         Me.ConsultaDataGridView.TabIndex = 5
-        '
-        'ID
-        '
-        Me.ID.DataPropertyName = "AporteId"
-        Me.ID.HeaderText = "Id"
-        Me.ID.Name = "ID"
-        Me.ID.ReadOnly = True
         '
         'Empleado
         '
@@ -150,7 +142,6 @@ Partial Class DepositosConsulta
     Friend WithEvents FiltrarButton As Button
     Friend WithEvents FiltrarComboBox As ComboBox
     Friend WithEvents ConsultaDataGridView As DataGridView
-    Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents Empleado As DataGridViewTextBoxColumn
     Friend WithEvents PlanAhorro As DataGridViewTextBoxColumn
     Friend WithEvents Aporte As DataGridViewTextBoxColumn

@@ -3,11 +3,7 @@
 Public Class SociosAfiliadosReportViewer
     Public datatable As DataTable = New DataTable
 
-    Private Sub SociosAfiliadosReportViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Public Sub New(ByRef dt As DataTable)
+    Public Sub New(dt As DataTable)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -18,12 +14,20 @@ Public Class SociosAfiliadosReportViewer
 
     End Sub
 
-    Private Sub SociosAfiliadosCrystalReportViewer_Load(sender As Object, e As EventArgs) Handles SociosAfiliadosCrystalReportViewer.Load
+    Private Sub SociosAfiliadosReportViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim r As New ReportDocument
+
         r.Load("C:\Users\Raidy Duran\Desktop\AhorrosEmpleados\AhorrosEmpleados\UI\Reportes\SociosAfiliados.rpt")
         r.SetDataSource(datatable)
 
+
         SociosAfiliadosCrystalReportViewer.ReportSource = r
         SociosAfiliadosCrystalReportViewer.Refresh()
+    End Sub
+
+
+
+    Private Sub SociosAfiliadosCrystalReportViewer_Load(sender As Object, e As EventArgs) Handles SociosAfiliadosCrystalReportViewer.Load
+
     End Sub
 End Class

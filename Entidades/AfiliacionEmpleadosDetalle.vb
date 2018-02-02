@@ -8,6 +8,7 @@
     Public Interes As Double
     Public FondoMinimo As Double
 
+
     Public Sub New(planAhorro As Integer, afiliacion As Integer, descripcion As String, porcientoDesc As Double, interes As Double, fondoMinimo As Double)
         Me.PlanAhorro = planAhorro
         Me.Afiliacion = afiliacion

@@ -22,7 +22,6 @@ Partial Class CargoInteresAcumuladoForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.IntAcumuladoIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.BuscarButton = New System.Windows.Forms.Button()
@@ -32,17 +31,6 @@ Partial Class CargoInteresAcumuladoForm
         Me.CargodeInteresDataGridView = New System.Windows.Forms.DataGridView()
         Me.GuardarButton = New System.Windows.Forms.Button()
         Me.TotalLabel = New System.Windows.Forms.Label()
-        Me.Empleado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PlanAhorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Sueldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PorcientoDesc = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaInteres = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Interes = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Aporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InteresAcumulado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.EmpleadoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PlanAhorroId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.IntAcumuladoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.CargodeInteresDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -107,7 +95,6 @@ Partial Class CargoInteresAcumuladoForm
         Me.CargodeInteresDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.CargodeInteresDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.CargodeInteresDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.CargodeInteresDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Empleado, Me.PlanAhorro, Me.Sueldo, Me.PorcientoDesc, Me.FechaInteres, Me.Interes, Me.Aporte, Me.InteresAcumulado, Me.EmpleadoId, Me.PlanAhorroId, Me.IntAcumuladoId})
         Me.CargodeInteresDataGridView.Location = New System.Drawing.Point(12, 105)
         Me.CargodeInteresDataGridView.Name = "CargodeInteresDataGridView"
         Me.CargodeInteresDataGridView.ReadOnly = True
@@ -127,90 +114,11 @@ Partial Class CargoInteresAcumuladoForm
         '
         Me.TotalLabel.AutoSize = True
         Me.TotalLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalLabel.Location = New System.Drawing.Point(474, 317)
+        Me.TotalLabel.Location = New System.Drawing.Point(388, 317)
         Me.TotalLabel.Name = "TotalLabel"
         Me.TotalLabel.Size = New System.Drawing.Size(34, 20)
         Me.TotalLabel.TabIndex = 21
         Me.TotalLabel.Text = "0.0"
-        '
-        'Empleado
-        '
-        Me.Empleado.DataPropertyName = "Nombres"
-        Me.Empleado.HeaderText = "Nombres"
-        Me.Empleado.Name = "Empleado"
-        Me.Empleado.ReadOnly = True
-        '
-        'PlanAhorro
-        '
-        Me.PlanAhorro.DataPropertyName = "Descripcion"
-        Me.PlanAhorro.HeaderText = "Plan de Ahorro"
-        Me.PlanAhorro.Name = "PlanAhorro"
-        Me.PlanAhorro.ReadOnly = True
-        '
-        'Sueldo
-        '
-        Me.Sueldo.DataPropertyName = "Sueldo"
-        Me.Sueldo.HeaderText = "Sueldo"
-        Me.Sueldo.Name = "Sueldo"
-        Me.Sueldo.ReadOnly = True
-        '
-        'PorcientoDesc
-        '
-        Me.PorcientoDesc.DataPropertyName = "PorcientoDesc"
-        Me.PorcientoDesc.HeaderText = "% Descuento"
-        Me.PorcientoDesc.Name = "PorcientoDesc"
-        Me.PorcientoDesc.ReadOnly = True
-        '
-        'FechaInteres
-        '
-        Me.FechaInteres.DataPropertyName = "diferenciameses"
-        Me.FechaInteres.HeaderText = "Tiempo del Interes"
-        Me.FechaInteres.Name = "FechaInteres"
-        Me.FechaInteres.ReadOnly = True
-        '
-        'Interes
-        '
-        Me.Interes.DataPropertyName = "Interes"
-        Me.Interes.HeaderText = "% Interes Banco"
-        Me.Interes.Name = "Interes"
-        Me.Interes.ReadOnly = True
-        '
-        'Aporte
-        '
-        Me.Aporte.DataPropertyName = "Aporte"
-        Me.Aporte.HeaderText = "Aporte"
-        Me.Aporte.Name = "Aporte"
-        Me.Aporte.ReadOnly = True
-        '
-        'InteresAcumulado
-        '
-        Me.InteresAcumulado.DataPropertyName = "Total"
-        DataGridViewCellStyle2.Format = "n2"
-        Me.InteresAcumulado.DefaultCellStyle = DataGridViewCellStyle2
-        Me.InteresAcumulado.HeaderText = "InteresAcumulado"
-        Me.InteresAcumulado.Name = "InteresAcumulado"
-        Me.InteresAcumulado.ReadOnly = True
-        '
-        'EmpleadoId
-        '
-        Me.EmpleadoId.DataPropertyName = "EmpleadoId"
-        Me.EmpleadoId.HeaderText = "EmpleadoId"
-        Me.EmpleadoId.Name = "EmpleadoId"
-        Me.EmpleadoId.ReadOnly = True
-        '
-        'PlanAhorroId
-        '
-        Me.PlanAhorroId.DataPropertyName = "PlanId"
-        Me.PlanAhorroId.HeaderText = "PlanAhorroId"
-        Me.PlanAhorroId.Name = "PlanAhorroId"
-        Me.PlanAhorroId.ReadOnly = True
-        '
-        'IntAcumuladoId
-        '
-        Me.IntAcumuladoId.DataPropertyName = "IntAcumuladoId"
-        Me.IntAcumuladoId.HeaderText = "IntAcumuladoId"
-        Me.IntAcumuladoId.Name = "IntAcumuladoId"
-        Me.IntAcumuladoId.ReadOnly = True
         '
         'CargoInteresAcumuladoForm
         '
@@ -246,15 +154,4 @@ Partial Class CargoInteresAcumuladoForm
     Friend WithEvents CargodeInteresDataGridView As DataGridView
     Friend WithEvents GuardarButton As Button
     Friend WithEvents TotalLabel As Label
-    Friend WithEvents Empleado As DataGridViewTextBoxColumn
-    Friend WithEvents PlanAhorro As DataGridViewTextBoxColumn
-    Friend WithEvents Sueldo As DataGridViewTextBoxColumn
-    Friend WithEvents PorcientoDesc As DataGridViewTextBoxColumn
-    Friend WithEvents FechaInteres As DataGridViewTextBoxColumn
-    Friend WithEvents Interes As DataGridViewTextBoxColumn
-    Friend WithEvents Aporte As DataGridViewTextBoxColumn
-    Friend WithEvents InteresAcumulado As DataGridViewTextBoxColumn
-    Friend WithEvents EmpleadoId As DataGridViewTextBoxColumn
-    Friend WithEvents PlanAhorroId As DataGridViewTextBoxColumn
-    Friend WithEvents IntAcumuladoId As DataGridViewTextBoxColumn
 End Class

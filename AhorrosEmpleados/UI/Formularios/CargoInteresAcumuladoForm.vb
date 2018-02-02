@@ -10,44 +10,40 @@ Public Class CargoInteresAcumuladoForm
         CargoInteres = New InteresesAcumulados()
         dt = New DataTable()
 
-        CargodeInteresDataGridView.AutoGenerateColumns = False
         CargarDetalle()
 
-        HacerColumnasInvisibles()
     End Sub
-
-    Private Sub HacerColumnasInvisibles()
-        CargodeInteresDataGridView.Columns("Sueldo").Visible = False
-        CargodeInteresDataGridView.Columns("PorcientoDesc").Visible = False
-        CargodeInteresDataGridView.Columns("FechaInteres").Visible = False
-        CargodeInteresDataGridView.Columns("Interes").Visible = False
-        CargodeInteresDataGridView.Columns("Aporte").Visible = False
-        CargodeInteresDataGridView.Columns("EmpleadoId").Visible = False
-        CargodeInteresDataGridView.Columns("PlanAhorroId").Visible = False
-        CargodeInteresDataGridView.Columns("IntAcumuladoId").Visible = False
-    End Sub
-
-    Public Function MonthDifference(lValue As DateTime, rValue As DateTime) As Integer
-        Return Math.Abs((lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year))
-    End Function
 
     Private Sub CargarDetalle()
-        CargodeInteresDataGridView.DataSource = BLL.InteresAcumuladoBLL.GetAllSociosAfiliados()
+
+        dt = BLL.InteresAcumuladoBLL.GetAllSociosAfiliados("'" & FechaDateTimePicker.Value & "' > FechaUltimoCargo")
+
+        CargodeInteresDataGridView.DataSource = dt
+
+        CargodeInteresDataGridView.Columns("EmpleadoId").Visible = False
+        CargodeInteresDataGridView.Columns("PlanId").Visible = False
+        CargodeInteresDataGridView.Columns("PorcientoDesc").Visible = False
+        CargodeInteresDataGridView.Columns("FechaUltimoCargo").Visible = False
+        CargodeInteresDataGridView.Columns("Sueldo").Visible = False
+        CargodeInteresDataGridView.Columns("Interes").Visible = False
+        CargodeInteresDataGridView.Columns("Aporte").Visible = False
+
+        dt.Columns.Add("Cargo Interes")
     End Sub
 
-    Private Sub CargarInteresAcumulado()
+    Private Sub CalcularInteresAcumulado()
         For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
-            Dim desc = (row.Cells(4).Value * ("0.0" & row.Cells(3).Value)) / 12
-            Dim aporte = "0" & row.Cells(6).Value
-            Dim cargoInteres = ((row.Cells(2).Value * row.Cells(4).Value) + ("0" & row.Cells(6).Value)) * (desc)
-            row.Cells(7).Value = cargoInteres + (("0.0" & row.Cells(5).Value) * cargoInteres)
-            row.Cells(10).Value = 1
-            'preguntar a Enel si el interes del banco se calcula por el interes acumulado o por el descuento total
+            Dim desc As Double = (DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
+            Dim aporte As Double = "0" & row.Cells("Aporte").Value
+            Dim cargoInteres As Double = ((row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value)) / 30) + ("0" & row.Cells("Aporte").Value)) * (desc)
+            Dim cargo As Double = cargoInteres + ((row.Cells("Interes").Value / 100) * cargoInteres)
+            row.Cells("Cargo Interes").Value = cargo.ToString("N2")
         Next
     End Sub
 
     Private Sub CargarInteresButton_Click(sender As Object, e As EventArgs) Handles CargarInteresButton.Click
-        CargarInteresAcumulado()
+        CalcularInteresAcumulado()
+        TotalLabel.Text = AsignarValorTotalLabel()
     End Sub
 
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
@@ -65,10 +61,10 @@ Public Class CargoInteresAcumuladoForm
         For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
             If row.IsNewRow = False Then
                 CargoInteres.Detalle.Add(New Entidades.InteresesAcumuladoDetalle(
-                    Convert.ToInt32(row.Cells(10).Value),
-                    Convert.ToString(row.Cells(8).Value),
-                    Convert.ToDouble(row.Cells(9).Value),
-                    Convert.ToInt32(row.Cells(7).Value)
+                    IIf(CargoInteres.IntAcumuladoId = 0, 1, CargoInteres.IntAcumuladoId),
+                    Convert.ToString(row.Cells("EmpleadoId").Value),
+                    Convert.ToDouble(row.Cells("PlanId").Value),
+                    Convert.ToDouble(row.Cells("Cargo Interes").Value)
                 ))
             End If
         Next
@@ -76,9 +72,18 @@ Public Class CargoInteresAcumuladoForm
         Return CargoInteres.Detalle
     End Function
 
-    Private Function LlenarInstancia() As InteresesAcumulados
+    Private Function AsignarValorTotalLabel() As String
+        Dim total As Double
 
-        CargoInteres = New InteresesAcumulados(CargoInteres.IntAcumuladoId, FechaDateTimePicker.Value, TotalLabel.Text, LlenarDetalle())
+        For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
+            total += row.Cells("Cargo Interes").Value
+        Next
+
+        Return total
+    End Function
+
+    Private Function LlenarInstancia() As InteresesAcumulados
+        CargoInteres = New InteresesAcumulados(CargoInteres.IntAcumuladoId, FechaDateTimePicker.Value, AsignarValorTotalLabel(), LlenarDetalle())
 
         Return CargoInteres
     End Function
@@ -101,15 +106,18 @@ Public Class CargoInteresAcumuladoForm
 
     Private Sub CargarDatosCargoInteres()
         FechaDateTimePicker.Value = CargoInteres.Fecha
-        TotalLabel.Text = CargoInteres.Total
+        TotalLabel.Text = CargoInteres.Total.ToString("n2")
         CargarDatosDetalle(CargoInteres.Detalle)
     End Sub
 
     Private Sub CargarDatosDetalle(detalle As List(Of InteresesAcumuladoDetalle))
-
         For Each lista As InteresesAcumuladoDetalle In detalle
 
-            dt.Rows.Add(lista.Empleado, lista.PlanAhorro, lista.IntAcumulado)
+            Dim empleado = BLL.EmpleadosBLL.Buscar(lista.Empleado)
+            Dim planAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & lista.PlanAhorro & "")
+
+            dt.Rows.Add(empleado.EmpleadoId, planAhorro.PlanId, empleado.Nombres, planAhorro.Descripcion, planAhorro.PorcientoDesc,
+                        empleado.Sueldo, Date.Now(), planAhorro.Interes, 0, lista.IntAcumulado.ToString("n2"))
             CargodeInteresDataGridView.DataSource = dt
         Next
     End Sub
@@ -117,5 +125,9 @@ Public Class CargoInteresAcumuladoForm
     Private Sub LimpiarGrid()
         dt = New DataTable
         CargodeInteresDataGridView.DataSource = dt
+    End Sub
+
+    Private Sub FechaDateTimePicker_ValueChanged(sender As Object, e As EventArgs) Handles FechaDateTimePicker.ValueChanged
+        CargarDetalle()
     End Sub
 End Class

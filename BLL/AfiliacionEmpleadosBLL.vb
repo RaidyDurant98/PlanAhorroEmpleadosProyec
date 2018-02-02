@@ -17,7 +17,7 @@ Public Class AfiliacionEmpleadosBLL
                 End If
 
                 For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
-                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo) values(" & detalle.PlanAhorro & ", " & id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ");")
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo, FechaUltimoCargo) values(" & detalle.PlanAhorro & ", " & id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ", '" & afiliacion.FechaAfiliacion & "');")
                 Next
 
                 afiliacion.Id = id
@@ -87,8 +87,8 @@ Public Class AfiliacionEmpleadosBLL
 
                 For Each detalle As AfiliacionEmpleadosDetalle In afiliacion.Detalle
 
-                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo) 
-                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ")")
+                    coneccion.EjecutarComando("Insert into AfiliacionEmpleadosDetalle(PlanAhorro, Afiliacion, Descripcion, PorcientoDesc, Interes, FondoMinimo, FechaUltimoCargo) 
+                                                values(" & detalle.PlanAhorro & ", " & afiliacion.Id & ", '" & detalle.Descripcion & "', " & detalle.PorcientoDesc & ", " & detalle.Interes & ", " & detalle.FondoMinimo & ", '" & afiliacion.FechaAfiliacion & "')")
 
                 Next
                 Return True

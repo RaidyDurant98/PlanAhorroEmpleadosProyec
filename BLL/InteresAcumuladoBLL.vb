@@ -17,7 +17,14 @@ Public Class InteresAcumuladoBLL
                 End If
 
                 For Each detalle As InteresesAcumuladoDetalle In interesAcumulado.Detalle
-                    coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, IntAcumulado) values(" & detalle.IntAcumuladoId & ", " & detalle.Empleado & ", " & detalle.PlanAhorro & ", " & detalle.IntAcumulado & ")")
+                    Dim sql As String = "Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, IntAcumulado, Fecha) values(" & id & ", " & detalle.Empleado & ", " & detalle.PlanAhorro & ", " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')"
+                    coneccion.EjecutarComando(sql)
+                    coneccion.EjecutarComando("update AfiliacionEmpleadosDetalle set FechaUltimoCargo = IntDet.Fecha 
+                                                from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet 
+	                                                on IntAc.IntAcumuladoId = IntDet.IntAcumuladoId
+                                                inner join Empleados Emp on Emp.EmpleadoId = IntDet.Empleado
+                                                inner join PlanAhorros Pl on Pl.PlanId = IntDet.PlanAhorro
+                                                where DATEDIFF(day, FechaUltimoCargo, IntAc.Fecha) > 0 and IntAc.IntAcumuladoId = " & id & "")
                 Next
 
                 interesAcumulado.IntAcumuladoId = id
@@ -57,16 +64,26 @@ Public Class InteresAcumuladoBLL
 
     End Function
 
-    Public Shared Function GetAllSociosAfiliados() As DataTable
+    Public Shared Function GetAllSociosAfiliados(ByVal condicion As String) As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Pl.PlanId, Emp.Nombres, Emp.Sueldo, Pl.Descripcion, Pl.PorcientoDesc, sum(Ap.Aporte) as Aporte, DATEDIFF(MONTH, afil.FechaAfiliacion, getdate()) as diferenciameses, Pl.Interes
-                                            from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Pl.PlanId, Emp.Nombres, Pl.Descripcion, Pl.PorcientoDesc, Emp.Sueldo, det.FechaUltimoCargo, Pl.Interes, Ap.Aporte
+                                            from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det 
 	                                            on afil.Id = det.Afiliacion
                                             inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
                                             inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro
-                                            left join Aportes Ap on Emp.EmpleadoId = Ap.Empleado And Pl.PlanId = Ap.PlanAhorro where DATEDIFF(MONTH, afil.FechaAfiliacion, getdate()) > 0
-                                            group by ap.Aporte, Emp.EmpleadoId,Emp.Nombres, Emp.Sueldo, Pl.Descripcion, Pl.PorcientoDesc, Afil.FechaAfiliacion, Pl.Interes, Pl.PlanId")
+                                            left join Aportes Ap on Emp.EmpleadoId = Ap.Empleado And Pl.PlanId = Ap.PlanAhorro
+                                            where " & condicion & "")
+            Return dt
+        End Using
+    End Function
+
+    Public Shared Function GetFechaCargoInteres() As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("select intAc.IntAcumuladoId, intAc.Fecha
+                                            from InteresesAcumulados intAc inner join InteresesAcumuladoDetalle intAcDet
+	                                            on intAc.IntAcumuladoId = intAcDet.IntAcumuladoId")
             Return dt
         End Using
     End Function

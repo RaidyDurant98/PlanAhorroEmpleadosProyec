@@ -14,7 +14,7 @@ Public Class SociosAfiliadosConsulta
     End Sub
 
     Private Sub Filtro()
-        Dim dt As DataTable = Nothing
+        'Dim dt As DataTable = Nothing
 
         If FiltrarComboBox.SelectedIndex = 0 Then
             dt = EmpleadosBLL.GetAllSociosAfiliados()
