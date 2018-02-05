@@ -86,6 +86,12 @@
     <Compile Include="UI\Consultas\DepositosConsulta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UI\Consultas\EstadoCuentaConsulta.Designer.vb">
+      <DependentUpon>EstadoCuentaConsulta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\EstadoCuentaConsulta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Consultas\PlanAhorrosConsulta.Designer.vb">
       <DependentUpon>PlanAhorrosConsulta.vb</DependentUpon>
     </Compile>
@@ -195,6 +201,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\Consultas\DepositosConsulta.resx">
       <DependentUpon>DepositosConsulta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\EstadoCuentaConsulta.resx">
+      <DependentUpon>EstadoCuentaConsulta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Consultas\PlanAhorrosConsulta.resx">
       <DependentUpon>PlanAhorrosConsulta.vb</DependentUpon>

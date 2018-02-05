@@ -61,12 +61,9 @@ Public Class AfiliacionEmpleadosBLL
 
     Public Shared Function Eliminar(ByVal id As Integer) As Boolean
 
-        Dim afiliacion = New AfiliacionEmpleados()
-
         Using coneccion As New Coneccion()
             Try
                 If coneccion.EjecutarComando("Delete from AfiliacionEmpleadosDetalle where Afiliacion = " & id & "") > 0 Then
-
 
                     coneccion.EjecutarComando("Delete from AfiliacionEmpleados where Id =" & id & ";")
                     Return True

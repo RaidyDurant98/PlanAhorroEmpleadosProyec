@@ -1,4 +1,5 @@
-﻿Imports Entidades
+﻿Imports BLL
+Imports Entidades
 
 Public Class CargoInteresAcumuladoForm
 
@@ -9,6 +10,11 @@ Public Class CargoInteresAcumuladoForm
 
         CargoInteres = New InteresesAcumulados()
         dt = New DataTable()
+
+        ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        ImprimirButton.Enabled = False
+        EliminarButton.Enabled = False
 
         CargarDetalle()
 
@@ -32,12 +38,35 @@ Public Class CargoInteresAcumuladoForm
     End Sub
 
     Private Sub CalcularInteresAcumulado()
-        For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
-            Dim desc As Double = (DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
-            Dim aporte As Double = "0" & row.Cells("Aporte").Value
-            Dim cargoInteres As Double = ((row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value)) / 30) + ("0" & row.Cells("Aporte").Value)) * (desc)
-            Dim cargo As Double = cargoInteres + ((row.Cells("Interes").Value / 100) * cargoInteres)
-            row.Cells("Cargo Interes").Value = cargo.ToString("N2")
+
+        Dim descuento As Double = 0
+        Dim CargoInt As Double = 0
+        Dim dt = BLL.InteresAcumuladoBLL.SeleccionarFecha(CargoInteres.IntAcumuladoId)
+        Dim Fecha As Date
+
+        If CargoInteres.IntAcumuladoId > 0 Then
+            Fecha = dt.Rows(0)("Fecha")
+        End If
+
+        For Each row2 As DataGridViewRow In CargodeInteresDataGridView.Rows
+
+            If CargoInteres.IntAcumuladoId = 0 Then
+                descuento = (DateDiff(DateInterval.Day, row2.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row2.Cells("PorcientoDesc").Value) / 100) / 365
+            Else
+                descuento = (DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) * (row2.Cells("PorcientoDesc").Value) / 100) / 365
+            End If
+
+            Dim aporte As Double = "0" & row2.Cells("Aporte").Value
+
+            If CargoInteres.IntAcumuladoId = 0 Then
+                CargoInt = (row2.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row2.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row2.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
+            Else
+                CargoInt = (row2.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row2.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
+            End If
+
+
+            Dim cargo As Double = CargoInt + ((row2.Cells("Interes").Value / 100) * CargoInt)
+            row2.Cells("Cargo Interes").Value = cargo.ToString("N2")
         Next
     End Sub
 
@@ -46,12 +75,40 @@ Public Class CargoInteresAcumuladoForm
         TotalLabel.Text = AsignarValorTotalLabel()
     End Sub
 
-    Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
-        If BLL.InteresAcumuladoBLL.Guardar(LlenarInstancia()) Then
-            MessageBox.Show("Guardado")
+    Private Function ValidarGrid() As Boolean
+
+        Dim interruptor As Boolean = False
+
+        If CargodeInteresDataGridView.Rows.Count() < 1 Then
+            interruptor = True
         Else
-            MessageBox.Show("Eliminado")
+            For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
+                Dim x = "0" & row.Cells("Cargo Interes").Value
+                If x = 0 Then
+                    interruptor = True
+                End If
+            Next
         End If
+
+        If interruptor Then
+            ErrorProvider.SetError(CargodeInteresDataGridView, "Llene correctamente el cargo")
+        End If
+
+        Return interruptor
+    End Function
+
+    Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
+
+        If Not ValidarGrid() Then
+            If BLL.InteresAcumuladoBLL.Guardar(LlenarInstancia()) Then
+                MessageBox.Show("Guardado")
+                GuardarButton.Enabled = False
+                ModificarButton.Enabled = True
+            Else
+                MessageBox.Show("Eliminado")
+            End If
+        End If
+
     End Sub
 
     Private Function LlenarDetalle() As List(Of InteresesAcumuladoDetalle)
@@ -93,8 +150,14 @@ Public Class CargoInteresAcumuladoForm
 
             CargoInteres = BLL.InteresAcumuladoBLL.Buscar(IntAcumuladoIdMaskedTextBox.Text)
 
+            LimpiarGrid()
+
             If CargoInteres.IntAcumuladoId <> 0 Then
                 CargarDatosCargoInteres()
+                ModificarButton.Enabled = True
+                CancelarButton.Enabled = True
+                GuardarButton.Enabled = False
+                EliminarButton.Enabled = True
             Else
                 MessageBox.Show("No existe cargo de interes con ese id.")
             End If
@@ -125,9 +188,63 @@ Public Class CargoInteresAcumuladoForm
     Private Sub LimpiarGrid()
         dt = New DataTable
         CargodeInteresDataGridView.DataSource = dt
+        CargarDetalle()
     End Sub
 
     Private Sub FechaDateTimePicker_ValueChanged(sender As Object, e As EventArgs) Handles FechaDateTimePicker.ValueChanged
-        CargarDetalle()
+        If CargoInteres.IntAcumuladoId = 0 Then
+            CargarDetalle()
+        End If
+    End Sub
+
+    Private Sub Limpiar()
+        CargoInteres = New InteresesAcumulados()
+        FechaDateTimePicker.Value = Date.Now
+        IntAcumuladoIdMaskedTextBox.Clear()
+        GuardarButton.Enabled = True
+        ModificarButton.Enabled = False
+        CancelarButton.Enabled = False
+        EliminarButton.Enabled = True
+        TotalLabel.Text = "0.00"
+        LimpiarGrid()
+    End Sub
+
+    Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
+        Limpiar()
+    End Sub
+
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        LimpiarGrid()
+        CargarDatosCargoInteres()
+    End Sub
+
+    Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
+        If Not ValidarGrid() Then
+            If InteresAcumuladoBLL.Modificar(LlenarInstancia()) Then
+                CargoInteres.Detalle = New List(Of InteresesAcumuladoDetalle)
+                MessageBox.Show("Cargo de interes modificada con exito.")
+            Else
+                MessageBox.Show("No se pudo modificar el Cargo de interes.")
+            End If
+        End If
+    End Sub
+
+    Private Sub EliminarButton_Click(sender As Object, e As EventArgs) Handles EliminarButton.Click
+        If (String.IsNullOrEmpty(IntAcumuladoIdMaskedTextBox.Text) = False) Then
+
+            CargoInteres = BLL.InteresAcumuladoBLL.Buscar(IntAcumuladoIdMaskedTextBox.Text)
+            Dim eliminar As DialogResult = MessageBox.Show("¿Esta seguro de eliminar el cargo?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If eliminar = DialogResult.Yes Then
+                If BLL.InteresAcumuladoBLL.Eliminar(CargoInteres.IntAcumuladoId) Then
+                    Limpiar()
+                    CargoInteres.Detalle = New List(Of InteresesAcumuladoDetalle)
+                    MessageBox.Show("cargode interes eliminado con exito.")
+                Else
+                    MessageBox.Show("No se pudo eliminar el cargo.")
+                End If
+            End If
+        Else
+            MessageBox.Show("Por favor digite el id que desea eliminar.")
+        End If
     End Sub
 End Class

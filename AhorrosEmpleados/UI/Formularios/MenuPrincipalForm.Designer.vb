@@ -30,11 +30,12 @@ Partial Class MenuPrincipalForm
         Me.AfiliacionEmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AportesVoluntariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CargoDeInteresesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RetiroDePlanDeAhorroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanAhorrosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SociosAfiliadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DepositosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RetiroDePlanDeAhorroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EstadoDeCuentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -91,9 +92,15 @@ Partial Class MenuPrincipalForm
         Me.CargoDeInteresesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.CargoDeInteresesToolStripMenuItem.Text = "Cargo de intereses"
         '
+        'RetiroDePlanDeAhorroToolStripMenuItem
+        '
+        Me.RetiroDePlanDeAhorroToolStripMenuItem.Name = "RetiroDePlanDeAhorroToolStripMenuItem"
+        Me.RetiroDePlanDeAhorroToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.RetiroDePlanDeAhorroToolStripMenuItem.Text = "Retiro de plan de ahorro"
+        '
         'ConsultasToolStripMenuItem
         '
-        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanAhorrosToolStripMenuItem1, Me.SociosAfiliadosToolStripMenuItem, Me.DepositosToolStripMenuItem})
+        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanAhorrosToolStripMenuItem1, Me.SociosAfiliadosToolStripMenuItem, Me.DepositosToolStripMenuItem, Me.EstadoDeCuentasToolStripMenuItem})
         Me.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem"
         Me.ConsultasToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.ConsultasToolStripMenuItem.Text = "Consultas"
@@ -101,26 +108,26 @@ Partial Class MenuPrincipalForm
         'PlanAhorrosToolStripMenuItem1
         '
         Me.PlanAhorrosToolStripMenuItem1.Name = "PlanAhorrosToolStripMenuItem1"
-        Me.PlanAhorrosToolStripMenuItem1.Size = New System.Drawing.Size(157, 22)
+        Me.PlanAhorrosToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
         Me.PlanAhorrosToolStripMenuItem1.Text = "Plan Ahorros"
         '
         'SociosAfiliadosToolStripMenuItem
         '
         Me.SociosAfiliadosToolStripMenuItem.Name = "SociosAfiliadosToolStripMenuItem"
-        Me.SociosAfiliadosToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.SociosAfiliadosToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.SociosAfiliadosToolStripMenuItem.Text = "Socios Afiliados"
         '
         'DepositosToolStripMenuItem
         '
         Me.DepositosToolStripMenuItem.Name = "DepositosToolStripMenuItem"
-        Me.DepositosToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.DepositosToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.DepositosToolStripMenuItem.Text = "Depositos"
         '
-        'RetiroDePlanDeAhorroToolStripMenuItem
+        'EstadoDeCuentasToolStripMenuItem
         '
-        Me.RetiroDePlanDeAhorroToolStripMenuItem.Name = "RetiroDePlanDeAhorroToolStripMenuItem"
-        Me.RetiroDePlanDeAhorroToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.RetiroDePlanDeAhorroToolStripMenuItem.Text = "Retiro de plan de ahorro"
+        Me.EstadoDeCuentasToolStripMenuItem.Name = "EstadoDeCuentasToolStripMenuItem"
+        Me.EstadoDeCuentasToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.EstadoDeCuentasToolStripMenuItem.Text = "Estado de Cuentas"
         '
         'MenuPrincipalForm
         '
@@ -153,4 +160,5 @@ Partial Class MenuPrincipalForm
     Friend WithEvents CargoDeInteresesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DepositosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RetiroDePlanDeAhorroToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EstadoDeCuentasToolStripMenuItem As ToolStripMenuItem
 End Class

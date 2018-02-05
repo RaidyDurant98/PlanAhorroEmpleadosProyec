@@ -92,24 +92,13 @@ Public Class AportesBLL
         Return False
     End Function
 
-    Public Shared Function GetAllAportes() As DataTable
+    Public Shared Function GetAportes(Optional ByVal condicion As String = "") As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte, Ap.Fecha
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Ap.Aporte, ap.Fecha, Ap.AporteId
                                              from Empleados Emp inner join Aportes Ap
 	                                            on Emp.EmpleadoId = Ap.Empleado 
-                                             inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro")
-            Return dt
-        End Using
-    End Function
-
-    Public Shared Function GetAportes(ByVal condicion As String) As DataTable
-        Dim dt As DataTable = Nothing
-        Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte, Ap.Fecha
-                                             from Empleados Emp inner join Aportes Ap
-	                                            on Emp.EmpleadoId = Ap.Empleado 
-                                             inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro where " & condicion & "")
+                                             inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro " & condicion & "")
             Return dt
         End Using
     End Function

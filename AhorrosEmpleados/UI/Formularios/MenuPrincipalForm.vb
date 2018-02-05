@@ -9,6 +9,7 @@
     Private CargoInteresesAcumulado As AhorrosEmpleados.CargoInteresAcumuladoForm
     Private DepositoConsulta As AhorrosEmpleados.DepositosConsulta
     Private RegistroRetiros As AhorrosEmpleados.RetiroPlanAhorroForm
+    Private ConsultaEstadoCuenta As AhorrosEmpleados.EstadoCuentaConsulta
 
     Private Sub PlanAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanAhorrosToolStripMenuItem.Click
 
@@ -100,5 +101,15 @@
 
         RegistroRetiros = New AhorrosEmpleados.RetiroPlanAhorroForm
         RegistroRetiros.Show()
+    End Sub
+
+    Private Sub EstadoDeCuentasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EstadoDeCuentasToolStripMenuItem.Click
+        If ConsultaEstadoCuenta IsNot Nothing Then
+            ConsultaEstadoCuenta.Close()
+        End If
+
+
+        ConsultaEstadoCuenta = New AhorrosEmpleados.EstadoCuentaConsulta
+        ConsultaEstadoCuenta.Show()
     End Sub
 End Class

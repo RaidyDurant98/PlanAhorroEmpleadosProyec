@@ -79,14 +79,14 @@ inner join PlanAhorros pl on pl.PlanId = det.PlanAhorro
 where afil.Empleado = 1
 
 /*Selecciona todos los empleados que tienen plan de ahorro con su respectivo plan*/
-select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion
+select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
 from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
 	on afil.Id = det.Afiliacion
 inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
 inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro
 
 /*Selecciona los empleados que hacen aportes*/
-select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte
+select Ap.AporteId, Emp.Nombres, Pl.Descripcion, Ap.Aporte, emp.EmpleadoId, emp.Direccion, emp.NumCel
 from Empleados Emp inner join Aportes Ap
 	on Emp.EmpleadoId = Ap.Empleado 
 inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro;
@@ -109,25 +109,35 @@ inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro
 left join InteresesAcumuladoDetalle dt on Emp.EmpleadoId = dt.Empleado and pl.PlanId = dt.PlanAhorro
 left join InteresesAcumulados intac on intac.IntAcumuladoId = dt.IntAcumuladoId
 
+/*Me selecciona el empleado el plan de ahorro y el total que tiene de intereses*/
+select Emp.Nombres, Pl.Descripcion, Sum(IntAc.Total) total
+from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntAcDet
+	on IntAc.IntAcumuladoId = IntAcDet.IntAcumuladoId
+inner join Empleados Emp on Emp.EmpleadoId = IntAcDet.Empleado
+inner join PlanAhorros Pl on pl.PlanId = IntAcDet.PlanAhorro
+group by Emp.Nombres, Pl.Descripcion
+
 /*Creando vista de los empleado que pertenecen a un plan de ahorro en especifico*/
 GO  
 CREATE VIEW VistaEmpleadoAfiliados  
 AS  
-select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion
+select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
 from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
 	on afil.Id = det.Afiliacion
 inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
 inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro   
 GO 
+
 /*Creando vista de los empleados que hacen sus aportes*/
 GO  
 CREATE VIEW VistaDepositosEmpleados  
 AS  
-select Emp.Nombres, Pl.Descripcion, Ap.Aporte
+select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Ap.Aporte, ap.Fecha
 from Empleados Emp inner join Aportes Ap
 	on Emp.EmpleadoId = Ap.Empleado 
 inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro;
 GO 
+
 /*Actualiza la fecha del ultimo cargo cuando se cargan los intereses*/
 update AfiliacionEmpleadosDetalle set FechaUltimoCargo = IntDet.Fecha 
 from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet 

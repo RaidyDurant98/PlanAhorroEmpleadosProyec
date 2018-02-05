@@ -78,7 +78,7 @@ Public Class EmpleadosBLL
     Public Shared Function GetAllSociosAfiliados() As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion as Descripcion
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
                                             from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
 	                                            on afil.Id = det.Afiliacion
                                             inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
@@ -90,7 +90,7 @@ Public Class EmpleadosBLL
     Public Shared Function GetSocioAfiliado(ByVal condicion As Object) As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Pl.Descripcion
+            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
                                             from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
 	                                            on afil.Id = det.Afiliacion
                                             inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
