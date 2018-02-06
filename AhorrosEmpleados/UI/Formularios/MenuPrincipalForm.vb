@@ -8,7 +8,7 @@
     Private ConsultaSociosAfiliados As AhorrosEmpleados.SociosAfiliadosConsulta
     Private CargoInteresesAcumulado As AhorrosEmpleados.CargoInteresAcumuladoForm
     Private DepositoConsulta As AhorrosEmpleados.DepositosConsulta
-    Private RegistroRetiros As AhorrosEmpleados.RetiroPlanAhorroForm
+    Private RegistroRetiros As AhorrosEmpleados.RetiroAhorrosForm
     Private ConsultaEstadoCuenta As AhorrosEmpleados.EstadoCuentaConsulta
 
     Private Sub PlanAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanAhorrosToolStripMenuItem.Click
@@ -19,7 +19,7 @@
 
 
         RegistroPlanAhorros = New AhorrosEmpleados.PlanAhorrosForm
-        RegistroPLanAhorros.Show()
+        RegistroPlanAhorros.Show()
     End Sub
 
     Private Sub EmpleadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmpleadosToolStripMenuItem.Click
@@ -99,7 +99,7 @@
         End If
 
 
-        RegistroRetiros = New AhorrosEmpleados.RetiroPlanAhorroForm
+        RegistroRetiros = New AhorrosEmpleados.RetiroAhorrosForm
         RegistroRetiros.Show()
     End Sub
 

@@ -155,10 +155,10 @@
     <Compile Include="UI\Formularios\PlanAhorrosForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Formularios\RetiroPlanAhorroForm.Designer.vb">
-      <DependentUpon>RetiroPlanAhorroForm.vb</DependentUpon>
+    <Compile Include="UI\Formularios\RetiroAhorrosForm.Designer.vb">
+      <DependentUpon>RetiroAhorrosForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="UI\Formularios\RetiroPlanAhorroForm.vb">
+    <Compile Include="UI\Formularios\RetiroAhorrosForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Reportes\DepositosEmpleados.vb">
@@ -171,6 +171,18 @@
       <DependentUpon>DepositosEmpleadosReportViewer.vb</DependentUpon>
     </Compile>
     <Compile Include="UI\Reportes\DepositosEmpleadosReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\EstadoCuenta.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EstadoCuenta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\EstadoCuentaReportViewer.Designer.vb">
+      <DependentUpon>EstadoCuentaReportViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\EstadoCuentaReportViewer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Reportes\PlanAhorrosEmpleados.vb">
@@ -235,8 +247,8 @@
     <EmbeddedResource Include="UI\Formularios\PlanAhorrosForm.resx">
       <DependentUpon>PlanAhorrosForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Formularios\RetiroPlanAhorroForm.resx">
-      <DependentUpon>RetiroPlanAhorroForm.vb</DependentUpon>
+    <EmbeddedResource Include="UI\Formularios\RetiroAhorrosForm.resx">
+      <DependentUpon>RetiroAhorrosForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\DepositosEmpleados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -244,6 +256,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\DepositosEmpleadosReportViewer.resx">
       <DependentUpon>DepositosEmpleadosReportViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\EstadoCuenta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EstadoCuenta.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\EstadoCuentaReportViewer.resx">
+      <DependentUpon>EstadoCuentaReportViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\PlanAhorrosEmpleados.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

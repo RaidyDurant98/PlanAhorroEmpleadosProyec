@@ -86,6 +86,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PlanAhorros.vb" />
+    <Compile Include="RetiroAhorros.vb" />
+    <Compile Include="RetiroAhorrosDetalle.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

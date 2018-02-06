@@ -49,16 +49,19 @@ Public Class PlanAhorrosConsulta
     End Sub
 
     Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
-        Dim report As PlanAhorrosReportViewer = New PlanAhorrosReportViewer(dt)
-        report.Show()
-        report.Activate()
+        If dt.Rows.Count > 0 Then
+            Dim report As PlanAhorrosReportViewer = New PlanAhorrosReportViewer(dt)
+            report.Show()
+            report.Activate()
+        End If
     End Sub
 
     Private Sub FiltrarComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FiltrarComboBox.SelectedIndexChanged
         If FiltrarComboBox.SelectedIndex = 0 Then
             Filtro()
         Else
-            ConsultaDataGridView.DataSource = New DataGridView()
+            dt = New DataTable
+            ConsultaDataGridView.DataSource = dt
         End If
     End Sub
 End Class

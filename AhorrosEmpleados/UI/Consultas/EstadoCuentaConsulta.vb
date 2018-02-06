@@ -9,15 +9,15 @@
 
     Private Sub Filtro()
         If FiltrarComboBox.SelectedIndex = 0 Then
-            dt = BLL.InteresAcumuladoBLL.GetAllTotalIntereses()
+            dt = BLL.InteresAcumuladoBLL.GetTotalIntereses()
         Else
             If String.IsNullOrEmpty(FiltrarTextBox.Text) Then
                 MessageBox.Show("Por favor digite el dato a filtrar.")
             Else
                 If FiltrarComboBox.SelectedIndex = 1 Then
-                    dt = BLL.InteresAcumuladoBLL.GetTotalIntereses("Nombres like '%" & FiltrarTextBox.Text & "%'")
+                    dt = BLL.InteresAcumuladoBLL.GetTotalIntereses("where Nombres like '%" & FiltrarTextBox.Text & "%'")
                 ElseIf FiltrarComboBox.SelectedIndex = 2 Then
-                    dt = BLL.InteresAcumuladoBLL.GetTotalIntereses("Descripcion like '%" & FiltrarTextBox.Text & "%'")
+                    dt = BLL.InteresAcumuladoBLL.GetTotalIntereses("where Descripcion like '%" & FiltrarTextBox.Text & "%'")
                 End If
             End If
         End If
@@ -35,11 +35,18 @@
         If FiltrarComboBox.SelectedIndex = 0 Then
             Filtro()
         Else
-            ConsultaDataGridView.DataSource = New DataGridView()
+            dt = New DataTable
+            ConsultaDataGridView.DataSource = dt
         End If
     End Sub
 
     Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
+
+        If dt.Rows.Count > 0 Then
+            Dim report As EstadoCuentaReportViewer = New EstadoCuentaReportViewer(dt)
+            report.Show()
+            report.Activate()
+        End If
 
     End Sub
 End Class

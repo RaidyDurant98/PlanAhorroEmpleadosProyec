@@ -149,7 +149,6 @@ Public Class CargoInteresAcumuladoForm
         If (String.IsNullOrEmpty(IntAcumuladoIdMaskedTextBox.Text) = False) Then
 
             CargoInteres = BLL.InteresAcumuladoBLL.Buscar(IntAcumuladoIdMaskedTextBox.Text)
-
             LimpiarGrid()
 
             If CargoInteres.IntAcumuladoId <> 0 Then

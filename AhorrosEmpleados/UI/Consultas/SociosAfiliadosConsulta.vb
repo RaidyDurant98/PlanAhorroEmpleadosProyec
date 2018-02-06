@@ -17,17 +17,17 @@ Public Class SociosAfiliadosConsulta
         'Dim dt As DataTable = Nothing
 
         If FiltrarComboBox.SelectedIndex = 0 Then
-            dt = EmpleadosBLL.GetAllSociosAfiliados()
+            dt = EmpleadosBLL.GetSociosAfiliados()
         Else
             If String.IsNullOrEmpty(FiltrarTextBox.Text) Then
                 MessageBox.Show("Por favor digite el dato a filtrar.")
             Else
                 If FiltrarComboBox.SelectedIndex = 1 Then
-                    dt = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & FiltrarTextBox.Text & "")
+                    dt = EmpleadosBLL.GetSociosAfiliados("where EmpleadoId =" & FiltrarTextBox.Text & "")
                 ElseIf FiltrarComboBox.SelectedIndex = 2 Then
-                    dt = EmpleadosBLL.GetSocioAfiliado("Nombres like '%" & FiltrarTextBox.Text & "%'")
+                    dt = EmpleadosBLL.GetSociosAfiliados("where Nombres like '%" & FiltrarTextBox.Text & "%'")
                 ElseIf FiltrarComboBox.SelectedIndex = 3 Then
-                    dt = EmpleadosBLL.GetSocioAfiliado("Pl.Descripcion like '%" & FiltrarTextBox.Text & "%'")
+                    dt = EmpleadosBLL.GetSociosAfiliados("where Pl.Descripcion like '%" & FiltrarTextBox.Text & "%'")
                 End If
             End If
         End If
@@ -56,14 +56,18 @@ Public Class SociosAfiliadosConsulta
         If FiltrarComboBox.SelectedIndex = 0 Then
             Filtro()
         Else
-            ConsultaDataGridView.DataSource = New DataGridView()
+            dt = New DataTable
+            ConsultaDataGridView.DataSource = dt
         End If
     End Sub
 
     Private Sub ImprimirButton_Click(sender As Object, e As EventArgs) Handles ImprimirButton.Click
 
-        Dim report As SociosAfiliadosReportViewer = New SociosAfiliadosReportViewer(dt)
-        report.Show()
-        report.Activate()
+        If dt.Rows.Count > 0 Then
+            Dim report As SociosAfiliadosReportViewer = New SociosAfiliadosReportViewer(dt)
+            report.Show()
+            report.Activate()
+        End If
+
     End Sub
 End Class

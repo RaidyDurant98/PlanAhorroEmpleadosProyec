@@ -65,38 +65,38 @@ Partial Class MenuPrincipalForm
         'EmpleadosToolStripMenuItem
         '
         Me.EmpleadosToolStripMenuItem.Name = "EmpleadosToolStripMenuItem"
-        Me.EmpleadosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.EmpleadosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.EmpleadosToolStripMenuItem.Text = "Empleados"
         '
         'PlanAhorrosToolStripMenuItem
         '
         Me.PlanAhorrosToolStripMenuItem.Name = "PlanAhorrosToolStripMenuItem"
-        Me.PlanAhorrosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PlanAhorrosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.PlanAhorrosToolStripMenuItem.Text = "Plan Ahorros"
         '
         'AfiliacionEmpleadosToolStripMenuItem
         '
         Me.AfiliacionEmpleadosToolStripMenuItem.Name = "AfiliacionEmpleadosToolStripMenuItem"
-        Me.AfiliacionEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AfiliacionEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.AfiliacionEmpleadosToolStripMenuItem.Text = "Afiliacion Empleados"
         '
         'AportesVoluntariosToolStripMenuItem
         '
         Me.AportesVoluntariosToolStripMenuItem.Name = "AportesVoluntariosToolStripMenuItem"
-        Me.AportesVoluntariosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AportesVoluntariosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.AportesVoluntariosToolStripMenuItem.Text = "Aportes Voluntarios"
         '
         'CargoDeInteresesToolStripMenuItem
         '
         Me.CargoDeInteresesToolStripMenuItem.Name = "CargoDeInteresesToolStripMenuItem"
-        Me.CargoDeInteresesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.CargoDeInteresesToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.CargoDeInteresesToolStripMenuItem.Text = "Cargo de intereses"
         '
         'RetiroDePlanDeAhorroToolStripMenuItem
         '
         Me.RetiroDePlanDeAhorroToolStripMenuItem.Name = "RetiroDePlanDeAhorroToolStripMenuItem"
-        Me.RetiroDePlanDeAhorroToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.RetiroDePlanDeAhorroToolStripMenuItem.Text = "Retiro de plan de ahorro"
+        Me.RetiroDePlanDeAhorroToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.RetiroDePlanDeAhorroToolStripMenuItem.Text = "Retiro de ahorros"
         '
         'ConsultasToolStripMenuItem
         '

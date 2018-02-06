@@ -9,11 +9,14 @@ Public Class AportesBLL
 
         Using coneccion As New Coneccion()
 
-            dt = coneccion.SeleccionarDatos("Select pl.PlanId, pl.Descripcion 
-                                                from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
-	                                                 on afil.Id = det.Afiliacion 
-                                                inner join PlanAhorros pl on pl.PlanId = det.PlanAhorro
-                                                where afil.Empleado = " & id & "")
+            dt = coneccion.SeleccionarDatos("select pl.PlanId, Pl.Descripcion
+                                            from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntAcDet
+                                             on IntAc.IntAcumuladoId = IntAcDet.IntAcumuladoId
+                                            inner join Empleados Emp on Emp.EmpleadoId = IntAcDet.Empleado
+                                            inner join PlanAhorros Pl on pl.PlanId = IntAcDet.PlanAhorro
+                                            where Emp.EmpleadoId = " & id & "
+                                            group by Pl.PlanId, Pl.Descripcion
+                                                ")
         End Using
 
         Return dt

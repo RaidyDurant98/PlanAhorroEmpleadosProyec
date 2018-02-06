@@ -152,28 +152,15 @@ Public Class InteresAcumuladoBLL
         End Using
     End Function
 
-    Public Shared Function GetAllTotalIntereses() As DataTable
+    Public Shared Function GetTotalIntereses(Optional ByVal condicion As String = "") As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.Nombres, Pl.Descripcion, Sum(IntAc.Total) total
+            dt = coneccion.SeleccionarDatos("select Emp.Nombres, Pl.Descripcion, Sum(IntAcDet.IntAcumulado) total
                                             from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntAcDet
 	                                            on IntAc.IntAcumuladoId = IntAcDet.IntAcumuladoId
                                             inner join Empleados Emp on Emp.EmpleadoId = IntAcDet.Empleado
                                             inner join PlanAhorros Pl on pl.PlanId = IntAcDet.PlanAhorro
-                                            group by Emp.Nombres, Pl.Descripcion")
-            Return dt
-        End Using
-    End Function
-
-    Public Shared Function GetTotalIntereses(ByVal condicion As String) As DataTable
-        Dim dt As DataTable = Nothing
-        Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.Nombres, Pl.Descripcion, Sum(IntAc.Total) total
-                                            from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntAcDet
-	                                            on IntAc.IntAcumuladoId = IntAcDet.IntAcumuladoId
-                                            inner join Empleados Emp on Emp.EmpleadoId = IntAcDet.Empleado
-                                            inner join PlanAhorros Pl on pl.PlanId = IntAcDet.PlanAhorro
-                                            where " & condicion & "
+                                            " & condicion & "
                                             group by Emp.Nombres, Pl.Descripcion")
             Return dt
         End Using

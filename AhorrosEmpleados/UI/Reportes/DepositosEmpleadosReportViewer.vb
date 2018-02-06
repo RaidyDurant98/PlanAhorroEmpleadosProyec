@@ -21,7 +21,6 @@ Public Class DepositosEmpleadosReportViewer
 
     Private Sub DepositosEmpleadosCrystalReportViewer_Load(sender As Object, e As EventArgs) Handles DepositosEmpleadosCrystalReportViewer.Load
         Dim r As New ReportDocument
-
         r.Load("C:\Users\Raidy Duran\Desktop\AhorrosEmpleados\AhorrosEmpleados\UI\Reportes\DepositosEmpleados.rpt")
         r.SetDataSource(datatable)
 

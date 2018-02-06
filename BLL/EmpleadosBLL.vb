@@ -75,26 +75,14 @@ Public Class EmpleadosBLL
         Return False
     End Function
 
-    Public Shared Function GetAllSociosAfiliados() As DataTable
+    Public Shared Function GetSociosAfiliados(Optional ByVal condicion As String = "") As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
             dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
                                             from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
 	                                            on afil.Id = det.Afiliacion
                                             inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
-                                            inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro")
-            Return dt
-        End Using
-    End Function
-
-    Public Shared Function GetSocioAfiliado(ByVal condicion As Object) As DataTable
-        Dim dt As DataTable = Nothing
-        Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Pl.PorcientoDesc, Pl.Interes, pl.FondoMinimo
-                                            from AfiliacionEmpleados afil inner join AfiliacionEmpleadosDetalle det
-	                                            on afil.Id = det.Afiliacion
-                                            inner join Empleados Emp on Emp.EmpleadoId = afil.Empleado
-                                            inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro where " & condicion & "")
+                                            inner join PlanAhorros Pl on Pl.PlanId = det.PlanAhorro " & condicion & "")
             Return dt
         End Using
     End Function

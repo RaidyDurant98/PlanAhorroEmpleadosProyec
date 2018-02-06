@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class RetiroPlanAhorroForm
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class RetiroAhorrosForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,8 +20,9 @@ Partial Class RetiroPlanAhorroForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.SalirButton = New System.Windows.Forms.Button()
         Me.CancelarButton = New System.Windows.Forms.Button()
@@ -37,7 +38,11 @@ Partial Class RetiroPlanAhorroForm
         Me.BuscarEmpleadoButton = New System.Windows.Forms.Button()
         Me.EmpleadoIdMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TotalRetiroTextBox = New System.Windows.Forms.TextBox()
         Me.DetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.PlanId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -179,29 +184,64 @@ Partial Class RetiroPlanAhorroForm
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TotalRetiroTextBox)
         Me.GroupBox1.Controls.Add(Me.DetalleDataGridView)
-        Me.GroupBox1.Location = New System.Drawing.Point(15, 94)
+        Me.GroupBox1.Location = New System.Drawing.Point(15, 85)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(561, 206)
         Me.GroupBox1.TabIndex = 50
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Plan de Ahorros"
         '
+        'TotalRetiroTextBox
+        '
+        Me.TotalRetiroTextBox.Location = New System.Drawing.Point(417, 180)
+        Me.TotalRetiroTextBox.Name = "TotalRetiroTextBox"
+        Me.TotalRetiroTextBox.ReadOnly = True
+        Me.TotalRetiroTextBox.Size = New System.Drawing.Size(117, 20)
+        Me.TotalRetiroTextBox.TabIndex = 46
+        '
         'DetalleDataGridView
         '
         Me.DetalleDataGridView.AllowUserToAddRows = False
+        Me.DetalleDataGridView.AllowUserToDeleteRows = False
         Me.DetalleDataGridView.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DetalleDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.DetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PlanId, Me.Descripcion, Me.Total})
         Me.DetalleDataGridView.Location = New System.Drawing.Point(30, 19)
         Me.DetalleDataGridView.Name = "DetalleDataGridView"
-        Me.DetalleDataGridView.ReadOnly = True
-        Me.DetalleDataGridView.Size = New System.Drawing.Size(504, 173)
+        Me.DetalleDataGridView.Size = New System.Drawing.Size(504, 155)
         Me.DetalleDataGridView.TabIndex = 24
         '
-        'RetiroPlanAhorroForm
+        'PlanId
+        '
+        Me.PlanId.DataPropertyName = "PlanId"
+        Me.PlanId.HeaderText = "PlanId"
+        Me.PlanId.Name = "PlanId"
+        '
+        'Descripcion
+        '
+        Me.Descripcion.DataPropertyName = "Descripcion"
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'Total
+        '
+        Me.Total.DataPropertyName = "Total"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Total.HeaderText = "Total"
+        Me.Total.Name = "Total"
+        Me.Total.ReadOnly = True
+        '
+        'RetiroAhorrosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -221,10 +261,11 @@ Partial Class RetiroPlanAhorroForm
         Me.Controls.Add(Me.EliminarButton)
         Me.Controls.Add(Me.GuardarButton)
         Me.Controls.Add(Me.NuevoButton)
-        Me.Name = "RetiroPlanAhorroForm"
+        Me.Name = "RetiroAhorrosForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Retiro de plan de ahorro"
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -247,4 +288,8 @@ Partial Class RetiroPlanAhorroForm
     Friend WithEvents EmpleadoIdMaskedTextBox As MaskedTextBox
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DetalleDataGridView As DataGridView
+    Friend WithEvents TotalRetiroTextBox As TextBox
+    Friend WithEvents PlanId As DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents Total As DataGridViewTextBoxColumn
 End Class

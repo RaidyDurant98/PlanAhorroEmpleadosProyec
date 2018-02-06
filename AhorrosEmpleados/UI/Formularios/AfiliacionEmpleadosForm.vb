@@ -220,7 +220,7 @@ Public Class AfiliacionEmpleadosForm
 
     Private Function ValidarPlanAhorroEmpleado(ByRef id As Integer) As Boolean
 
-        Dim dt2 = EmpleadosBLL.GetSocioAfiliado("EmpleadoId =" & Empleado.EmpleadoId & "")
+        Dim dt2 = EmpleadosBLL.GetSociosAfiliados("where EmpleadoId =" & Empleado.EmpleadoId & "")
         Dim interruptor = False
         If dt2.Rows.Count > 0 Then
             For index = 0 To dt.Rows.Count - 1

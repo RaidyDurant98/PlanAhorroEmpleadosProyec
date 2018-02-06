@@ -1,6 +1,6 @@
 ﻿Imports Entidades
 
-Public Class RetiroPlanAhorroForm
+Public Class RetiroAhorrosForm
 
     Dim Empleado As Empleados = Nothing
 
@@ -12,7 +12,7 @@ Public Class RetiroPlanAhorroForm
 
             If Empleado.EmpleadoId <> 0 Then
                 NombreEmpleadoTextBox.Text = Empleado.Nombres
-                DetalleDataGridView.DataSource = BLL.AportesBLL.ObtenerPlanAhorro(Empleado.EmpleadoId)
+                DetalleDataGridView.DataSource = BLL.RetirosBLL.ObtenerInteresAcumulado(Empleado.EmpleadoId)
             Else
                 MessageBox.Show("No existe empleado con ese id")
             End If
@@ -27,7 +27,23 @@ Public Class RetiroPlanAhorroForm
         CargarDatosEmpleado()
     End Sub
 
-    Private Sub RetiroPlanAhorroForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub RetiroAhorrosForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Empleado = New Empleados
+    End Sub
+
+    Private Sub CalcularTotalRetiro()
+
+        Dim suma As Double = 0
+
+        For Each row As DataGridViewRow In DetalleDataGridView.Rows
+            suma += row.Cells("Cantidad").Value
+        Next
+
+        TotalRetiroTextBox.Text = suma.ToString("N2")
+
+    End Sub
+
+    Private Sub DetalleDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DetalleDataGridView.CellEndEdit
+        CalcularTotalRetiro()
     End Sub
 End Class
