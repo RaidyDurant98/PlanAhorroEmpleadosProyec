@@ -22,6 +22,7 @@ Partial Class EstadoCuentaConsulta
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.FiltrarButton = New System.Windows.Forms.Button()
@@ -106,6 +107,8 @@ Partial Class EstadoCuentaConsulta
         'Total
         '
         Me.Total.DataPropertyName = "Total"
+        DataGridViewCellStyle1.Format = "n2"
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle1
         Me.Total.HeaderText = "Interes Cargado"
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True

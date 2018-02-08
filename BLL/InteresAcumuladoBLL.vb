@@ -19,7 +19,9 @@ Public Class InteresAcumuladoBLL
 
 
                 For Each detalle As InteresesAcumuladoDetalle In interesAcumulado.Detalle
-                    coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, IntAcumulado, Fecha) values(" & id & ", " & detalle.Empleado & ", " & detalle.PlanAhorro & ", " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')")
+                    coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, Ahorro, IntAcumulado, Fecha) 
+                    values(" & id & ", " & detalle.Empleado & ", " & detalle.PlanAhorro & ", " & detalle.Ahorro & ", 
+                    " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')")
 
                     coneccion.EjecutarComando("Update InteresesAcumuladoDetalle set Fecha = FechaUltimoCargo
                                                 From AfiliacionEmpleadosDetalle 
@@ -57,7 +59,7 @@ Public Class InteresAcumuladoBLL
 
             dt = coneccion.SeleccionarDatos("select * from InteresesAcumuladoDetalle where IntAcumuladoId = " & interesAcumulado.IntAcumuladoId & "")
             For Each detalle As DataRow In dt.Rows
-                interesAcumulado.Detalle.Add(New InteresesAcumuladoDetalle(detalle("IntAcumuladoId"), detalle("Empleado"), detalle("PlanAhorro"), detalle("IntAcumulado")))
+                interesAcumulado.Detalle.Add(New InteresesAcumuladoDetalle(detalle("IntAcumuladoId"), detalle("Empleado"), detalle("PlanAhorro"), detalle("Ahorro"), detalle("IntAcumulado")))
             Next
 
             If interesAcumulado IsNot Nothing Then
@@ -82,7 +84,7 @@ Public Class InteresAcumuladoBLL
 
                     coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, IntAcumulado, Fecha) 
                                               values(" & interesAcumulado.IntAcumuladoId & ", " & detalle.Empleado & ", " & detalle.PlanAhorro &
-                                              ", " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')")
+                                              ", " & detalle.Ahorro & ", " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')")
 
                     coneccion.EjecutarComando("update AfiliacionEmpleadosDetalle set FechaUltimoCargo = IntDet.Fecha 
                                                 from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet 

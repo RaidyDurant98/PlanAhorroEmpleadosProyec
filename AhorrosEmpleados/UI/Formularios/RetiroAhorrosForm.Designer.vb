@@ -22,7 +22,7 @@ Partial Class RetiroAhorrosForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.SalirButton = New System.Windows.Forms.Button()
         Me.CancelarButton = New System.Windows.Forms.Button()
@@ -40,9 +40,11 @@ Partial Class RetiroAhorrosForm
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TotalRetiroTextBox = New System.Windows.Forms.TextBox()
         Me.DetalleDataGridView = New System.Windows.Forms.DataGridView()
+        Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.PlanId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CantidadRetiro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -211,17 +213,27 @@ Partial Class RetiroAhorrosForm
         Me.DetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DetalleDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.DetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PlanId, Me.Descripcion, Me.Total})
+        Me.DetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PlanId, Me.Descripcion, Me.Total, Me.CantidadRetiro})
         Me.DetalleDataGridView.Location = New System.Drawing.Point(30, 19)
         Me.DetalleDataGridView.Name = "DetalleDataGridView"
         Me.DetalleDataGridView.Size = New System.Drawing.Size(504, 155)
         Me.DetalleDataGridView.TabIndex = 24
+        '
+        'FechaDateTimePicker
+        '
+        Me.FechaDateTimePicker.CustomFormat = "yyyy/MM/dd"
+        Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.FechaDateTimePicker.Location = New System.Drawing.Point(481, 19)
+        Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
+        Me.FechaDateTimePicker.Size = New System.Drawing.Size(95, 20)
+        Me.FechaDateTimePicker.TabIndex = 51
         '
         'PlanId
         '
         Me.PlanId.DataPropertyName = "PlanId"
         Me.PlanId.HeaderText = "PlanId"
         Me.PlanId.Name = "PlanId"
+        Me.PlanId.ReadOnly = True
         '
         'Descripcion
         '
@@ -233,19 +245,25 @@ Partial Class RetiroAhorrosForm
         'Total
         '
         Me.Total.DataPropertyName = "Total"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle4
         Me.Total.HeaderText = "Total"
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True
+        '
+        'CantidadRetiro
+        '
+        Me.CantidadRetiro.HeaderText = "Cantidad a retirar"
+        Me.CantidadRetiro.Name = "CantidadRetiro"
         '
         'RetiroAhorrosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(591, 341)
+        Me.Controls.Add(Me.FechaDateTimePicker)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.NombreEmpleadoTextBox)
         Me.Controls.Add(Me.Label2)
@@ -289,7 +307,9 @@ Partial Class RetiroAhorrosForm
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DetalleDataGridView As DataGridView
     Friend WithEvents TotalRetiroTextBox As TextBox
+    Friend WithEvents FechaDateTimePicker As DateTimePicker
     Friend WithEvents PlanId As DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As DataGridViewTextBoxColumn
     Friend WithEvents Total As DataGridViewTextBoxColumn
+    Friend WithEvents CantidadRetiro As DataGridViewTextBoxColumn
 End Class

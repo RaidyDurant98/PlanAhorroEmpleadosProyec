@@ -218,7 +218,7 @@ Public Class AfiliacionEmpleadosForm
         CargarDatosEmpleado()
     End Sub
 
-    Private Function ValidarPlanAhorroEmpleado(ByRef id As Integer) As Boolean
+    Private Function ValidarPlanAhorroEmpleado(ByRef indice As Integer) As Boolean
 
         Dim dt2 = EmpleadosBLL.GetSociosAfiliados("where EmpleadoId =" & Empleado.EmpleadoId & "")
         Dim interruptor = False
@@ -230,7 +230,7 @@ Public Class AfiliacionEmpleadosForm
                         interruptor = True
 
                         If interruptor = True Then
-                            id = index
+                            indice = index
                         End If
                     End If
                 Next
@@ -243,9 +243,9 @@ Public Class AfiliacionEmpleadosForm
     Private Sub GuardarButton_Click(sender As Object, e As EventArgs) Handles GuardarButton.Click
         If Validar() Then
 
-            Dim id As Integer
+            Dim indice As Integer
 
-            If ValidarPlanAhorroEmpleado(id) = False Then
+            If ValidarPlanAhorroEmpleado(indice) = False Then
                 If AfiliacionEmpleadosBLL.Guardar(LlenarInstancia()) Then
                     IdMaskedTextBox.Text = Afiliacion.Id
                     Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
@@ -256,7 +256,7 @@ Public Class AfiliacionEmpleadosForm
                     MessageBox.Show("No se pudo guardar la afiliacion.")
                 End If
             Else
-                MessageBox.Show("Empleado pertenece al plan de ahorro " & dt.Rows(id)("descripcion") & ".")
+                MessageBox.Show("Empleado pertenece al plan de ahorro " & dt.Rows(indice)("descripcion") & ".")
             End If
         End If
 

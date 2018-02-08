@@ -34,6 +34,7 @@ Public Class CargoInteresAcumuladoForm
         CargodeInteresDataGridView.Columns("Interes").Visible = False
         CargodeInteresDataGridView.Columns("Aporte").Visible = False
 
+        dt.Columns.Add("Ahorro")
         dt.Columns.Add("Cargo Interes")
     End Sub
 
@@ -48,26 +49,38 @@ Public Class CargoInteresAcumuladoForm
             Fecha = dt.Rows(0)("Fecha")
         End If
 
-        For Each row2 As DataGridViewRow In CargodeInteresDataGridView.Rows
+        'For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
 
-            If CargoInteres.IntAcumuladoId = 0 Then
-                descuento = (DateDiff(DateInterval.Day, row2.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row2.Cells("PorcientoDesc").Value) / 100) / 365
-            Else
-                descuento = (DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) * (row2.Cells("PorcientoDesc").Value) / 100) / 365
-            End If
+        '    If CargoInteres.IntAcumuladoId = 0 Then
+        '        descuento = (DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
+        '    Else
+        '        descuento = (DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
+        '    End If
 
-            Dim aporte As Double = "0" & row2.Cells("Aporte").Value
+        '    Dim aporte As Double = "0" & row.Cells("Aporte").Value
 
-            If CargoInteres.IntAcumuladoId = 0 Then
-                CargoInt = (row2.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row2.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row2.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
-            Else
-                CargoInt = (row2.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row2.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
-            End If
+        '    If CargoInteres.IntAcumuladoId = 0 Then
+        '        row.Cells("Ahorro").Value = (row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
+        '    Else
+        '        row.Cells("Ahorro").Value = (row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
+        '    End If
 
 
-            Dim cargo As Double = CargoInt + ((row2.Cells("Interes").Value / 100) * CargoInt)
-            row2.Cells("Cargo Interes").Value = cargo.ToString("N2")
+        '    Dim cargo As Double = row.Cells("Interes").Value / 100 * row.Cells("Ahorro").Value
+        '    row.Cells("Cargo Interes").Value = cargo.ToString("N2")
+        'Next
+
+        For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
+
+            Dim ahorro As Double = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
+            Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
+            row.Cells("Ahorro").Value = ahorro.ToString("N2")
+
+            Dim cargo As Double = ((DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("Interes").Value / 100)) / 365) * row.Cells("Ahorro").Value
+            row.Cells("Cargo Interes").Value = cargo.ToString("N2")
+
         Next
+
     End Sub
 
     Private Sub CargarInteresButton_Click(sender As Object, e As EventArgs) Handles CargarInteresButton.Click
@@ -121,6 +134,7 @@ Public Class CargoInteresAcumuladoForm
                     IIf(CargoInteres.IntAcumuladoId = 0, 1, CargoInteres.IntAcumuladoId),
                     Convert.ToString(row.Cells("EmpleadoId").Value),
                     Convert.ToDouble(row.Cells("PlanId").Value),
+                    Convert.ToDouble(row.Cells("Ahorro").Value),
                     Convert.ToDouble(row.Cells("Cargo Interes").Value)
                 ))
             End If
@@ -179,7 +193,7 @@ Public Class CargoInteresAcumuladoForm
             Dim planAhorro = BLL.PlanAhorrosBLL.Buscar("PlanId = " & lista.PlanAhorro & "")
 
             dt.Rows.Add(empleado.EmpleadoId, planAhorro.PlanId, empleado.Nombres, planAhorro.Descripcion, planAhorro.PorcientoDesc,
-                        empleado.Sueldo, Date.Now(), planAhorro.Interes, 0, lista.IntAcumulado.ToString("n2"))
+                        empleado.Sueldo, Date.Now(), planAhorro.Interes, 0, lista.Ahorro, lista.IntAcumulado.ToString("n2"))
             CargodeInteresDataGridView.DataSource = dt
         Next
     End Sub
