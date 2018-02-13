@@ -82,7 +82,7 @@ Public Class InteresAcumuladoBLL
 
                 For Each detalle As InteresesAcumuladoDetalle In interesAcumulado.Detalle
 
-                    coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, IntAcumulado, Fecha) 
+                    coneccion.EjecutarComando("Insert into InteresesAcumuladoDetalle(IntAcumuladoId, Empleado, PlanAhorro, ahorro, IntAcumulado, Fecha) 
                                               values(" & interesAcumulado.IntAcumuladoId & ", " & detalle.Empleado & ", " & detalle.PlanAhorro &
                                               ", " & detalle.Ahorro & ", " & detalle.IntAcumulado & ", '" & interesAcumulado.Fecha & "')")
 

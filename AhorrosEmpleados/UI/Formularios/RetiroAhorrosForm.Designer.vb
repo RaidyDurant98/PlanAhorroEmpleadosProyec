@@ -22,7 +22,8 @@ Partial Class RetiroAhorrosForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.SalirButton = New System.Windows.Forms.Button()
         Me.CancelarButton = New System.Windows.Forms.Button()
@@ -41,12 +42,13 @@ Partial Class RetiroAhorrosForm
         Me.TotalRetiroTextBox = New System.Windows.Forms.TextBox()
         Me.DetalleDataGridView = New System.Windows.Forms.DataGridView()
         Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PlanId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CantidadRetiro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ahorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ImprimirButton
@@ -213,7 +215,7 @@ Partial Class RetiroAhorrosForm
         Me.DetalleDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DetalleDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.DetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PlanId, Me.Descripcion, Me.Total, Me.CantidadRetiro})
+        Me.DetalleDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PlanId, Me.Descripcion, Me.Ahorro})
         Me.DetalleDataGridView.Location = New System.Drawing.Point(30, 19)
         Me.DetalleDataGridView.Name = "DetalleDataGridView"
         Me.DetalleDataGridView.Size = New System.Drawing.Size(504, 155)
@@ -227,6 +229,10 @@ Partial Class RetiroAhorrosForm
         Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
         Me.FechaDateTimePicker.Size = New System.Drawing.Size(95, 20)
         Me.FechaDateTimePicker.TabIndex = 51
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
         '
         'PlanId
         '
@@ -242,21 +248,14 @@ Partial Class RetiroAhorrosForm
         Me.Descripcion.Name = "Descripcion"
         Me.Descripcion.ReadOnly = True
         '
-        'Total
+        'Ahorro
         '
-        Me.Total.DataPropertyName = "Total"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Total.HeaderText = "Total"
-        Me.Total.Name = "Total"
-        Me.Total.ReadOnly = True
-        '
-        'CantidadRetiro
-        '
-        Me.CantidadRetiro.HeaderText = "Cantidad a retirar"
-        Me.CantidadRetiro.Name = "CantidadRetiro"
+        Me.Ahorro.DataPropertyName = "Ahorro"
+        DataGridViewCellStyle1.Format = "n2"
+        Me.Ahorro.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Ahorro.HeaderText = "Ahorro"
+        Me.Ahorro.Name = "Ahorro"
+        Me.Ahorro.ReadOnly = True
         '
         'RetiroAhorrosForm
         '
@@ -279,12 +278,15 @@ Partial Class RetiroAhorrosForm
         Me.Controls.Add(Me.EliminarButton)
         Me.Controls.Add(Me.GuardarButton)
         Me.Controls.Add(Me.NuevoButton)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "RetiroAhorrosForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Retiro de plan de ahorro"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -308,8 +310,8 @@ Partial Class RetiroAhorrosForm
     Friend WithEvents DetalleDataGridView As DataGridView
     Friend WithEvents TotalRetiroTextBox As TextBox
     Friend WithEvents FechaDateTimePicker As DateTimePicker
+    Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents PlanId As DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As DataGridViewTextBoxColumn
-    Friend WithEvents Total As DataGridViewTextBoxColumn
-    Friend WithEvents CantidadRetiro As DataGridViewTextBoxColumn
+    Friend WithEvents Ahorro As DataGridViewTextBoxColumn
 End Class

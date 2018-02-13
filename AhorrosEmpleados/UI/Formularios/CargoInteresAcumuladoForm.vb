@@ -36,11 +36,30 @@ Public Class CargoInteresAcumuladoForm
 
         dt.Columns.Add("Ahorro")
         dt.Columns.Add("Cargo Interes")
+
+        Dim Ahorro As Double = 0
+        Dim fecha As Date
+        Dim dtFecha = BLL.InteresAcumuladoBLL.SeleccionarFecha(CargoInteres.IntAcumuladoId)
+        If CargoInteres.IntAcumuladoId > 0 Then
+            fecha = dtFecha.Rows(0)("Fecha")
+        End If
+        For Each row In CargodeInteresDataGridView.Rows
+            If CargoInteres.IntAcumuladoId = 0 Then
+                Ahorro = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
+                Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
+                row.Cells("Ahorro").Value = Ahorro.ToString("N2")
+            Else
+                Ahorro = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
+                Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
+                row.Cells("Ahorro").Value = Ahorro.ToString("N2")
+            End If
+
+        Next
+
     End Sub
 
     Private Sub CalcularInteresAcumulado()
 
-        Dim descuento As Double = 0
         Dim CargoInt As Double = 0
         Dim dt = BLL.InteresAcumuladoBLL.SeleccionarFecha(CargoInteres.IntAcumuladoId)
         Dim Fecha As Date
@@ -71,16 +90,14 @@ Public Class CargoInteresAcumuladoForm
         'Next
 
         For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
-
-            Dim ahorro As Double = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
-            Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
-            row.Cells("Ahorro").Value = ahorro.ToString("N2")
-
-            Dim cargo As Double = ((DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("Interes").Value / 100)) / 365) * row.Cells("Ahorro").Value
-            row.Cells("Cargo Interes").Value = cargo.ToString("N2")
-
+            If CargoInteres.IntAcumuladoId = 0 Then
+                Dim cargo As Double = ((DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("Interes").Value / 100)) / 365) * row.Cells("Ahorro").Value
+                row.Cells("Cargo Interes").Value = cargo.ToString("N2")
+            Else
+                Dim cargo As Double = ((DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) * (row.Cells("Interes").Value / 100)) / 365) * row.Cells("Ahorro").Value
+                row.Cells("Cargo Interes").Value = cargo.ToString("N2")
+            End If
         Next
-
     End Sub
 
     Private Sub CargarInteresButton_Click(sender As Object, e As EventArgs) Handles CargarInteresButton.Click
@@ -114,6 +131,7 @@ Public Class CargoInteresAcumuladoForm
 
         If Not ValidarGrid() Then
             If BLL.InteresAcumuladoBLL.Guardar(LlenarInstancia()) Then
+                IntAcumuladoIdMaskedTextBox.Text = CargoInteres.IntAcumuladoId
                 MessageBox.Show("Guardado")
                 GuardarButton.Enabled = False
                 ModificarButton.Enabled = True
@@ -187,6 +205,7 @@ Public Class CargoInteresAcumuladoForm
     End Sub
 
     Private Sub CargarDatosDetalle(detalle As List(Of InteresesAcumuladoDetalle))
+
         For Each lista As InteresesAcumuladoDetalle In detalle
 
             Dim empleado = BLL.EmpleadosBLL.Buscar(lista.Empleado)
@@ -195,6 +214,7 @@ Public Class CargoInteresAcumuladoForm
             dt.Rows.Add(empleado.EmpleadoId, planAhorro.PlanId, empleado.Nombres, planAhorro.Descripcion, planAhorro.PorcientoDesc,
                         empleado.Sueldo, Date.Now(), planAhorro.Interes, 0, lista.Ahorro, lista.IntAcumulado.ToString("n2"))
             CargodeInteresDataGridView.DataSource = dt
+
         Next
     End Sub
 
@@ -251,7 +271,7 @@ Public Class CargoInteresAcumuladoForm
                 If BLL.InteresAcumuladoBLL.Eliminar(CargoInteres.IntAcumuladoId) Then
                     Limpiar()
                     CargoInteres.Detalle = New List(Of InteresesAcumuladoDetalle)
-                    MessageBox.Show("cargode interes eliminado con exito.")
+                    MessageBox.Show("Cargo de interes eliminado con exito.")
                 Else
                     MessageBox.Show("No se pudo eliminar el cargo.")
                 End If
