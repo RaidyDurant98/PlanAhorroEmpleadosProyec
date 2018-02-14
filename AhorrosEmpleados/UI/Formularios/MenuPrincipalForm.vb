@@ -10,6 +10,7 @@
     Private DepositoConsulta As AhorrosEmpleados.DepositosConsulta
     Private RegistroRetiros As AhorrosEmpleados.RetiroAhorrosForm
     Private ConsultaEstadoCuenta As AhorrosEmpleados.EstadoCuentaConsulta
+    Private ConsultaRetiroAhorro As AhorrosEmpleados.RetirosConsulta
 
     Private Sub PlanAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PlanAhorrosToolStripMenuItem.Click
 
@@ -111,5 +112,15 @@
 
         ConsultaEstadoCuenta = New AhorrosEmpleados.EstadoCuentaConsulta
         ConsultaEstadoCuenta.Show()
+    End Sub
+
+    Private Sub RetiroDeAhorrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RetiroDeAhorrosToolStripMenuItem.Click
+        If ConsultaRetiroAhorro IsNot Nothing Then
+            ConsultaRetiroAhorro.Close()
+        End If
+
+
+        ConsultaRetiroAhorro = New AhorrosEmpleados.RetirosConsulta
+        ConsultaRetiroAhorro.Show()
     End Sub
 End Class

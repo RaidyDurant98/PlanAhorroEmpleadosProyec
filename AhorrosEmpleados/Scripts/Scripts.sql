@@ -117,6 +117,14 @@ inner join Empleados Emp on Emp.EmpleadoId = IntAcDet.Empleado
 inner join PlanAhorros Pl on pl.PlanId = IntAcDet.PlanAhorro
 group by Emp.Nombres, Pl.Descripcion
 
+/*Me selecciona el empleado el plan de ahorro y la suma de los retiros de ahorros de cada plan*/
+Select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Sum(retDet.retiro) as Retiro
+from RetiroAhorros ret inner join RetiroAhorrosDetalle retDet
+	on ret.RetiroId =  retDet.RetiroId
+inner join Empleados Emp on Emp.EmpleadoId = ret.Empleado
+inner join PlanAhorros Pl on Pl.PlanId = retDet.PlanId
+group by Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion
+
 /*Creando vista de los empleado que pertenecen a un plan de ahorro en especifico*/
 GO  
 CREATE VIEW VistaEmpleadoAfiliados  
@@ -138,6 +146,18 @@ from Empleados Emp inner join Aportes Ap
 inner join PlanAhorros Pl on Pl.PlanId = Ap.PlanAhorro;
 GO 
 
+/*Creando vista de los retiro de ahorros de los empleados*/
+GO  
+CREATE VIEW VistaRetiroAhorro
+AS  
+Select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Sum(retDet.retiro) as Retiro
+from RetiroAhorros ret inner join RetiroAhorrosDetalle retDet
+	on ret.RetiroId =  retDet.RetiroId
+inner join Empleados Emp on Emp.EmpleadoId = ret.Empleado
+inner join PlanAhorros Pl on Pl.PlanId = retDet.PlanId
+group by Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion
+GO 
+
 /*Actualiza la fecha del ultimo cargo cuando se cargan los intereses*/
 update AfiliacionEmpleadosDetalle set FechaUltimoCargo = IntDet.Fecha 
 from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet 
@@ -145,31 +165,3 @@ from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet
 inner join Empleados Emp on Emp.EmpleadoId = IntDet.Empleado
 inner join PlanAhorros Pl on Pl.PlanId = IntDet.PlanAhorro
 where DATEDIFF(day, FechaUltimoCargo, IntAc.Fecha) > 0 and IntAc.IntAcumuladoId = " & id & "
-
-select IntDet.Fecha 
-from InteresesAcumulados IntAc inner join InteresesAcumuladoDetalle IntDet 
-	on IntAc.IntAcumuladoId = IntDet.IntAcumuladoId
-inner join Empleados Emp on Emp.EmpleadoId = IntDet.Empleado
-inner join PlanAhorros Pl on Pl.PlanId = IntDet.PlanAhorro
-inner join AfiliacionEmpleadosDetalle aed on DATEDIFF(day, aed.FechaUltimoCargo, getdate()) > 0
-
-select * from AfiliacionEmpleadosDetalle
-select * from AfiliacionEmpleados
-select * from InteresesAcumuladoDetalle
-
-truncate table PlanAhorros
-truncate table empleados
-truncate table AfiliacionEmpleados
-truncate table afiliacionEmpleadosDetalle
-truncate table Aportes
-truncate table interesesAcumuladoDetalle
-
-DBCC CHECKIDENT (Empleados, reseed, 0) 
-DBCC CHECKIDENT (PLanAhorros, reseed, 0)
-DBCC CHECKIDENT (AfiliacionEmpleados, reseed, 0)
-DBCC CHECKIDENT (InteresesAcumulados, reseed, 0)
-
-delete from AfiliacionEmpleados
-delete from Empleados
-delete from PlanAhorros
-delete from InteresesAcumulados

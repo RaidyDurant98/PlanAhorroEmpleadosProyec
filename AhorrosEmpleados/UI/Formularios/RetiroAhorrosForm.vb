@@ -149,6 +149,7 @@ Public Class RetiroAhorrosForm
                 ModificarButton.Enabled = True
                 CancelarButton.Enabled = True
                 EliminarButton.Enabled = True
+                EmpleadoIdMaskedTextBox.ReadOnly = True
             Else
                 MessageBox.Show("No se pudo reaizar el retiro")
             End If

@@ -19,9 +19,6 @@ Public Class RetirosBLL
                     coneccion.EjecutarComando("Insert into RetiroAhorrosDetalle(RetiroId, PlanId, Ahorro, Retiro) values(" & id & ", " & detalle.PlanId & ", " & detalle.Ahorro & ", " & detalle.Retiro & " )")
                 Next
 
-                'coneccion.EjecutarComando("Update RetiroAhorrosDetalle set Ahorro = Ahorro - Retiro 
-                '                                where RetiroId = " & id & "")
-
                 retiro.RetiroId = id
 
                 Return True
@@ -132,5 +129,19 @@ Public Class RetirosBLL
         End Using
 
         Return False
+    End Function
+
+    Public Shared Function GetTotalRetiros(Optional ByVal condicion As String = "") As DataTable
+        Dim dt As DataTable = Nothing
+        Using coneccion As New Coneccion()
+            dt = coneccion.SeleccionarDatos("Select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Sum(retDet.retiro) as Retiro
+                                            from RetiroAhorros ret inner join RetiroAhorrosDetalle retDet
+	                                            on ret.RetiroId =  retDet.RetiroId
+                                            inner join Empleados Emp on Emp.EmpleadoId = ret.Empleado
+                                            inner join PlanAhorros Pl on Pl.PlanId = retDet.PlanId
+                                            " & condicion & "
+                                            group by Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion")
+            Return dt
+        End Using
     End Function
 End Class

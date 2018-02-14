@@ -36,6 +36,7 @@ Partial Class MenuPrincipalForm
         Me.SociosAfiliadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DepositosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstadoDeCuentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RetiroDeAhorrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -100,7 +101,7 @@ Partial Class MenuPrincipalForm
         '
         'ConsultasToolStripMenuItem
         '
-        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanAhorrosToolStripMenuItem1, Me.SociosAfiliadosToolStripMenuItem, Me.DepositosToolStripMenuItem, Me.EstadoDeCuentasToolStripMenuItem})
+        Me.ConsultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PlanAhorrosToolStripMenuItem1, Me.SociosAfiliadosToolStripMenuItem, Me.DepositosToolStripMenuItem, Me.EstadoDeCuentasToolStripMenuItem, Me.RetiroDeAhorrosToolStripMenuItem})
         Me.ConsultasToolStripMenuItem.Name = "ConsultasToolStripMenuItem"
         Me.ConsultasToolStripMenuItem.Size = New System.Drawing.Size(71, 20)
         Me.ConsultasToolStripMenuItem.Text = "Consultas"
@@ -128,6 +129,12 @@ Partial Class MenuPrincipalForm
         Me.EstadoDeCuentasToolStripMenuItem.Name = "EstadoDeCuentasToolStripMenuItem"
         Me.EstadoDeCuentasToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.EstadoDeCuentasToolStripMenuItem.Text = "Estado de Cuentas"
+        '
+        'RetiroDeAhorrosToolStripMenuItem
+        '
+        Me.RetiroDeAhorrosToolStripMenuItem.Name = "RetiroDeAhorrosToolStripMenuItem"
+        Me.RetiroDeAhorrosToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.RetiroDeAhorrosToolStripMenuItem.Text = "Retiro de Ahorros"
         '
         'MenuPrincipalForm
         '
@@ -161,4 +168,5 @@ Partial Class MenuPrincipalForm
     Friend WithEvents DepositosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RetiroDePlanDeAhorroToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EstadoDeCuentasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RetiroDeAhorrosToolStripMenuItem As ToolStripMenuItem
 End Class
