@@ -23,7 +23,7 @@ Partial Class RetiroAhorrosForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ImprimirButton = New System.Windows.Forms.Button()
         Me.SalirButton = New System.Windows.Forms.Button()
         Me.CancelarButton = New System.Windows.Forms.Button()
@@ -41,11 +41,11 @@ Partial Class RetiroAhorrosForm
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TotalRetiroTextBox = New System.Windows.Forms.TextBox()
         Me.DetalleDataGridView = New System.Windows.Forms.DataGridView()
-        Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PlanId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Ahorro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox1.SuspendLayout()
         CType(Me.DetalleDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,19 +221,6 @@ Partial Class RetiroAhorrosForm
         Me.DetalleDataGridView.Size = New System.Drawing.Size(504, 155)
         Me.DetalleDataGridView.TabIndex = 24
         '
-        'FechaDateTimePicker
-        '
-        Me.FechaDateTimePicker.CustomFormat = "yyyy/MM/dd"
-        Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.FechaDateTimePicker.Location = New System.Drawing.Point(481, 19)
-        Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
-        Me.FechaDateTimePicker.Size = New System.Drawing.Size(95, 20)
-        Me.FechaDateTimePicker.TabIndex = 51
-        '
-        'ErrorProvider
-        '
-        Me.ErrorProvider.ContainerControl = Me
-        '
         'PlanId
         '
         Me.PlanId.DataPropertyName = "PlanId"
@@ -251,11 +238,24 @@ Partial Class RetiroAhorrosForm
         'Ahorro
         '
         Me.Ahorro.DataPropertyName = "Ahorro"
-        DataGridViewCellStyle1.Format = "n2"
-        Me.Ahorro.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Format = "n2"
+        Me.Ahorro.DefaultCellStyle = DataGridViewCellStyle2
         Me.Ahorro.HeaderText = "Ahorro"
         Me.Ahorro.Name = "Ahorro"
         Me.Ahorro.ReadOnly = True
+        '
+        'FechaDateTimePicker
+        '
+        Me.FechaDateTimePicker.CustomFormat = "yyyy/MM/dd"
+        Me.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.FechaDateTimePicker.Location = New System.Drawing.Point(481, 19)
+        Me.FechaDateTimePicker.Name = "FechaDateTimePicker"
+        Me.FechaDateTimePicker.Size = New System.Drawing.Size(95, 20)
+        Me.FechaDateTimePicker.TabIndex = 51
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
         '
         'RetiroAhorrosForm
         '

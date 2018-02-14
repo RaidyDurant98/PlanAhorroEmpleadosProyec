@@ -13,11 +13,31 @@ Public Class SociosAfiliadosConsulta
         Filtro()
     End Sub
 
+    Private Sub LimpiarGrid()
+        dt.Rows.Clear()
+    End Sub
+
+    Private Function ValidarFechaDesdeHasta() As Boolean
+        Dim interruptor = True
+
+        If HastaDateTimePicker.Value.Date < DesdeDateTimePicker.Value.Date Then
+            interruptor = False
+        End If
+
+        Return interruptor
+    End Function
+
     Private Sub Filtro()
-        'Dim dt As DataTable = Nothing
 
         If FiltrarComboBox.SelectedIndex = 0 Then
             dt = EmpleadosBLL.GetSociosAfiliados()
+        ElseIf FiltrarComboBox.SelectedIndex = 4 Then
+            If ValidarFechaDesdeHasta() Then
+                dt = EmpleadosBLL.GetSociosAfiliados(" where afil.FechaAfiliacion >= '" & DesdeDateTimePicker.Value.Date & "' and afil.FechaAfiliacion <= '" & HastaDateTimePicker.Value.Date & "'")
+            Else
+                LimpiarGrid()
+                MessageBox.Show("La desde debe ser menor que la fecha hasta")
+            End If
         Else
             If String.IsNullOrEmpty(FiltrarTextBox.Text) Then
                 MessageBox.Show("Por favor digite el dato a filtrar.")
@@ -34,6 +54,8 @@ Public Class SociosAfiliadosConsulta
 
         If dt.Rows.Count > 0 Then
             ConsultaDataGridView.DataSource = dt
+        Else
+            LimpiarGrid()
         End If
     End Sub
 
@@ -56,8 +78,7 @@ Public Class SociosAfiliadosConsulta
         If FiltrarComboBox.SelectedIndex = 0 Then
             Filtro()
         Else
-            dt = New DataTable
-            ConsultaDataGridView.DataSource = dt
+            LimpiarGrid()
         End If
     End Sub
 

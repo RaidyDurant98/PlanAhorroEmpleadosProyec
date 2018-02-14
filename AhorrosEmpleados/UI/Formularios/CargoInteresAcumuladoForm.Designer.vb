@@ -125,9 +125,9 @@ Partial Class CargoInteresAcumuladoForm
         Me.TotalLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TotalLabel.Location = New System.Drawing.Point(416, 317)
         Me.TotalLabel.Name = "TotalLabel"
-        Me.TotalLabel.Size = New System.Drawing.Size(34, 20)
+        Me.TotalLabel.Size = New System.Drawing.Size(44, 20)
         Me.TotalLabel.TabIndex = 21
-        Me.TotalLabel.Text = "0.0"
+        Me.TotalLabel.Text = "0.00"
         '
         'ImprimirButton
         '

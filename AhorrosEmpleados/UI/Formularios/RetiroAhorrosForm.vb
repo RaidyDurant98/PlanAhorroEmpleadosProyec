@@ -36,11 +36,13 @@ Public Class RetiroAhorrosForm
 
     Private Sub DescontarRetiroDeAhorros()
         Dim retiro As DataTable = BLL.RetirosBLL.ObtenerRetirosAnteriores(Empleado.EmpleadoId)
-        Dim i As Integer = dt.Rows.Count
+        Dim i As Integer = retiro.Rows.Count
 
         If retiro.Rows.Count > 0 Then
             For Each row As DataGridViewRow In DetalleDataGridView.Rows
-                row.Cells("Ahorro").Value -= "0" & retiro(dt.Rows.Count - i)("Retiro")
+                If i > 0 Then
+                    row.Cells("Ahorro").Value -= ("0" & retiro(retiro.Rows.Count - i)("Retiro"))
+                End If
                 i -= 1
             Next
         End If
@@ -65,7 +67,7 @@ Public Class RetiroAhorrosForm
         Dim suma As Double = 0
 
         For Each row As DataGridViewRow In DetalleDataGridView.Rows
-            suma += "0" & row.Cells("CantidadRetiro").Value
+            suma += Utilidades.ToDouble("0" & row.Cells("CantidadRetiro").Value)
         Next
 
         TotalRetiroTextBox.Text = suma.ToString("N2")
@@ -85,7 +87,7 @@ Public Class RetiroAhorrosForm
                     IIf(Retiro.RetiroId = 0, 1, Retiro.RetiroId),
                     Convert.ToInt32(row.Cells("PlanId").Value),
                     Convert.ToDouble(row.Cells("Ahorro").Value),
-                    Convert.ToDouble("0" & row.Cells("CantidadRetiro").Value)
+                    Convert.ToDouble(Utilidades.ToDouble("0" & row.Cells("CantidadRetiro").Value))
                 ))
             End If
         Next
@@ -107,7 +109,7 @@ Public Class RetiroAhorrosForm
         dt = BLL.RetirosBLL.ObtenerInteresAcumulado(Empleado.EmpleadoId)
 
         For Each row As DataGridViewRow In DetalleDataGridView.Rows
-            list.Add("0" & row.Cells("CantidadRetiro").Value)
+            list.Add(Utilidades.ToDouble("0" & row.Cells("CantidadRetiro").Value))
         Next
 
         For index = 0 To dt.Rows.Count - 1
@@ -254,7 +256,6 @@ Public Class RetiroAhorrosForm
 
 
                 If BLL.RetirosBLL.Modificar(LlenarInstancia()) Then
-                    Retiro.Detalle = New List(Of RetiroAhorrosDetalle)
                     MessageBox.Show("Retiro modificado con exito.")
                 Else
                     MessageBox.Show("No se pudo modificar el retiro.")
@@ -267,15 +268,32 @@ Public Class RetiroAhorrosForm
     End Sub
 
     Private Function CompararDatosRetiro(detalle As List(Of RetiroAhorrosDetalle)) As Boolean
-        Dim x As Integer
 
+        Dim antiguoRetiro As Double
+        Dim x As Integer
+        Dim y = 0
         For Each lista As RetiroAhorrosDetalle In detalle
-            x = lista.Retiro
-            If x < DetalleDataGridView.Rows(0).Cells("CantidadRetiro").Value Then
+            x = detalle.Count
+            antiguoRetiro = lista.Retiro
+            x -= y
+            If antiguoRetiro < DetalleDataGridView.Rows(detalle.Count - x).Cells("CantidadRetiro").Value Then
                 Return False
+            Else
+                y += 1
             End If
         Next
         Return True
     End Function
 
+    Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
+        Dim eliminar As DialogResult = MessageBox.Show("¿Quiere cancelar los cambios?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If eliminar = DialogResult.Yes Then
+            CargarDatosRetiro()
+        End If
+
+    End Sub
+
+    Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click
+        Me.Hide()
+    End Sub
 End Class

@@ -134,13 +134,13 @@ Public Class RetirosBLL
     Public Shared Function GetTotalRetiros(Optional ByVal condicion As String = "") As DataTable
         Dim dt As DataTable = Nothing
         Using coneccion As New Coneccion()
-            dt = coneccion.SeleccionarDatos("Select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Sum(retDet.retiro) as Retiro
+            dt = coneccion.SeleccionarDatos("Select Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, Sum(retDet.retiro) as Retiro, ret.Fecha
                                             from RetiroAhorros ret inner join RetiroAhorrosDetalle retDet
 	                                            on ret.RetiroId =  retDet.RetiroId
                                             inner join Empleados Emp on Emp.EmpleadoId = ret.Empleado
                                             inner join PlanAhorros Pl on Pl.PlanId = retDet.PlanId
                                             " & condicion & "
-                                            group by Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion")
+                                            group by Emp.EmpleadoId, Emp.Nombres, Emp.Direccion, Emp.NumCel, Pl.PlanId, Pl.Descripcion, ret.Fecha")
             Return dt
         End Using
     End Function

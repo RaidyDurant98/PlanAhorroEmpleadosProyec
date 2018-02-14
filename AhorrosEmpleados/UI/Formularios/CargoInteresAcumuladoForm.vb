@@ -37,6 +37,11 @@ Public Class CargoInteresAcumuladoForm
         dt.Columns.Add("Ahorro")
         dt.Columns.Add("Cargo Interes")
 
+        CalculoAhorro()
+    End Sub
+
+    Private Sub CalculoAhorro()
+
         Dim Ahorro As Double = 0
         Dim fecha As Date
         Dim dtFecha = BLL.InteresAcumuladoBLL.SeleccionarFecha(CargoInteres.IntAcumuladoId)
@@ -46,14 +51,13 @@ Public Class CargoInteresAcumuladoForm
         For Each row In CargodeInteresDataGridView.Rows
             If CargoInteres.IntAcumuladoId = 0 Then
                 Ahorro = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
-                Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
+                Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + Utilidades.ToDouble("0" & row.Cells("Aporte").Value))
                 row.Cells("Ahorro").Value = Ahorro.ToString("N2")
             Else
                 Ahorro = (((row.Cells("Sueldo").Value * (row.Cells("PorcientoDesc").Value) / 100) / 12) *
-                Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value))
+                Convert.ToInt32(DateDiff(DateInterval.Day, fecha, FechaDateTimePicker.Value) / 30) + Utilidades.ToDouble("0" & row.Cells("Aporte").Value))
                 row.Cells("Ahorro").Value = Ahorro.ToString("N2")
             End If
-
         Next
 
     End Sub
@@ -67,27 +71,6 @@ Public Class CargoInteresAcumuladoForm
         If CargoInteres.IntAcumuladoId > 0 Then
             Fecha = dt.Rows(0)("Fecha")
         End If
-
-        'For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
-
-        '    If CargoInteres.IntAcumuladoId = 0 Then
-        '        descuento = (DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
-        '    Else
-        '        descuento = (DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) * (row.Cells("PorcientoDesc").Value) / 100) / 365
-        '    End If
-
-        '    Dim aporte As Double = "0" & row.Cells("Aporte").Value
-
-        '    If CargoInteres.IntAcumuladoId = 0 Then
-        '        row.Cells("Ahorro").Value = (row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, row.Cells("FechaUltimoCargo").Value, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
-        '    Else
-        '        row.Cells("Ahorro").Value = (row.Cells("Sueldo").Value * Convert.ToInt32(DateDiff(DateInterval.Day, Fecha, FechaDateTimePicker.Value) / 30) + ("0" & row.Cells("Aporte").Value)) * (FormatNumber(descuento, 3))
-        '    End If
-
-
-        '    Dim cargo As Double = row.Cells("Interes").Value / 100 * row.Cells("Ahorro").Value
-        '    row.Cells("Cargo Interes").Value = cargo.ToString("N2")
-        'Next
 
         For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
             If CargoInteres.IntAcumuladoId = 0 Then
@@ -113,7 +96,7 @@ Public Class CargoInteresAcumuladoForm
             interruptor = True
         Else
             For Each row As DataGridViewRow In CargodeInteresDataGridView.Rows
-                Dim x = "0" & row.Cells("Cargo Interes").Value
+                Dim x = Utilidades.ToDouble("0" & row.Cells("Cargo Interes").Value)
                 If x = 0 Then
                     interruptor = True
                 End If
@@ -219,9 +202,7 @@ Public Class CargoInteresAcumuladoForm
     End Sub
 
     Private Sub LimpiarGrid()
-        dt = New DataTable
-        CargodeInteresDataGridView.DataSource = dt
-        CargarDetalle()
+        dt.Rows.Clear()
     End Sub
 
     Private Sub FechaDateTimePicker_ValueChanged(sender As Object, e As EventArgs) Handles FechaDateTimePicker.ValueChanged
@@ -239,7 +220,6 @@ Public Class CargoInteresAcumuladoForm
         CancelarButton.Enabled = False
         EliminarButton.Enabled = True
         TotalLabel.Text = "0.00"
-        LimpiarGrid()
     End Sub
 
     Private Sub NuevoButton_Click(sender As Object, e As EventArgs) Handles NuevoButton.Click
@@ -247,14 +227,16 @@ Public Class CargoInteresAcumuladoForm
     End Sub
 
     Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
-        LimpiarGrid()
-        CargarDatosCargoInteres()
+        Dim eliminar As DialogResult = MessageBox.Show("¿Quiere cancelar los cambios?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If eliminar = DialogResult.Yes Then
+            LimpiarGrid()
+            CargarDatosCargoInteres()
+        End If
     End Sub
 
     Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
         If Not ValidarGrid() Then
             If InteresAcumuladoBLL.Modificar(LlenarInstancia()) Then
-                CargoInteres.Detalle = New List(Of InteresesAcumuladoDetalle)
                 MessageBox.Show("Cargo de interes modificada con exito.")
             Else
                 MessageBox.Show("No se pudo modificar el Cargo de interes.")

@@ -331,7 +331,6 @@ Public Class AfiliacionEmpleadosForm
     Private Sub ModificarButton_Click(sender As Object, e As EventArgs) Handles ModificarButton.Click
         If Validar() Then
             If AfiliacionEmpleadosBLL.Modificar(LlenarInstancia()) Then
-                Afiliacion.Detalle = New List(Of AfiliacionEmpleadosDetalle)
                 MessageBox.Show("Afiliacion modificada con exito.")
             Else
                 MessageBox.Show("No se pudo modificar la afiliacion.")
@@ -340,7 +339,10 @@ Public Class AfiliacionEmpleadosForm
     End Sub
 
     Private Sub CancelarButton_Click(sender As Object, e As EventArgs) Handles CancelarButton.Click
-        CargarDatosAfiliacion()
+        Dim eliminar As DialogResult = MessageBox.Show("¿Quiere cancelar los cambios?", "¡Advertencia!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If eliminar = DialogResult.Yes Then
+            CargarDatosAfiliacion()
+        End If
     End Sub
 
     Private Sub SalirButton_Click(sender As Object, e As EventArgs) Handles SalirButton.Click

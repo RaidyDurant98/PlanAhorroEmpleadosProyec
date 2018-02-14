@@ -30,13 +30,17 @@ Partial Class SociosAfiliadosConsulta
         Me.Nombres = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FiltrarTextBox = New System.Windows.Forms.TextBox()
+        Me.HastaDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DesdeDateTimePicker = New System.Windows.Forms.DateTimePicker()
         CType(Me.ConsultaDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'FiltrarButton
         '
         Me.FiltrarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltrarButton.Location = New System.Drawing.Point(348, 47)
+        Me.FiltrarButton.Location = New System.Drawing.Point(444, 13)
         Me.FiltrarButton.Name = "FiltrarButton"
         Me.FiltrarButton.Size = New System.Drawing.Size(75, 23)
         Me.FiltrarButton.TabIndex = 6
@@ -47,16 +51,16 @@ Partial Class SociosAfiliadosConsulta
         '
         Me.FiltrarComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.FiltrarComboBox.FormattingEnabled = True
-        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "Empleado Id", "Nombres", "Plan Ahorro"})
-        Me.FiltrarComboBox.Location = New System.Drawing.Point(25, 49)
+        Me.FiltrarComboBox.Items.AddRange(New Object() {"Todos", "Empleado Id", "Nombres", "Plan Ahorro", "Fecha"})
+        Me.FiltrarComboBox.Location = New System.Drawing.Point(17, 14)
         Me.FiltrarComboBox.Name = "FiltrarComboBox"
-        Me.FiltrarComboBox.Size = New System.Drawing.Size(90, 21)
+        Me.FiltrarComboBox.Size = New System.Drawing.Size(102, 21)
         Me.FiltrarComboBox.TabIndex = 5
         '
         'ImprimirButton
         '
         Me.ImprimirButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ImprimirButton.Location = New System.Drawing.Point(13, 316)
+        Me.ImprimirButton.Location = New System.Drawing.Point(13, 327)
         Me.ImprimirButton.Name = "ImprimirButton"
         Me.ImprimirButton.Size = New System.Drawing.Size(75, 23)
         Me.ImprimirButton.TabIndex = 9
@@ -74,7 +78,7 @@ Partial Class SociosAfiliadosConsulta
         Me.ConsultaDataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ConsultaDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.EmpleadoId, Me.Nombres, Me.Descripcion})
-        Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 98)
+        Me.ConsultaDataGridView.Location = New System.Drawing.Point(12, 109)
         Me.ConsultaDataGridView.Name = "ConsultaDataGridView"
         Me.ConsultaDataGridView.ReadOnly = True
         Me.ConsultaDataGridView.Size = New System.Drawing.Size(524, 201)
@@ -106,16 +110,58 @@ Partial Class SociosAfiliadosConsulta
         '
         Me.FiltrarTextBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FiltrarTextBox.Location = New System.Drawing.Point(121, 50)
+        Me.FiltrarTextBox.Location = New System.Drawing.Point(125, 15)
         Me.FiltrarTextBox.Name = "FiltrarTextBox"
-        Me.FiltrarTextBox.Size = New System.Drawing.Size(221, 20)
+        Me.FiltrarTextBox.Size = New System.Drawing.Size(313, 20)
         Me.FiltrarTextBox.TabIndex = 11
+        '
+        'HastaDateTimePicker
+        '
+        Me.HastaDateTimePicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.HastaDateTimePicker.CustomFormat = "yyyy/MM/dd"
+        Me.HastaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.HastaDateTimePicker.Location = New System.Drawing.Point(336, 60)
+        Me.HastaDateTimePicker.Name = "HastaDateTimePicker"
+        Me.HastaDateTimePicker.Size = New System.Drawing.Size(102, 20)
+        Me.HastaDateTimePicker.TabIndex = 30
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(104, 66)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(41, 13)
+        Me.Label1.TabIndex = 27
+        Me.Label1.Text = "Desde:"
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(292, 66)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.TabIndex = 29
+        Me.Label2.Text = "Hasta:"
+        '
+        'DesdeDateTimePicker
+        '
+        Me.DesdeDateTimePicker.CustomFormat = "yyyy/MM/dd"
+        Me.DesdeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DesdeDateTimePicker.Location = New System.Drawing.Point(151, 60)
+        Me.DesdeDateTimePicker.Name = "DesdeDateTimePicker"
+        Me.DesdeDateTimePicker.Size = New System.Drawing.Size(102, 20)
+        Me.DesdeDateTimePicker.TabIndex = 28
         '
         'SociosAfiliadosConsulta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(548, 379)
+        Me.Controls.Add(Me.HastaDateTimePicker)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.DesdeDateTimePicker)
         Me.Controls.Add(Me.FiltrarTextBox)
         Me.Controls.Add(Me.ImprimirButton)
         Me.Controls.Add(Me.ConsultaDataGridView)
@@ -137,4 +183,8 @@ Partial Class SociosAfiliadosConsulta
     Friend WithEvents Nombres As DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As DataGridViewTextBoxColumn
     Friend WithEvents FiltrarTextBox As TextBox
+    Friend WithEvents HastaDateTimePicker As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents DesdeDateTimePicker As DateTimePicker
 End Class

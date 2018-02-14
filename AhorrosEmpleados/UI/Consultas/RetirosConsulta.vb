@@ -11,9 +11,30 @@
         FiltrarComboBox.SelectedIndex = 0
     End Sub
 
+    Private Sub LimpiarGrid()
+        dt.Rows.Clear()
+    End Sub
+
+    Private Function ValidarFechaDesdeHasta() As Boolean
+        Dim interruptor = True
+
+        If HastaDateTimePicker.Value.Date < DesdeDateTimePicker.Value.Date Then
+            interruptor = False
+        End If
+
+        Return interruptor
+    End Function
+
     Private Sub Filtro()
         If FiltrarComboBox.SelectedIndex = 0 Then
             dt = BLL.RetirosBLL.GetTotalRetiros()
+        ElseIf FiltrarComboBox.SelectedIndex = 3 Then
+            If ValidarFechaDesdeHasta() Then
+                dt = BLL.RetirosBLL.GetTotalRetiros(" where Fecha >= '" & DesdeDateTimePicker.Value & "' and Fecha <= '" & HastaDateTimePicker.Value & "'")
+            Else
+                LimpiarGrid()
+                MessageBox.Show("La desde debe ser menor que la fecha hasta")
+            End If
         Else
             If String.IsNullOrEmpty(FiltrarTextBox.Text) Then
                 MessageBox.Show("Por favor digite el dato a filtrar.")
